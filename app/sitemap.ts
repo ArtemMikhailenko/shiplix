@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { locales } from "@/app/lib/i18n/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://shiplix.dev";
+  const baseUrl = "https://shiplix.it.com";
   const entries: MetadataRoute.Sitemap = [];
 
   for (const locale of locales) {

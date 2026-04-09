@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shiplix.dev"),
+  metadataBase: new URL("https://shiplix.it.com"),
   icons: { icon: "/icon.svg" },
   robots: { index: true, follow: true },
 };
@@ -28,7 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={`${dmSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      className={`${dmSans.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

@@ -34,7 +34,7 @@ export async function generateMetadata({
     openGraph: {
       title: "Shiplix — We Ship Web & Mobile Products",
       description: dict.hero.sub,
-      url: "https://shiplix.dev",
+      url: `https://shiplix.it.com/${params.locale}`,
       siteName: "Shiplix",
       images: [
         {
