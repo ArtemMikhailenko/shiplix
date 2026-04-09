@@ -35,14 +35,38 @@ const en = {
     title: "Everything you need to ship a product",
     sub: "SaaS, marketplaces, e-commerce, landing pages, mobile apps, and automation. One team, full-cycle delivery.",
     items: {
-      saas: { title: "SaaS Platforms", desc: "Complex business logic, subscriptions, role-based access, document generation, and regulatory compliance." },
-      marketplace: { title: "Marketplaces", desc: "Multi-vendor platforms with separate panels for buyers, sellers, and admins. Real-time search and payments." },
-      mobile: { title: "Mobile Apps", desc: "Cross-platform React Native apps — from crypto wallets to service booking. Idea to App Store." },
-      fintech: { title: "Fintech & Crypto", desc: "Payment processors, blockchain integrations, Stripe with EU VAT, and crypto wallet modules." },
-      landing: { title: "Landing Pages & Corporate Sites", desc: "High-converting landing pages and corporate websites. SEO-optimized, blazing-fast, with polished UI and animations." },
-      ecommerce: { title: "E-Commerce & Online Stores", desc: "Custom storefronts, product catalogs, cart & checkout flows, payment integrations, and inventory management." },
-      automation: { title: "Automation & No-Code", desc: "Airtable, Make, n8n workflows. Custom webhooks, document generation, API integrations, and process automation." },
-      mvp: { title: "MVP Development", desc: "Validate fast. Production-ready MVPs in 4–8 weeks with clean architecture that scales." },
+      saas: {
+        title: "SaaS Platforms",
+        desc: "Complex business logic, subscriptions, role-based access, document generation, and regulatory compliance.",
+      },
+      marketplace: {
+        title: "Marketplaces",
+        desc: "Multi-vendor platforms with separate panels for buyers, sellers, and admins. Real-time search and payments.",
+      },
+      mobile: {
+        title: "Mobile Apps",
+        desc: "Cross-platform React Native apps — from crypto wallets to service booking. Idea to App Store.",
+      },
+      fintech: {
+        title: "Fintech & Crypto",
+        desc: "Payment processors, blockchain integrations, Stripe with EU VAT, and crypto wallet modules.",
+      },
+      landing: {
+        title: "Landing Pages & Corporate Sites",
+        desc: "High-converting landing pages and corporate websites. SEO-optimized, blazing-fast, with polished UI and animations.",
+      },
+      ecommerce: {
+        title: "E-Commerce & Online Stores",
+        desc: "Custom storefronts, product catalogs, cart & checkout flows, payment integrations, and inventory management.",
+      },
+      automation: {
+        title: "Automation & No-Code",
+        desc: "Airtable, Make, n8n workflows. Custom webhooks, document generation, API integrations, and process automation.",
+      },
+      mvp: {
+        title: "MVP Development",
+        desc: "Validate fast. Production-ready MVPs in 4–8 weeks with clean architecture that scales.",
+      },
     },
   },
   projects: {
@@ -52,20 +76,72 @@ const en = {
     viewAll: "View all projects →",
   },
   projectItems: {
-    inciCore: { title: "EU Cosmetics Compliance SaaS", desc: "Platform for managing Product Information Files required by EU regulations. 31,000+ ingredient database, PDF generation, Stripe billing with EU VAT.", challenge: "EU cosmetics regulation requires extensive product information documentation. Existing solutions were outdated and non-compliant.", result: "Full-featured SaaS platform handling 31,000+ ingredients, automated PDF generation, and Stripe billing with EU VAT compliance." },
-    marketplace: { title: "Multi-Vendor Marketplace", desc: "3 separate frontends, real-time notifications with Socket.io, Meilisearch, MinIO storage. 5 sprints, 200+ tasks.", challenge: "Complex multi-vendor platform requiring separate experiences for buyers, sellers, and administrators with real-time communication.", result: "3 separate frontends with real-time notifications, full-text search via Meilisearch, and file storage with MinIO. 200+ tasks in 5 sprints." },
-    crypto: { title: "Crypto Payment Processor", desc: "Blockchain monitoring for ETH, TRON, BSC. Automatic transaction detection, merchant dashboard, webhook notifications.", challenge: "Building reliable blockchain monitoring across multiple networks with automatic transaction detection and merchant notifications.", result: "Payment processor supporting ETH, TRON, and BSC. Handles thousands of daily transactions with webhook notifications and merchant dashboard." },
-    mobile: { title: "Mobile App with Crypto Wallet", desc: "Cross-platform app with built-in cryptocurrency wallet, token management, and secure key storage.", challenge: "Creating a secure cross-platform mobile app with built-in cryptocurrency wallet functionality and seamless key management.", result: "Polished app with token management, secure key storage, and smooth UX. From Figma mockup to App Store in 6 weeks." },
+    inciCore: {
+      title: "EU Cosmetics Compliance SaaS",
+      desc: "Platform for managing Product Information Files required by EU regulations. 31,000+ ingredient database, PDF generation, Stripe billing with EU VAT.",
+      challenge:
+        "EU cosmetics regulation requires extensive product information documentation. Existing solutions were outdated and non-compliant.",
+      result:
+        "Full-featured SaaS platform handling 31,000+ ingredients, automated PDF generation, and Stripe billing with EU VAT compliance.",
+    },
+    marketplace: {
+      title: "Multi-Vendor Marketplace",
+      desc: "3 separate frontends, real-time notifications with Socket.io, Meilisearch, MinIO storage. 5 sprints, 200+ tasks.",
+      challenge:
+        "Complex multi-vendor platform requiring separate experiences for buyers, sellers, and administrators with real-time communication.",
+      result:
+        "3 separate frontends with real-time notifications, full-text search via Meilisearch, and file storage with MinIO. 200+ tasks in 5 sprints.",
+    },
+    crypto: {
+      title: "Crypto Payment Processor",
+      desc: "Blockchain monitoring for ETH, TRON, BSC. Automatic transaction detection, merchant dashboard, webhook notifications.",
+      challenge:
+        "Building reliable blockchain monitoring across multiple networks with automatic transaction detection and merchant notifications.",
+      result:
+        "Payment processor supporting ETH, TRON, and BSC. Handles thousands of daily transactions with webhook notifications and merchant dashboard.",
+    },
+    mobile: {
+      title: "Mobile App with Crypto Wallet",
+      desc: "Cross-platform app with built-in cryptocurrency wallet, token management, and secure key storage.",
+      challenge:
+        "Creating a secure cross-platform mobile app with built-in cryptocurrency wallet functionality and seamless key management.",
+      result:
+        "Polished app with token management, secure key storage, and smooth UX. From Figma mockup to App Store in 6 weeks.",
+    },
   },
   testimonials: {
     label: "Testimonials",
     title: "Don't just take our word for it",
     sub: "Hear from the teams we've shipped products for.",
     items: {
-      t1: { quote: "Shiplix delivered our SaaS platform 2 weeks ahead of schedule. Clean code, clear communication, and zero drama. Exactly what we needed.", name: "Marcus Weber", role: "CTO, ComplianceHub", company: "SaaS · Germany" },
-      t2: { quote: "We tested 3 agencies before Shiplix. They were the only team that truly understood marketplace complexity — separate panels, real-time sync, the works.", name: "Sarah Chen", role: "Founder, TradeNest", company: "Marketplace · UAE" },
-      t3: { quote: "Our crypto payment processor handles thousands of transactions daily. Shiplix built it to be bulletproof from day one. Rock-solid architecture.", name: "Daniel Kovács", role: "CEO, PayChain", company: "Fintech · Hungary" },
-      t4: { quote: "From a rough Figma mockup to a polished mobile app in 6 weeks. The team moved fast without cutting corners. Would hire again in a heartbeat.", name: "Amira Al-Rashid", role: "Product Lead, WalletX", company: "Mobile · Saudi Arabia" },
+      t1: {
+        quote:
+          "Shiplix delivered our SaaS platform 2 weeks ahead of schedule. Clean code, clear communication, and zero drama. Exactly what we needed.",
+        name: "Marcus Weber",
+        role: "CTO, ComplianceHub",
+        company: "SaaS · Germany",
+      },
+      t2: {
+        quote:
+          "We tested 3 agencies before Shiplix. They were the only team that truly understood marketplace complexity — separate panels, real-time sync, the works.",
+        name: "Sarah Chen",
+        role: "Founder, TradeNest",
+        company: "Marketplace · UAE",
+      },
+      t3: {
+        quote:
+          "Our crypto payment processor handles thousands of transactions daily. Shiplix built it to be bulletproof from day one. Rock-solid architecture.",
+        name: "Daniel Kovács",
+        role: "CEO, PayChain",
+        company: "Fintech · Hungary",
+      },
+      t4: {
+        quote:
+          "From a rough Figma mockup to a polished mobile app in 6 weeks. The team moved fast without cutting corners. Would hire again in a heartbeat.",
+        name: "Amira Al-Rashid",
+        role: "Product Lead, WalletX",
+        company: "Mobile · Saudi Arabia",
+      },
     },
   },
   stack: {
@@ -78,10 +154,22 @@ const en = {
     title: "What makes us different",
     sub: "We're not an outsource factory. We're a product team that happens to work as a studio.",
     items: {
-      contact: { title: "One point of contact", desc: "No account managers, no middlemen. You talk directly to the lead developer who owns your project." },
-      parallel: { title: "Parallel dev streams", desc: "Frontend and backend run simultaneously. We ship in weeks, not months." },
-      production: { title: "Production-grade from day one", desc: "CI/CD, monitoring, error tracking, and clean architecture — not bolted on later, built in from the start." },
-      pricing: { title: "Transparent pricing", desc: "Fixed-price sprints with clear scope. You know exactly what you're paying for before we write a line of code." },
+      contact: {
+        title: "One point of contact",
+        desc: "No account managers, no middlemen. You talk directly to the lead developer who owns your project.",
+      },
+      parallel: {
+        title: "Parallel dev streams",
+        desc: "Frontend and backend run simultaneously. We ship in weeks, not months.",
+      },
+      production: {
+        title: "Production-grade from day one",
+        desc: "CI/CD, monitoring, error tracking, and clean architecture — not bolted on later, built in from the start.",
+      },
+      pricing: {
+        title: "Transparent pricing",
+        desc: "Fixed-price sprints with clear scope. You know exactly what you're paying for before we write a line of code.",
+      },
     },
   },
   process: {
@@ -89,9 +177,18 @@ const en = {
     title: "Idea to production. Weeks, not months.",
     sub: "One point of contact. Parallel streams. Transparent milestones.",
     steps: {
-      discovery: { title: "Discovery & Spec", desc: "We analyze requirements, define architecture, and deliver a detailed technical spec with timeline. You know exactly what you're getting before a line of code is written." },
-      build: { title: "Build & Ship", desc: "Frontend and backend run in parallel. Sprint-based delivery with demos every 1–2 weeks. Real progress, not status reports." },
-      launch: { title: "Launch & Support", desc: "Production deployment, monitoring setup, clean documentation. We stay for ongoing support and iterate based on real user feedback." },
+      discovery: {
+        title: "Discovery & Spec",
+        desc: "We analyze requirements, define architecture, and deliver a detailed technical spec with timeline. You know exactly what you're getting before a line of code is written.",
+      },
+      build: {
+        title: "Build & Ship",
+        desc: "Frontend and backend run in parallel. Sprint-based delivery with demos every 1–2 weeks. Real progress, not status reports.",
+      },
+      launch: {
+        title: "Launch & Support",
+        desc: "Production deployment, monitoring setup, clean documentation. We stay for ongoing support and iterate based on real user feedback.",
+      },
     },
   },
   cta: {
@@ -102,7 +199,13 @@ const en = {
   },
   footer: {
     copy: "© 2026 Shiplix. Based in Ukraine, shipping worldwide.",
-    nav: { services: "Services", projects: "Projects", about: "About", team: "Team", contact: "Contact" },
+    nav: {
+      services: "Services",
+      projects: "Projects",
+      about: "About",
+      team: "Team",
+      contact: "Contact",
+    },
     tagline: "Product-focused dev team from Ukraine.",
     backToTop: "Back to top",
   },
@@ -124,19 +227,35 @@ const en = {
     sub: "A small, senior team from Ukraine that ships fast and cares deeply about craft.",
     missionLabel: "Our mission",
     missionTitle: "Ship software that makes a real difference",
-    missionText: "We started Shiplix because we believe small, focused teams build better products than large outsourcing factories. Every line of code we write is meant to solve a real problem for a real business.",
+    missionText:
+      "We started Shiplix because we believe small, focused teams build better products than large outsourcing factories. Every line of code we write is meant to solve a real problem for a real business.",
     storyLabel: "Our story",
     storyTitle: "From Kyiv to the world",
-    storyP1: "Founded in Ukraine, Shiplix was born from a simple frustration: too many dev agencies ship mediocre code, miss deadlines, and disappear after launch. We decided to do things differently.",
-    storyP2: "We work as a tight product team — not a body shop. Every member is senior, every project gets our full attention, and we stay with you long after launch to iterate based on real user data.",
-    storyP3: "From EU SaaS platforms to crypto payment processors, we've shipped 20+ products across 5 industries. Our clients come back because we treat their product as our own.",
+    storyP1:
+      "Founded in Ukraine, Shiplix was born from a simple frustration: too many dev agencies ship mediocre code, miss deadlines, and disappear after launch. We decided to do things differently.",
+    storyP2:
+      "We work as a tight product team — not a body shop. Every member is senior, every project gets our full attention, and we stay with you long after launch to iterate based on real user data.",
+    storyP3:
+      "From EU SaaS platforms to crypto payment processors, we've shipped 20+ products across 5 industries. Our clients come back because we treat their product as our own.",
     valuesLabel: "Our values",
     valuesTitle: "What we stand for",
     values: {
-      craft: { title: "Craft over speed", desc: "We move fast, but never at the expense of quality. Clean architecture, tested code, and thoughtful UX are non-negotiable." },
-      ownership: { title: "Full ownership", desc: "No finger-pointing, no excuses. We own the outcome — from architecture decisions to production monitoring." },
-      transparency: { title: "Radical transparency", desc: "You see everything: sprint boards, code repos, deployment pipelines. No black boxes, no surprises." },
-      growth: { title: "Continuous growth", desc: "We invest 20% of our time in learning new tools, exploring new patterns, and pushing our boundaries." },
+      craft: {
+        title: "Craft over speed",
+        desc: "We move fast, but never at the expense of quality. Clean architecture, tested code, and thoughtful UX are non-negotiable.",
+      },
+      ownership: {
+        title: "Full ownership",
+        desc: "No finger-pointing, no excuses. We own the outcome — from architecture decisions to production monitoring.",
+      },
+      transparency: {
+        title: "Radical transparency",
+        desc: "You see everything: sprint boards, code repos, deployment pipelines. No black boxes, no surprises.",
+      },
+      growth: {
+        title: "Continuous growth",
+        desc: "We invest 20% of our time in learning new tools, exploring new patterns, and pushing our boundaries.",
+      },
     },
     numbersLabel: "By the numbers",
     viewTeam: "Meet the team →",
@@ -156,9 +275,30 @@ const en = {
     stackLabel: "Stack",
     joinLabel: "Join us",
     joinTitle: "We're always looking for talented people",
-    joinText: "If you're a senior developer who cares about craft and wants to work on meaningful products, we'd love to hear from you.",
+    joinText:
+      "If you're a senior developer who cares about craft and wants to work on meaningful products, we'd love to hear from you.",
     joinCta: "Get in touch →",
     backToHome: "← Back to home",
+    members: {
+      artem: "Artem Mykhailenko",
+      pavlo: "Pavlo Smirniy",
+      volodymyr: "Volodymyr Lysenko",
+    },
+    bios: {
+      artem:
+        "Architect and product thinker. Turns complex requirements into clean, scalable systems. Leads the team and owns every project from spec to production.",
+      pavlo:
+        "Builds reliable backends and deploys them to production. DevOps-minded engineer who cares about uptime and infrastructure as much as code quality.",
+      volodymyr:
+        "Full-stack generalist with a systems mindset. Designs database schemas, writes APIs, and builds UIs — whatever the project needs.",
+    },
+    experienceLabel: "Experience",
+    yearsShort: "years",
+    metaTitle: "Our Team — Shiplix",
+    metaDescription:
+      "Meet the senior engineers behind Shiplix. A small, focused team from Ukraine shipping full-cycle web and mobile products.",
+    breadcrumbHome: "Home",
+    breadcrumbTeam: "Team",
   },
   contactPage: {
     title: "Let's build something together",
@@ -167,7 +307,12 @@ const en = {
     formName: "Your name",
     formEmail: "Email address",
     formBudget: "Budget range",
-    formBudgetOptions: { small: "Just exploring", medium: "Up to $10K", large: "$10K – $30K", enterprise: "$30K+" },
+    formBudgetOptions: {
+      small: "Just exploring",
+      medium: "Up to $10K",
+      large: "$10K – $30K",
+      enterprise: "$30K+",
+    },
     formMessage: "Tell us about your project",
     formSubmit: "Send message →",
     formSuccess: "Message sent! We'll get back to you within 48 hours.",
@@ -181,7 +326,8 @@ const en = {
     label: "FAQ",
     backToHome: "← Back to home",
     ctaTitle: "Still have questions?",
-    ctaSub: "Book a free 30-min discovery call. No commitment, no pressure — just an honest conversation about your project.",
+    ctaSub:
+      "Book a free 30-min discovery call. No commitment, no pressure — just an honest conversation about your project.",
     ctaButton: "Let's talk →",
     sidebar: {
       statsTitle: "Shiplix in numbers",
@@ -196,14 +342,38 @@ const en = {
       trustRegions: "Europe · Middle East · USA",
     },
     items: {
-      q1: { q: "How much does a project cost?", a: "Every project is different. A landing page costs less than a SaaS platform — that's why we start with a free discovery call to understand your goals, then provide a clear, no-surprise estimate. We work with budgets of all sizes and always find a way to deliver maximum value." },
-      q2: { q: "How fast can you ship?", a: "Fast. MVPs in 4–8 weeks, full products in 2–4 months. We run frontend and backend in parallel and show you working demos every 1–2 weeks — so you see real progress, not just status updates." },
-      q3: { q: "What's your tech stack?", a: "Next.js + NestJS at the core, PostgreSQL and Redis for data, Docker for deployment. Mobile apps with React Native & Expo. We pick tools based on what your product actually needs — not hype." },
-      q4: { q: "Do you work with early-stage startups?", a: "That's our sweet spot. About 60% of our clients are startups. We know how to build MVPs that validate fast and don't need to be rewritten when you scale. Think of us as your first technical co-founders." },
-      q5: { q: "Will I have access to the code?", a: "From day one. Full access to the Git repo, sprint boards, and deployment pipelines. We believe in radical transparency — you own the code, and you can see every commit." },
-      q6: { q: "What happens after launch?", a: "We don't vanish. We offer ongoing support, monitor production, and help you iterate based on real user data. Most of our clients stay with us for months after launch because the work doesn't stop when you deploy." },
-      q7: { q: "Who will actually work on my project?", a: "Senior developers only — the same people from kickoff to launch. No handoffs to juniors, no rotating teams. You'll know every person working on your product by name." },
-      q8: { q: "Where is Shiplix based?", a: "Ukraine — Kyiv, Lviv, Dnipro, Kharkiv. We work with clients across Europe, the Middle East, and the US. Our hours overlap with CET and EST, and we're always just a Slack message away." },
+      q1: {
+        q: "How much does a project cost?",
+        a: "Every project is different. A landing page costs less than a SaaS platform — that's why we start with a free discovery call to understand your goals, then provide a clear, no-surprise estimate. We work with budgets of all sizes and always find a way to deliver maximum value.",
+      },
+      q2: {
+        q: "How fast can you ship?",
+        a: "Fast. MVPs in 4–8 weeks, full products in 2–4 months. We run frontend and backend in parallel and show you working demos every 1–2 weeks — so you see real progress, not just status updates.",
+      },
+      q3: {
+        q: "What's your tech stack?",
+        a: "Next.js + NestJS at the core, PostgreSQL and Redis for data, Docker for deployment. Mobile apps with React Native & Expo. We pick tools based on what your product actually needs — not hype.",
+      },
+      q4: {
+        q: "Do you work with early-stage startups?",
+        a: "That's our sweet spot. About 60% of our clients are startups. We know how to build MVPs that validate fast and don't need to be rewritten when you scale. Think of us as your first technical co-founders.",
+      },
+      q5: {
+        q: "Will I have access to the code?",
+        a: "From day one. Full access to the Git repo, sprint boards, and deployment pipelines. We believe in radical transparency — you own the code, and you can see every commit.",
+      },
+      q6: {
+        q: "What happens after launch?",
+        a: "We don't vanish. We offer ongoing support, monitor production, and help you iterate based on real user data. Most of our clients stay with us for months after launch because the work doesn't stop when you deploy.",
+      },
+      q7: {
+        q: "Who will actually work on my project?",
+        a: "Senior developers only — the same people from kickoff to launch. No handoffs to juniors, no rotating teams. You'll know every person working on your product by name.",
+      },
+      q8: {
+        q: "Where is Shiplix based?",
+        a: "Ukraine — Kyiv, Lviv, Dnipro, Kharkiv. We work with clients across Europe, the Middle East, and the US. Our hours overlap with CET and EST, and we're always just a Slack message away.",
+      },
     },
   },
 } as const;
