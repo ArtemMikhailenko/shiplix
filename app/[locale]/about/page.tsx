@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { STAT_KEYS, STAT_META } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
@@ -149,12 +150,12 @@ export default function AboutPage() {
           <div className="rounded-card border border-border bg-bg-elevated p-10 md:p-16 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
             <div className="relative">
-              <a
+              <Link
                 href={`/${locale}/team`}
                 className="inline-flex items-center gap-2 text-lg md:text-xl font-semibold text-accent hover:text-accent-deep transition-colors duration-300"
               >
                 {dict.aboutPage.viewTeam}
-              </a>
+              </Link>
             </div>
           </div>
         </section>

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Link from "next/link";
 
 interface ButtonProps {
   children: ReactNode;
@@ -26,10 +27,19 @@ export function Button({
   const classes = `${base} ${variants[variant]} ${className}`;
 
   if (href) {
+    const isExternal =
+      href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+    if (isExternal) {
+      return (
+        <a href={href} className={classes} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
+          {children}
+        </a>
+      );
+    }
     return (
-      <a href={href} className={classes}>
+      <Link href={href} className={classes}>
         {children}
-      </a>
+      </Link>
     );
   }
 

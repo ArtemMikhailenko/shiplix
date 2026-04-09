@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { PROJECT_KEYS, PROJECT_META, TAG_COLORS } from "@/app/lib/constants";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
 import { useFadeUp } from "@/app/lib/useFadeUp";
@@ -68,12 +69,12 @@ export default function Projects() {
         </div>
 
         <div className="fade-up mt-10 text-center">
-          <a
+          <Link
             href={`/${locale}/projects`}
             className="text-sm font-medium text-accent hover:text-accent-deep transition-colors duration-200"
           >
             {dict.projects.viewAll}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

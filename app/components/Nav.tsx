@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { CONTACT } from "@/app/lib/constants";
 import { Button } from "@/app/components/ui/Button";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
@@ -21,7 +22,8 @@ export default function Nav() {
     { label: dict.nav.projects, href: `/${locale}/projects` },
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.team, href: `/${locale}/team` },
-    { label: dict.nav.contact, href: isHome ? "#contact" : `/${locale}/#contact` },
+    { label: dict.nav.faq, href: `/${locale}/faq` },
+    { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
   useEffect(() => {
@@ -39,25 +41,35 @@ export default function Nav() {
       }`}
     >
       <div className="w-full max-w-container mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-text font-semibold text-base">
+        <Link href={`/${locale}`} className="flex items-center gap-2 text-text font-semibold text-base">
           <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-deep to-cyan block" />
           shiplix
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm transition-colors duration-200 ${
-                !link.href.startsWith("#") && pathname.startsWith(link.href)
-                  ? "text-text font-medium"
-                  : "text-text-secondary hover:text-text"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("#") ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition-colors duration-200 ${
+                  pathname.startsWith(link.href)
+                    ? "text-text font-medium"
+                    : "text-text-secondary hover:text-text"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
 
         <div className="flex items-center gap-3">
@@ -89,16 +101,27 @@ export default function Nav() {
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-[rgba(10,10,12,0.95)] backdrop-blur-[24px]">
           <div className="max-w-container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-sm text-text-secondary hover:text-text transition-colors py-1"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm text-text-secondary hover:text-text transition-colors py-1"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm text-text-secondary hover:text-text transition-colors py-1"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
             <Button variant="primary" href={`mailto:${CONTACT.email}`} className="mt-2 text-sm w-full">
               {dict.nav.getInTouch}
             </Button>

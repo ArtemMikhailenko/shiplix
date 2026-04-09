@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { PROJECT_KEYS, PROJECT_META, TAG_COLORS, type ProjectKey } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
@@ -93,7 +94,7 @@ function ProjectCard({ projectKey, dict, viewMode }: { projectKey: ProjectKey; d
               {dict.projectsPage.challenge}
             </h3>
             <p className="text-sm text-text-secondary leading-body">
-              {meta.challenge}
+              {text.challenge}
             </p>
           </div>
           <div className="p-4 rounded-card bg-bg-surface border border-border">
@@ -101,7 +102,7 @@ function ProjectCard({ projectKey, dict, viewMode }: { projectKey: ProjectKey; d
               {dict.projectsPage.result}
             </h3>
             <p className="text-sm text-text-secondary leading-body">
-              {meta.result}
+              {text.result}
             </p>
           </div>
         </div>
@@ -171,7 +172,7 @@ function FeaturedProject({ projectKey, dict }: { projectKey: ProjectKey; dict: R
                 {dict.projectsPage.challenge}
               </h3>
               <p className="text-sm text-text-secondary leading-body">
-                {meta.challenge}
+                {text.challenge}
               </p>
             </div>
             <div className="p-4 rounded-card bg-bg-surface/50 border border-border">
@@ -179,7 +180,7 @@ function FeaturedProject({ projectKey, dict }: { projectKey: ProjectKey; dict: R
                 {dict.projectsPage.result}
               </h3>
               <p className="text-sm text-text-secondary leading-body">
-                {meta.result}
+                {text.result}
               </p>
             </div>
           </div>
@@ -225,12 +226,12 @@ export default function ProjectsPage() {
     <main className="pt-32 pb-20 md:pt-40 md:pb-28" ref={ref}>
       <div className="max-w-container mx-auto px-6">
         {/* Back link */}
-        <a
+        <Link
           href={`/${locale}`}
           className="fade-up inline-flex items-center text-sm text-text-secondary hover:text-text transition-colors mb-12"
         >
           {dict.projectsPage.backToHome}
-        </a>
+        </Link>
 
         {/* Header */}
         <div className="fade-up mb-12 md:mb-16">

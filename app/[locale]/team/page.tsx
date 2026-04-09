@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { TEAM_MEMBERS, CONTACT } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
@@ -15,12 +16,12 @@ export default function TeamPage() {
     <main className="pt-32 pb-20 md:pt-40 md:pb-28" ref={ref}>
       <div className="max-w-container mx-auto px-6">
         {/* Back link */}
-        <a
+        <Link
           href={`/${locale}`}
           className="fade-up inline-flex items-center text-sm text-text-secondary hover:text-text transition-colors mb-12"
         >
           {dict.teamPage.backToHome}
-        </a>
+        </Link>
 
         {/* Header */}
         <div className="fade-up mb-16 md:mb-20">

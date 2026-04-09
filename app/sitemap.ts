@@ -18,6 +18,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     });
+    entries.push({
+      url: `${baseUrl}/${locale}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+    entries.push({
+      url: `${baseUrl}/${locale}/team`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+    entries.push({
+      url: `${baseUrl}/${locale}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+    entries.push({
+      url: `${baseUrl}/${locale}/faq`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   }
 
   return entries;

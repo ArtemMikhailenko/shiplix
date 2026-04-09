@@ -6,6 +6,8 @@ import { HERO_CARDS, CONTACT } from "@/app/lib/constants";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
+const CARD_KEYS = ["c1", "c2", "c3"] as const;
+
 export default function Hero() {
   const ref = useFadeUp();
   const dict = useDictionary();
@@ -42,29 +44,33 @@ export default function Hero() {
         </div>
 
         <div className="fade-up grid grid-cols-1 md:grid-cols-3 gap-4">
-          {HERO_CARDS.map((card) => (
-            <div
-              key={card.title}
-              className="group p-5 rounded-card border border-border bg-bg-elevated hover:border-border-hover hover:bg-bg-surface transition-all duration-300 hover:-translate-y-[3px]"
-            >
-              <span className="inline-block text-xs font-mono font-medium px-2 py-0.5 rounded-pill border border-border text-text-secondary mb-3">
-                {card.tag}
-              </span>
-              <h3 className="text-sm font-semibold text-text mb-3">
-                {card.title}
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {card.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[11px] font-mono text-text-tertiary px-1.5 py-0.5 rounded bg-bg-hover"
-                  >
-                    {t}
-                  </span>
-                ))}
+          {CARD_KEYS.map((key, i) => {
+            const card = dict.hero.cards[key];
+            const tech = HERO_CARDS[i]?.tech || [];
+            return (
+              <div
+                key={key}
+                className="group p-5 rounded-card border border-border bg-bg-elevated hover:border-border-hover hover:bg-bg-surface transition-all duration-300 hover:-translate-y-[3px]"
+              >
+                <span className="inline-block text-xs font-mono font-medium px-2 py-0.5 rounded-pill border border-border text-text-secondary mb-3">
+                  {card.tag}
+                </span>
+                <h3 className="text-sm font-semibold text-text mb-3">
+                  {card.title}
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {tech.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[11px] font-mono text-text-tertiary px-1.5 py-0.5 rounded bg-bg-hover"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -12,17 +12,16 @@ export const SERVICE_KEYS = [
 ] as const;
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
-export const SERVICE_META: Record<ServiceKey, { icon: string; color: string }> =
-  {
-    saas: { icon: "◆", color: "text-accent" },
-    marketplace: { icon: "◈", color: "text-cyan" },
-    mobile: { icon: "▲", color: "text-green" },
-    fintech: { icon: "⬡", color: "text-orange" },
-    landing: { icon: "◎", color: "text-cyan" },
-    ecommerce: { icon: "▣", color: "text-green" },
-    automation: { icon: "⚡", color: "text-pink" },
-    mvp: { icon: "→", color: "text-accent-deep" },
-  };
+export const SERVICE_META: Record<ServiceKey, { color: string }> = {
+  saas: { color: "text-accent" },
+  marketplace: { color: "text-cyan" },
+  mobile: { color: "text-green" },
+  fintech: { color: "text-orange" },
+  landing: { color: "text-cyan" },
+  ecommerce: { color: "text-green" },
+  automation: { color: "text-pink" },
+  mvp: { color: "text-accent-deep" },
+};
 
 export const PROJECT_KEYS = [
   "inciCore",

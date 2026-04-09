@@ -4,6 +4,7 @@ import { getDictionary } from "@/app/lib/i18n/getDictionary";
 import { DictionaryProvider } from "@/app/lib/i18n/DictionaryProvider";
 import Nav from "@/app/components/Nav";
 import Footer from "@/app/components/Footer";
+import SetLang from "@/app/components/SetLang";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -67,6 +68,7 @@ export default async function LocaleLayout({
 
   return (
     <DictionaryProvider dict={dict} locale={params.locale}>
+      <SetLang locale={params.locale} />
       <Nav />
       {children}
       <Footer />

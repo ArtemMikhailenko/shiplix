@@ -148,3 +148,22 @@ body {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
+
+/* Accessibility: respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .pulse-dot {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
