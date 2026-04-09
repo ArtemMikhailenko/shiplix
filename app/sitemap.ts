@@ -1,0 +1,24 @@
+import { MetadataRoute } from "next";
+import { locales } from "@/app/lib/i18n/config";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://shiplix.dev";
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const locale of locales) {
+    entries.push({
+      url: `${baseUrl}/${locale}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    });
+    entries.push({
+      url: `${baseUrl}/${locale}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+  }
+
+  return entries;
+}
