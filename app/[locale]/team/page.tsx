@@ -16,12 +16,12 @@ export async function generateMetadata({
     openGraph: {
       title: dict.teamPage.metaTitle,
       description: dict.teamPage.metaDescription,
-      url: `https://shiplix.dev/${params.locale}/team`,
+      url: `https://shiplix.it.com/${params.locale}/team`,
       siteName: "Shiplix",
       type: "website",
     },
     alternates: {
-      canonical: `https://shiplix.dev/${params.locale}/team`,
+      canonical: `https://shiplix.it.com/${params.locale}/team`,
     },
   };
 }
@@ -37,7 +37,7 @@ export default async function TeamPage({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Shiplix",
-    url: "https://shiplix.dev",
+    url: "https://shiplix.it.com",
     member: TEAM_MEMBERS.map((m) => ({
       "@type": "Person",
       name: dict.teamPage.members[m.nameKey],
@@ -55,13 +55,13 @@ export default async function TeamPage({
         "@type": "ListItem",
         position: 1,
         name: dict.teamPage.breadcrumbHome,
-        item: `https://shiplix.dev/${params.locale}`,
+        item: `https://shiplix.it.com/${params.locale}`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: dict.teamPage.breadcrumbTeam,
-        item: `https://shiplix.dev/${params.locale}/team`,
+        item: `https://shiplix.it.com/${params.locale}/team`,
       },
     ],
   };
