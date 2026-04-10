@@ -80,7 +80,7 @@ export default function FaqContent() {
 
         {/* Quick Answers */}
         <div className="fade-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 md:mb-20">
-          {(["qa1", "qa2", "qa3", "qa4"] as const).map((key, i) => (
+          {(["qa1", "qa2", "qa3", "qa4"] as const).map((key) => (
             <div
               key={key}
               className="rounded-card border border-border bg-bg-elevated p-5 hover:border-accent/20 transition-all duration-300"
