@@ -29,14 +29,23 @@ export default function Projects() {
             const meta = PROJECT_META[key];
             const text = dict.projectItems[key];
             return (
-              <div
+              <Link
                 key={key}
-                className="fade-up group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-border-hover hover:-translate-y-[3px] transition-all duration-300"
+                href={`/${locale}/projects/${meta.slug}`}
+                className="fade-up group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-border-hover hover:-translate-y-[3px] transition-all duration-300 block"
               >
-                <div className="relative h-[240px] bg-bg-surface flex items-center justify-center">
-                  <div className="text-text-tertiary text-sm font-mono">
-                    {meta.tag}
-                  </div>
+                <div className="relative h-[240px] bg-bg-surface flex items-center justify-center overflow-hidden">
+                  {meta.image ? (
+                    <img
+                      src={meta.image}
+                      alt={text.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-text-tertiary text-sm font-mono">
+                      {meta.tag}
+                    </div>
+                  )}
                   <span
                     className={`absolute top-4 left-4 text-[11px] font-mono font-medium px-2 py-0.5 rounded-pill border border-border ${
                       TAG_COLORS[meta.tag] || "text-text-secondary"
@@ -63,7 +72,7 @@ export default function Projects() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

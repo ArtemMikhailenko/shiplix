@@ -268,12 +268,14 @@ export default function FaqContent() {
               <p className="text-sm text-text-secondary leading-body max-w-lg mx-auto mb-6">
                 {dict.faqPage.ctaSub}
               </p>
-              <Link
-                href={`/${locale}/contact`}
+              <a
+                href={CONTACT.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-pill bg-accent-deep text-white hover:bg-[#7c3aed] hover:shadow-[0_0_24px_rgba(139,92,246,0.25)] transition-all duration-200"
               >
                 {dict.faqPage.ctaButton}
-              </Link>
+              </a>
             </div>
           </div>
         </div>

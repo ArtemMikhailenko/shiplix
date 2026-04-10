@@ -17,7 +17,7 @@ const en = {
     cta1: "Start a project →",
     cta2: "View our work",
     cards: {
-      c1: { tag: "SaaS", title: "EU Compliance SaaS" },
+      c1: { tag: "SaaS", title: "Online Booking SaaS" },
       c2: { tag: "Marketplace", title: "Multi-Vendor Marketplace" },
       c3: { tag: "Fintech", title: "Crypto Payment Processor" },
     },
@@ -71,18 +71,20 @@ const en = {
   },
   projects: {
     label: "Selected work",
-    title: "Shipped to production. Running in the real world.",
+    title: "Shipped to production. Code we're proud of.",
     sub: "Different industries, different challenges. Every project delivered on time with clean, maintainable code.",
     viewAll: "View all projects →",
   },
   projectItems: {
     inciCore: {
-      title: "EU Cosmetics Compliance SaaS",
-      desc: "Platform for managing Product Information Files required by EU regulations. 31,000+ ingredient database, PDF generation, Stripe billing with EU VAT.",
+      title: "Zapys24 — Multi-Tenant Online Booking SaaS",
+      desc: "Production-ready SaaS platform for automated appointment scheduling. Multi-tenant architecture with isolated business contexts, time-slot validation, conflict detection, and automated notifications.",
       challenge:
-        "EU cosmetics regulation requires extensive product information documentation. Existing solutions were outdated and non-compliant.",
+        "Small and medium businesses needed a scalable booking solution supporting multiple independent tenants with isolated data, real-time scheduling conflict detection, and automated notification workflows.",
       result:
-        "Full-featured SaaS platform handling 31,000+ ingredients, automated PDF generation, and Stripe billing with EU VAT compliance.",
+        "Full-featured multi-tenant SaaS serving beauty salons, auto repair shops, and medical centers. 24/7 online booking with conflict detection, staff management, and automated reminders.",
+      features:
+        "Multi-tenant isolation · Time-slot validation · Conflict detection · Automated reminders · Staff management · Service configuration · Client databases · Horizontal scaling",
     },
     marketplace: {
       title: "Multi-Vendor Marketplace",
@@ -91,6 +93,8 @@ const en = {
         "Complex multi-vendor platform requiring separate experiences for buyers, sellers, and administrators with real-time communication.",
       result:
         "3 separate frontends with real-time notifications, full-text search via Meilisearch, and file storage with MinIO. 200+ tasks in 5 sprints.",
+      features:
+        "3 separate panels · Real-time notifications · Full-text search · File storage · Payments · Order management · Admin dashboard · Analytics",
     },
     crypto: {
       title: "Crypto Payment Processor",
@@ -99,6 +103,8 @@ const en = {
         "Building reliable blockchain monitoring across multiple networks with automatic transaction detection and merchant notifications.",
       result:
         "Payment processor supporting ETH, TRON, and BSC. Handles thousands of daily transactions with webhook notifications and merchant dashboard.",
+      features:
+        "Multi-chain monitoring · Auto transaction detection · Merchant dashboard · Webhook notifications · Wallet management · Transaction history · Security layer",
     },
     mobile: {
       title: "Mobile App with Crypto Wallet",
@@ -107,6 +113,8 @@ const en = {
         "Creating a secure cross-platform mobile app with built-in cryptocurrency wallet functionality and seamless key management.",
       result:
         "Polished app with token management, secure key storage, and smooth UX. From Figma mockup to App Store in 6 weeks.",
+      features:
+        "Crypto wallet · Token management · Secure key storage · Cross-platform · Push notifications · Biometric auth · Transaction history",
     },
   },
   testimonials: {
@@ -221,6 +229,29 @@ const en = {
     gridView: "Grid",
     listView: "List",
     featured: "Featured",
+    metaTitle: "Our Projects — Shiplix",
+    metaDescription:
+      "Explore the products Shiplix has shipped — SaaS platforms, marketplaces, fintech solutions, and mobile apps. Full-cycle development from architecture to production.",
+    breadcrumbHome: "Home",
+    breadcrumbProjects: "Projects",
+    label: "Portfolio",
+    showing: "Showing {count} projects",
+    noProjects: "No projects in this category yet.",
+    ctaTitle: "Like what you see?",
+    ctaSub:
+      "Let's build your next product together. Tell us about your idea and get a technical assessment within 48 hours.",
+    ctaButton: "Start a project →",
+    ctaSchedule: "Schedule a call",
+  },
+  projectDetail: {
+    featuresLabel: "Key features",
+    galleryLabel: "Screenshots",
+    ctaTitle: "Want something similar?",
+    ctaSub:
+      "Tell us about your project and we'll build it with the same care and attention to detail.",
+    ctaButton: "Start a project →",
+    ctaSchedule: "Schedule a call",
+    backToProjects: "← Back to all projects",
   },
   aboutPage: {
     title: "We build products that matter",
@@ -290,6 +321,7 @@ const en = {
     roleBack: "Backend Developer",
     roleMobile: "Mobile Developer",
     roleDesign: "UI/UX Designer",
+    roleTest: "QA Engineer",
     locationLabel: "Location",
     focusLabel: "Focus",
     stackLabel: "Stack",
@@ -303,6 +335,8 @@ const en = {
       artem: "Artem Mykhailenko",
       pavlo: "Pavlo Smirniy",
       volodymyr: "Volodymyr Lysenko",
+      anton: "Anton Kilmichenko",
+      oleksandr: "Oleksandr Horovikh",
     },
     bios: {
       artem:
@@ -311,6 +345,10 @@ const en = {
         "Builds reliable backends and deploys them to production. DevOps-minded engineer who cares about uptime and infrastructure as much as code quality.",
       volodymyr:
         "Full-stack generalist with a systems mindset. Designs database schemas, writes APIs, and builds UIs — whatever the project needs.",
+      anton:
+        "Frontend and Web3 developer. Creates interfaces and integrates blockchain solutions into projects.",
+      oleksandr:
+        "Tester and QA engineer. Ensures product quality and stability through manual and automated testing.",
     },
     experienceLabel: "Experience",
     yearsShort: "years",
@@ -339,6 +377,35 @@ const en = {
     formError: "Something went wrong. Please try email instead.",
     orReach: "Or reach us directly",
     responseTime: "Avg. response time: < 24h",
+    scheduleCall: "Schedule a call →",
+    metaTitle: "Contact Us — Shiplix",
+    metaDescription:
+      "Get in touch with Shiplix. Tell us about your project and receive a technical assessment within 48 hours. Based in Ukraine, delivering worldwide.",
+    breadcrumbHome: "Home",
+    breadcrumbContact: "Contact",
+    privacyNote:
+      "We never share your data with third parties. Your message goes directly to our team.",
+    trust: {
+      t1: "Response < 24h",
+      t2: "NDA on request",
+      t3: "Free consultation",
+      t4: "No commitment",
+    },
+    miniFaqLabel: "Quick answers",
+    miniFaq: {
+      mf1: {
+        q: "How fast will you reply?",
+        a: "We respond to every inquiry within 24 hours on business days.",
+      },
+      mf2: {
+        q: "Can I get a free estimate?",
+        a: "Yes — after a short call we'll send you a detailed proposal with timeline and pricing.",
+      },
+      mf3: {
+        q: "Do you sign NDAs?",
+        a: "Absolutely. We're happy to sign an NDA before discussing any project details.",
+      },
+    },
   },
   faqPage: {
     title: "Got questions? We've got answers",

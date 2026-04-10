@@ -37,32 +37,42 @@ export const PROJECT_META: Record<
     tag: string;
     stack: string[];
     image: string;
+    images: string[];
     duration: string;
+    slug: string;
   }
 > = {
   inciCore: {
     tag: "SaaS",
-    stack: ["NestJS", "Next.js 14", "PostgreSQL", "Puppeteer", "Stripe"],
-    image: "/projects/inci-core.png",
-    duration: "12 weeks",
+    stack: ["NestJS", "React", "TypeScript", "PostgreSQL", "CRM"],
+    image: "/projects/og-zapys.png",
+    images: ["/projects/og-zapys.png"],
+    duration: "14 weeks",
+    slug: "zapys24",
   },
   marketplace: {
     tag: "Marketplace",
     stack: ["Next.js 14", "NestJS", "PostgreSQL", "Redis", "Socket.io"],
     image: "/projects/marketplace.png",
+    images: ["/projects/marketplace.png"],
     duration: "10 weeks",
+    slug: "marketplace",
   },
   crypto: {
     tag: "Fintech",
     stack: ["NestJS", "Next.js", "PostgreSQL", "Redis", "ethers.js"],
     image: "/projects/crypto.png",
+    images: ["/projects/crypto.png"],
     duration: "8 weeks",
+    slug: "crypto-processor",
   },
   mobile: {
     tag: "Mobile",
     stack: ["React Native", "Expo", "TypeScript", "ethers.js"],
     image: "/projects/mobile.png",
+    images: ["/projects/mobile.png"],
     duration: "6 weeks",
+    slug: "mobile-wallet",
   },
 };
 
@@ -124,7 +134,8 @@ export const CONTACT = {
   email: "artemlend@gmail.com",
   telegram: "@artem_mykhailenko99",
   linkedin: "https://linkedin.com/company/shiplix",
-  github: "https://github.com/shiplix",
+  // github: "https://github.com/shiplix",
+  calendly: "https://calendly.com/shiplix/30min",
 };
 
 export const CLIENTS = [
@@ -146,9 +157,15 @@ export type TeamRole =
   | "roleFront"
   | "roleBack"
   | "roleMobile"
-  | "roleDesign";
+  | "roleDesign"
+  | "roleTest";
 
-export type TeamMemberKey = "artem" | "pavlo" | "volodymyr";
+export type TeamMemberKey =
+  | "artem"
+  | "pavlo"
+  | "volodymyr"
+  | "anton"
+  | "oleksandr";
 
 export interface TeamMember {
   nameKey: TeamMemberKey;
@@ -222,6 +239,38 @@ export const TEAM_MEMBERS: TeamMember[] = [
       github: "https://github.com/lusiy321",
       telegram: "https://t.me/Lusiy321",
       instagram: "https://www.instagram.com/lusiy",
+    },
+    accentColor: "from-pink to-accent",
+  },
+  {
+    nameKey: "anton",
+    photo: "https://avatars.githubusercontent.com/u/72727911?v=4",
+    roleKey: "roleFull",
+    initials: "AL",
+    location: "Kyiv, Ukraine",
+    flag: "🇺🇦",
+    focus: "Frontend & Web3",
+    experience: "3+",
+    stack: ["React Native", "WEB3", "Solidity"],
+    socials: {
+      linkedin: "https://www.linkedin.com/in/anton-kilmichenko-28b0a224b/",
+      github: "https://github.com/BroodCaster",
+    },
+    accentColor: "from-pink to-accent",
+  },
+  {
+    nameKey: "oleksandr",
+    photo:
+      "https://media.licdn.com/dms/image/v2/C4D03AQFMQa1zTWx2aQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517545128882?e=1777507200&v=beta&t=b9y2B2mXuhY3F3v9ozIb8Xw8uFZehORQ1WnImcUf-pg",
+    roleKey: "roleTest",
+    initials: "OH",
+    location: "Lviv, Ukraine",
+    flag: "🇺🇦",
+    focus: "Manual Testing & QA",
+    experience: "6+",
+    stack: ["Manual Testing", "QA", "Automation"],
+    socials: {
+      linkedin: "https://www.linkedin.com/in/alex-horovikh-0151b9139/",
     },
     accentColor: "from-pink to-accent",
   },

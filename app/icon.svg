@@ -1,9 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#67e8f9"/>
+    <linearGradient id="grad" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="45%" stop-color="#5dd8d0"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="url(#g)"/>
+  <rect width="64" height="64" rx="14" fill="#0c0e14"/>
+  <!-- Left green swoosh arc -->
+  <path d="M10 42 C10 24, 22 10, 40 10 L32 10 C18 10, 10 22, 10 34 Z" fill="url(#grad)" opacity="0.85"/>
+  <!-- Upper S curve -->
+  <path d="M30 10 C42 10, 54 16, 54 26 C54 34, 46 38, 36 38" stroke="url(#grad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Lower S curve -->
+  <path d="M28 30 C18 30, 10 36, 10 44 C10 52, 20 56, 32 56" stroke="url(#grad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- White diagonal slash -->
+  <path d="M38 10 L24 56 L30 56 L44 10 Z" fill="white" opacity="0.92"/>
 </svg>

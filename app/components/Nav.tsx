@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CONTACT } from "@/app/lib/constants";
 import { Button } from "@/app/components/ui/Button";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
@@ -18,7 +17,10 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { label: dict.nav.services, href: isHome ? "#services" : `/${locale}/#services` },
+    {
+      label: dict.nav.services,
+      href: isHome ? "#services" : `/${locale}/#services`,
+    },
     { label: dict.nav.projects, href: `/${locale}/projects` },
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.team, href: `/${locale}/team` },
@@ -41,7 +43,10 @@ export default function Nav() {
       }`}
     >
       <div className="w-full max-w-container mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href={`/${locale}`} className="flex items-center gap-2 text-text font-semibold text-base">
+        <Link
+          href={`/${locale}`}
+          className="flex items-center gap-2 text-text font-semibold text-base"
+        >
           <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-deep to-cyan block" />
           shiplix
         </Link>
@@ -68,13 +73,17 @@ export default function Nav() {
               >
                 {link.label}
               </Link>
-            )
+            ),
           )}
         </div>
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <Button variant="ghost" href={`mailto:${CONTACT.email}`} className="hidden sm:inline-flex text-xs px-4 py-2">
+          <Button
+            variant="ghost"
+            href={`/${locale}/contact`}
+            className="hidden sm:inline-flex text-xs px-4 py-2"
+          >
             {dict.nav.getInTouch}
           </Button>
 
@@ -120,9 +129,13 @@ export default function Nav() {
                 >
                   {link.label}
                 </Link>
-              )
+              ),
             )}
-            <Button variant="primary" href={`mailto:${CONTACT.email}`} className="mt-2 text-sm w-full">
+            <Button
+              variant="primary"
+              href={`/${locale}/contact`}
+              className="mt-2 text-sm w-full"
+            >
               {dict.nav.getInTouch}
             </Button>
           </div>

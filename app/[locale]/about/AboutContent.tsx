@@ -36,6 +36,14 @@ const INDUSTRY_COLORS: Record<string, string> = {
   mobile: "text-pink",
 };
 
+const INDUSTRY_SLUGS: Record<string, string> = {
+  saas: "zapys24",
+  fintech: "crypto-processor",
+  ecommerce: "marketplace",
+  marketplace: "marketplace",
+  mobile: "mobile-wallet",
+};
+
 export default function AboutContent() {
   const dict = useDictionary();
   const ref = useFadeUp();
@@ -180,17 +188,20 @@ export default function AboutContent() {
             {(
               ["saas", "fintech", "ecommerce", "marketplace", "mobile"] as const
             ).map((key) => (
-              <div
+              <Link
                 key={key}
-                className="rounded-card border border-border bg-bg-elevated p-5 text-center hover:border-accent/20 transition-all duration-300"
+                href={`/${locale}/projects/${INDUSTRY_SLUGS[key]}`}
+                className="group rounded-card border border-border bg-bg-elevated p-5 text-center hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_-12px_rgba(139,92,246,0.15)] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 transition-all duration-300"
               >
-                <div className={`text-2xl mb-3 ${INDUSTRY_COLORS[key]}`}>
+                <div
+                  className={`text-2xl mb-3 ${INDUSTRY_COLORS[key]} group-hover:scale-110 transition-transform duration-300`}
+                >
                   {INDUSTRY_ICONS[key]}
                 </div>
-                <div className="text-sm font-medium text-text">
+                <div className="text-sm font-medium text-text group-hover:text-accent transition-colors duration-300">
                   {dict.aboutPage.industries[key]}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

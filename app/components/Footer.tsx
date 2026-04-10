@@ -25,7 +25,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-text font-semibold text-base mb-3">
+            <Link
+              href={`/${locale}`}
+              className="inline-flex items-center gap-2 text-text font-semibold text-base mb-3"
+            >
               <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-deep to-cyan block" />
               shiplix
             </Link>
@@ -79,16 +82,6 @@ export default function Footer() {
                   className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
                 >
                   LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href={CONTACT.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
-                >
-                  GitHub
                 </a>
               </li>
             </ul>
