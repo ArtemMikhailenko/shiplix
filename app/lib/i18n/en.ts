@@ -258,7 +258,27 @@ const en = {
       },
     },
     numbersLabel: "By the numbers",
+    industriesLabel: "Industries",
+    industriesTitle: "Industries we work with",
+    industries: {
+      saas: "SaaS",
+      fintech: "Fintech & Crypto",
+      ecommerce: "E-Commerce",
+      marketplace: "Marketplaces",
+      mobile: "Mobile Apps",
+    },
+    stackLabel: "Our stack",
+    stackTitle: "Technologies we use every day",
+    ctaTitle: "Ready to build something great?",
+    ctaSub:
+      "Tell us about your project. We'll respond with a technical assessment and estimate within 48 hours.",
+    ctaButton: "Start a project →",
     viewTeam: "Meet the team →",
+    metaTitle: "About Us — Shiplix",
+    metaDescription:
+      "Learn about Shiplix — a senior dev team from Ukraine shipping full-cycle web and mobile products. Our mission, values, and story.",
+    breadcrumbHome: "Home",
+    breadcrumbAbout: "About",
   },
   teamPage: {
     title: "The people behind the code",
@@ -325,6 +345,30 @@ const en = {
     sub: "Everything you need to know before we start building together.",
     label: "FAQ",
     backToHome: "← Back to home",
+    metaTitle: "FAQ — Shiplix",
+    metaDescription:
+      "Frequently asked questions about Shiplix — pricing, tech stack, timelines, process, and post-launch support. Get answers before starting your project.",
+    breadcrumbHome: "Home",
+    breadcrumbFaq: "FAQ",
+    popularBadge: "Popular",
+    quickAnswers: {
+      qa1: {
+        title: "MVP in 4–8 weeks",
+        desc: "Parallel frontend & backend streams. Working demos every sprint.",
+      },
+      qa2: {
+        title: "Seniors only",
+        desc: "Same team from kickoff to launch. No juniors, no handoffs.",
+      },
+      qa3: {
+        title: "Full code access",
+        desc: "Your repo, your code. Radical transparency from day one.",
+      },
+      qa4: {
+        title: "Post-launch support",
+        desc: "We stay for monitoring, iterations, and real user feedback.",
+      },
+    },
     ctaTitle: "Still have questions?",
     ctaSub:
       "Book a free 30-min discovery call. No commitment, no pressure — just an honest conversation about your project.",
