@@ -21,14 +21,25 @@ const en = {
       c2: { tag: "Marketplace", title: "Multi-Vendor Marketplace" },
       c3: { tag: "Fintech", title: "Crypto Payment Processor" },
     },
+    stats: {
+      projects: "projects",
+      rating: "on Clutch",
+      clients: "clients",
+      deploy: "to deploy",
+    },
   },
   clients: {
     label: "Trusted by teams across Europe, Middle East & USA",
   },
   stats: {
     projects: "Projects shipped",
+    projectsDesc: "Web apps, mobile, SaaS — from MVP to scale",
     years: "Years in production",
+    yearsDesc: "Shipping real products since 2023",
+    delivery: "On-time delivery",
+    deliveryDesc: "Predictable timelines, no surprises",
     industries: "Industries covered",
+    industriesDesc: "FinTech, EdTech, E-com, Health & more",
   },
   services: {
     label: "Services",
@@ -115,6 +126,26 @@ const en = {
         "Polished app with token management, secure key storage, and smooth UX. From Figma mockup to App Store in 6 weeks.",
       features:
         "Crypto wallet · Token management · Secure key storage · Cross-platform · Push notifications · Biometric auth · Transaction history",
+    },
+    edtech: {
+      title: "EdTech Platform with Live Classes",
+      desc: "Online learning platform with video conferencing, course builder, progress tracking, and integrated payments.",
+      challenge:
+        "Building a scalable learning platform with real-time video, interactive course content, and seamless payment integration for subscriptions.",
+      result:
+        "Full-featured LMS serving 2000+ students. Live classes via WebRTC, automated certificate generation, and Stripe-powered subscriptions.",
+      features:
+        "Live video classes · Course builder · Progress tracking · Certificates · Stripe payments · Student dashboard · Admin analytics · Mobile-ready",
+    },
+    analytics: {
+      title: "Real-Time Analytics Dashboard",
+      desc: "Business intelligence platform with real-time data visualization, custom reports, and alerting system.",
+      challenge:
+        "Processing millions of events per day with sub-second query times and real-time dashboard updates across multiple data sources.",
+      result:
+        "Dashboard processing 5M+ daily events with <200ms query response. Real-time charts, custom alerts, and exportable reports.",
+      features:
+        "Real-time charts · Custom reports · Alert system · ClickHouse engine · WebSocket updates · Role-based access · Data export · API integrations",
     },
   },
   testimonials: {

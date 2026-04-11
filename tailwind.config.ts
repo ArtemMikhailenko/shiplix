@@ -38,7 +38,7 @@ const config: Config = {
         mono: ["var(--font-jetbrains)", "monospace"],
       },
       maxWidth: {
-        container: "1100px",
+        container: "1280px",
       },
       borderRadius: {
         card: "12px",

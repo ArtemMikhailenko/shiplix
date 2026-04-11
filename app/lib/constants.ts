@@ -28,6 +28,8 @@ export const PROJECT_KEYS = [
   "marketplace",
   "crypto",
   "mobile",
+  // "edtech",
+  // "analytics",
 ] as const;
 export type ProjectKey = (typeof PROJECT_KEYS)[number];
 
@@ -45,35 +47,51 @@ export const PROJECT_META: Record<
   inciCore: {
     tag: "SaaS",
     stack: ["NestJS", "React", "TypeScript", "PostgreSQL", "CRM"],
-    image: "/projects/og-zapys.png",
-    images: ["/projects/og-zapys.png"],
+    image: "/projects/og-zapys.webp",
+    images: ["/projects/og-zapys.webp"],
     duration: "14 weeks",
     slug: "zapys24",
   },
   marketplace: {
     tag: "Marketplace",
     stack: ["Next.js 14", "NestJS", "PostgreSQL", "Redis", "Socket.io"],
-    image: "/projects/marketplace.png",
-    images: ["/projects/marketplace.png"],
+    image: "/projects/marketplace.webp",
+    images: ["/projects/marketplace.webp"],
     duration: "10 weeks",
     slug: "marketplace",
   },
   crypto: {
     tag: "Fintech",
     stack: ["NestJS", "Next.js", "PostgreSQL", "Redis", "ethers.js"],
-    image: "/projects/crypto.png",
-    images: ["/projects/crypto.png"],
+    image: "/projects/crypto.webp",
+    images: ["/projects/crypto.webp"],
     duration: "8 weeks",
     slug: "crypto-processor",
   },
   mobile: {
     tag: "Mobile",
     stack: ["React Native", "Expo", "TypeScript", "ethers.js"],
-    image: "/projects/mobile.png",
-    images: ["/projects/mobile.png"],
+    image: "/projects/mobile.webp",
+    images: ["/projects/mobile.webp"],
     duration: "6 weeks",
     slug: "mobile-wallet",
   },
+  // edtech: {
+  //   tag: "EdTech",
+  //   stack: ["Next.js 14", "NestJS", "PostgreSQL", "WebRTC", "Stripe"],
+  //   image: "/projects/og-zapys.png",
+  //   images: ["/projects/og-zapys.png"],
+  //   duration: "12 weeks",
+  //   slug: "edtech-platform",
+  // },
+  // analytics: {
+  //   tag: "Dashboard",
+  //   stack: ["React", "D3.js", "NestJS", "ClickHouse", "WebSocket"],
+  //   image: "/projects/marketplace.png",
+  //   images: ["/projects/marketplace.png"],
+  //   duration: "9 weeks",
+  //   slug: "analytics-dashboard",
+  // },
 };
 
 export const TAG_COLORS: Record<string, string> = {
@@ -81,6 +99,8 @@ export const TAG_COLORS: Record<string, string> = {
   Marketplace: "text-cyan",
   Fintech: "text-orange",
   Mobile: "text-green",
+  EdTech: "text-pink",
+  Dashboard: "text-cyan",
 };
 
 export const STAT_KEYS = ["projects", "years", "industries"] as const;
