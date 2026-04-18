@@ -1,90 +1,80 @@
 "use client";
 
-import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { useFadeUp } from "@/app/lib/useFadeUp";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
-const STACK_GROUPS = [
-  {
-    label: "Frontend",
-    items: [
-      { name: "Next.js", color: "#ffffff" },
-      { name: "React", color: "#61dafb" },
-      { name: "TypeScript", color: "#3178c6" },
-      { name: "Tailwind CSS", color: "#38bdf8" },
-    ],
-  },
-  {
-    label: "Backend",
-    items: [
-      { name: "NestJS", color: "#e11d48" },
-      { name: "Node.js", color: "#4ade80" },
-      { name: "PostgreSQL", color: "#336791" },
-      { name: "Redis", color: "#dc382d" },
-      { name: "Prisma", color: "#5a67d8" },
-    ],
-  },
-  {
-    label: "Mobile",
-    items: [
-      { name: "React Native", color: "#67e8f9" },
-      { name: "Expo", color: "#ffffff" },
-    ],
-  },
-  {
-    label: "Infra & Tools",
-    items: [
-      { name: "Docker", color: "#2496ed" },
-      { name: "Socket.io", color: "#fb923c" },
-      { name: "Meilisearch", color: "#b4a0ff" },
-      { name: "Stripe", color: "#635bff" },
-    ],
-  },
-];
+const ROW_1 = ["Next.js", "React", "TypeScript", "Tailwind CSS", "NestJS", "Node.js", "PostgreSQL", "Redis"];
+const ROW_2 = ["Prisma", "React Native", "Expo", "Docker", "Socket.io", "Meilisearch", "Stripe", "Webhooks"];
+
+function MarqueeRow({
+  items,
+  reverse = false,
+  speed = "30s",
+  size = "text-2xl md:text-3xl lg:text-4xl",
+}: {
+  items: string[];
+  reverse?: boolean;
+  speed?: string;
+  size?: string;
+}) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="marquee">
+      <div
+        className="marquee-track"
+        style={{
+          animationDuration: speed,
+          animationDirection: reverse ? "reverse" : "normal",
+        }}
+      >
+        {doubled.map((tech, i) => (
+          <span
+            key={`${tech}-${i}`}
+            className="inline-flex items-center gap-4 px-3 md:px-5 whitespace-nowrap"
+          >
+            <span className={`${size} font-medium text-text/70 tracking-tight hover:text-white transition-colors duration-300`}>
+              {tech}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-accent/30 shrink-0" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Stack() {
-  const ref = useFadeUp();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
 
   return (
-    <section
-      id="stack"
-      className="py-20 md:py-[120px] bg-bg-elevated border-t border-b border-border"
-      ref={ref}
-    >
-      <div className="max-w-container mx-auto px-6">
-        <div className="fade-up">
-          <SectionHeading
-            label={dict.stack.label}
-            title={dict.stack.title}
-            subtitle={dict.stack.sub}
-          />
-        </div>
-
-        <div className="fade-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STACK_GROUPS.map((group) => (
-            <div key={group.label}>
-              <p className="text-[10px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
-                {group.label}
-              </p>
-              <div className="flex flex-col gap-2">
-                {group.items.map((tech) => (
-                  <span
-                    key={tech.name}
-                    className="inline-flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-text rounded-card border border-border bg-bg hover:border-border-hover hover:bg-bg-surface transition-all duration-200"
-                  >
-                    <span
-                      className="w-[7px] h-[7px] rounded-full flex-shrink-0"
-                      style={{ backgroundColor: tech.color }}
-                    />
-                    {tech.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+    <section id="stack" className="py-20 md:py-[120px] overflow-hidden" ref={ref}>
+      <div className="max-w-container mx-auto px-6 mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
+            {dict.stack.label}
+          </p>
+          <p className="text-sm text-text-tertiary max-w-xl leading-relaxed">
+            {dict.stack.sub}
+          </p>
+        </motion.div>
       </div>
+
+      <motion.div
+        className="space-y-5 md:space-y-7"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <MarqueeRow items={ROW_1} speed="35s" />
+        <MarqueeRow items={ROW_2} reverse speed="42s" size="text-xl md:text-2xl lg:text-3xl" />
+      </motion.div>
     </section>
   );
 }

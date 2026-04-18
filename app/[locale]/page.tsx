@@ -2,23 +2,24 @@ import Hero from "@/app/components/Hero";
 import Clients from "@/app/components/Clients";
 import Services from "@/app/components/Services";
 import Projects from "@/app/components/Projects";
-import Testimonials from "@/app/components/Testimonials";
 import Stack from "@/app/components/Stack";
-import WhyUs from "@/app/components/WhyUs";
-import Process from "@/app/components/Process";
+import Principles from "@/app/components/Principles";
 import CTA from "@/app/components/CTA";
+import { ScrollLine } from "@/app/components/ui/ScrollLine";
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <Clients />
+      <ScrollLine />
       <Services />
+      <ScrollLine />
       <Projects />
-      <Testimonials />
+      <ScrollLine />
       <Stack />
-      <WhyUs />
-      <Process />
+      <ScrollLine />
+      <Principles />
       <CTA />
     </main>
   );

@@ -1,85 +1,138 @@
 "use client";
 
-import { SERVICE_KEYS, SERVICE_META, ServiceKey } from "@/app/lib/constants";
-import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { useFadeUp } from "@/app/lib/useFadeUp";
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
-const SERVICE_ICONS: Record<ServiceKey, JSX.Element> = {
-  saas: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" />
-    </svg>
-  ),
-  marketplace: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" /><path d="M3 9l1.5-5h15L21 9" /><path d="M12 9v12" />
-    </svg>
-  ),
-  mobile: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="2" width="14" height="20" rx="2" /><path d="M12 18h.01" />
-    </svg>
-  ),
-  fintech: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" /><path d="M14.5 9a3.5 3.5 0 0 0-5 0" /><path d="M9.5 15a3.5 3.5 0 0 0 5 0" /><path d="M12 6v2" /><path d="M12 16v2" />
-    </svg>
-  ),
-  landing: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><circle cx="7.5" cy="6" r="0.5" fill="currentColor" /><circle cx="10" cy="6" r="0.5" fill="currentColor" />
-    </svg>
-  ),
-  ecommerce: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-    </svg>
-  ),
-  automation: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-    </svg>
-  ),
-  mvp: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-    </svg>
-  ),
-};
+const SERVICES = [
+  { key: "saas" as const, stack: ["NestJS", "Next.js", "PostgreSQL", "Stripe"], color: "168, 85, 247" },
+  { key: "marketplace" as const, stack: ["Next.js", "Socket.io", "Redis", "Meilisearch"], color: "59, 130, 246" },
+  { key: "mobile" as const, stack: ["React Native", "Expo", "TypeScript"], color: "16, 185, 129" },
+  { key: "fintech" as const, stack: ["NestJS", "ethers.js", "PostgreSQL"], color: "245, 158, 11" },
+  { key: "ecommerce" as const, stack: ["Next.js", "Stripe", "Prisma"], color: "236, 72, 153" },
+  { key: "landing" as const, stack: ["Next.js", "Tailwind", "Motion"], color: "6, 182, 212" },
+  { key: "automation" as const, stack: ["n8n", "Make", "Webhooks"], color: "249, 115, 22" },
+  { key: "mvp" as const, stack: ["NestJS", "Next.js", "Docker"], color: "139, 92, 246" },
+] as const;
 
 export default function Services() {
-  const ref = useFadeUp();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
+  const [active, setActive] = useState(0);
+  const current = SERVICES[active];
 
   return (
     <section id="services" className="py-20 md:py-[120px]" ref={ref}>
       <div className="max-w-container mx-auto px-6">
-        <div className="fade-up">
-          <SectionHeading
-            label={dict.services.label}
-            title={dict.services.title}
-            subtitle={dict.services.sub}
-          />
-        </div>
+        {/* ── Header ── */}
+        <motion.div
+          className="mb-14 md:mb-20"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-4">
+            {dict.services.label}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-text max-w-2xl leading-tight">
+            {dict.services.title}
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-card overflow-hidden">
-          {SERVICE_KEYS.map((key) => (
-            <div
-              key={key}
-              className="fade-up bg-bg p-6 md:p-8 hover:bg-bg-elevated transition-colors duration-300"
-            >
-              <span className={`mb-4 block ${SERVICE_META[key].color}`}>
-                {SERVICE_ICONS[key]}
-              </span>
-              <h3 className="text-base font-semibold text-text mb-2">
-                {dict.services.items[key].title}
-              </h3>
-              <p className="text-sm text-text-secondary leading-body">
-                {dict.services.items[key].desc}
-              </p>
+        {/* ── Split: list + detail panel ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          {/* Left — interactive service list */}
+          <div className="lg:col-span-5">
+            {SERVICES.map((service, i) => (
+              <motion.button
+                key={service.key}
+                onMouseEnter={() => setActive(i)}
+                onClick={() => setActive(i)}
+                className="w-full text-left border-t border-white/[0.06] py-5 md:py-6 flex items-center gap-4 cursor-pointer group"
+                initial={{ opacity: 0, x: -16 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span
+                  className={`text-xs font-mono tabular-nums transition-colors duration-300 ${
+                    active === i ? "text-accent" : "text-text-tertiary/30"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={`text-lg md:text-xl font-semibold tracking-tight transition-all duration-300 ${
+                    active === i
+                      ? "text-white translate-x-1"
+                      : "text-text/40 group-hover:text-text/60"
+                  }`}
+                >
+                  {dict.services.items[service.key].title}
+                </span>
+                {active === i && (
+                  <motion.span
+                    layoutId="service-indicator"
+                    className="ml-auto w-1.5 h-1.5 rounded-full bg-accent shrink-0"
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  />
+                )}
+              </motion.button>
+            ))}
+            <div className="border-t border-white/[0.06]" />
+          </div>
+
+          {/* Right — animated detail panel */}
+          <div className="lg:col-span-7">
+            <div className="lg:sticky lg:top-28">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative rounded-2xl border border-white/[0.06] bg-[#111115] p-8 md:p-10 lg:p-12 overflow-hidden min-h-[340px] flex flex-col justify-between"
+                  style={{
+                    background: `linear-gradient(135deg, rgba(${current.color}, 0.06) 0%, #111115 50%)`,
+                  }}
+                >
+                  {/* Big background number */}
+                  <span className="absolute -top-6 -right-4 text-[140px] md:text-[180px] font-bold leading-none text-white/[0.025] select-none pointer-events-none tracking-tighter">
+                    {String(active + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="relative z-10">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-5">
+                      {dict.services.items[current.key].title}
+                    </h3>
+                    <p className="text-text-secondary text-base md:text-[17px] leading-relaxed max-w-lg">
+                      {dict.services.items[current.key].desc}
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 flex flex-wrap gap-2 mt-8">
+                    {current.stack.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] font-mono uppercase tracking-wider text-text-tertiary border border-white/[0.08] rounded-full px-3 py-1.5"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Bottom accent gradient line */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-px"
+                    style={{
+                      background: `linear-gradient(90deg, transparent, rgba(${current.color}, 0.3), transparent)`,
+                    }}
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
