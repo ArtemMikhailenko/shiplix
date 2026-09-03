@@ -22,18 +22,45 @@ export default function ContactContent() {
     budget: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  // Hidden honeypot field — bots fill it, humans never see it.
+  const [company, setCompany] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `New project inquiry from ${formData.name}`,
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nBudget: ${formData.budget}\n\n${formData.message}`,
-    );
-    window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
-    setStatus("success");
+    if (status === "sending") return;
+
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          company,
+          locale,
+          page: pathname,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        setErrorMsg(data?.error || dict.contactPage.formError);
+        setStatus("error");
+        return;
+      }
+
+      setFormData({ name: "", email: "", budget: "", message: "" });
+      setStatus("success");
+    } catch {
+      setErrorMsg(dict.contactPage.formError);
+      setStatus("error");
+    }
   }
 
   return (
@@ -144,6 +171,19 @@ export default function ContactContent() {
                 </div>
               </div>
 
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </div>
+
               <div>
                 <label
                   htmlFor="message"
@@ -166,20 +206,28 @@ export default function ContactContent() {
               <div className="space-y-3">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 bg-accent-deep hover:bg-accent text-white text-sm font-medium px-8 py-3.5 rounded-pill transition-all duration-300 hover:shadow-[0_4px_20px_-4px_rgba(139,92,246,0.4)] cursor-pointer"
+                  disabled={status === "sending"}
+                  className="inline-flex items-center gap-2 bg-accent-deep hover:bg-accent text-white text-sm font-medium px-8 py-3.5 rounded-pill transition-all duration-300 hover:shadow-[0_4px_20px_-4px_rgba(139,92,246,0.4)] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {dict.contactPage.formSubmit}
+                  {status === "sending"
+                    ? dict.contactPage.formSending
+                    : dict.contactPage.formSubmit}
                 </button>
                 <p className="text-xs text-text-tertiary">
                   {dict.contactPage.privacyNote}
                 </p>
               </div>
 
-              {status === "success" && (
-                <p className="text-green text-sm">
-                  {dict.contactPage.formSuccess}
-                </p>
-              )}
+              <div aria-live="polite">
+                {status === "success" && (
+                  <p className="text-green text-sm">
+                    {dict.contactPage.formSuccess}
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-orange text-sm">{errorMsg}</p>
+                )}
+              </div>
             </form>
 
             {/* Trust signals */}

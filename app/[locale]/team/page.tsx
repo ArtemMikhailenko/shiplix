@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
+import { buildMetadata } from "@/app/lib/seo";
 import { TEAM_MEMBERS } from "@/app/lib/constants";
 import TeamContent from "./TeamContent";
 
@@ -10,20 +11,14 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const dict = await getDictionary(params.locale);
-  return {
+  return buildMetadata({
+    locale: params.locale,
+    path: "/team",
     title: dict.teamPage.metaTitle,
     description: dict.teamPage.metaDescription,
-    openGraph: {
-      title: dict.teamPage.metaTitle,
-      description: dict.teamPage.metaDescription,
-      url: `https://shiplix.it.com/${params.locale}/team`,
-      siteName: "Shiplix",
-      type: "website",
-    },
-    alternates: {
-      canonical: `https://shiplix.it.com/${params.locale}/team`,
-    },
-  };
+    ogTitle: dict.teamPage.title,
+    ogSubtitle: dict.teamPage.metaDescription,
+  });
 }
 
 export default async function TeamPage({

@@ -1,6 +1,11 @@
 import type { Dictionary } from "./en";
 
 const ru: Dictionary = {
+  homePage: {
+    metaTitle: "Shiplix — разработка SaaS, маркетплейсов и MVP под ключ",
+    metaDescription:
+      "Продуктовая студия разработки из Украины. SaaS-платформы, маркетплейсы, финтех и мобильные приложения — MVP за 6-8 недель, спринты с фиксированной ценой.",
+  },
   nav: {
     services: "Услуги",
     projects: "Проекты",
@@ -407,6 +412,7 @@ const ru: Dictionary = {
     formMessage: "Расскажите о вашем проекте",
     formSubmit: "Отправить →",
     formSuccess: "Сообщение отправлено! Мы ответим в течение 48 часов.",
+    formSending: "Отправляем…",
     formError: "Что-то пошло не так. Попробуйте написать на email.",
     orReach: "Или напишите напрямую",
     responseTime: "Среднее время ответа: < 24ч",

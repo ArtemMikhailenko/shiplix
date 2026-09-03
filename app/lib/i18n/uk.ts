@@ -1,6 +1,11 @@
 import type { Dictionary } from "./en";
 
 const uk: Dictionary = {
+  homePage: {
+    metaTitle: "Shiplix — розробка SaaS, маркетплейсів і MVP під ключ",
+    metaDescription:
+      "Продуктова студія розробки з України. SaaS-платформи, маркетплейси, фінтех і мобільні додатки — MVP за 6-8 тижнів, спринти з фіксованою ціною.",
+  },
   nav: {
     services: "Послуги",
     projects: "Проєкти",
@@ -407,6 +412,7 @@ const uk: Dictionary = {
     formMessage: "Розкажіть про ваш проєкт",
     formSubmit: "Надіслати →",
     formSuccess: "Повідомлення надіслано! Ми відповімо протягом 48 годин.",
+    formSending: "Надсилаємо…",
     formError: "Щось пішло не так. Спробуйте написати на email.",
     orReach: "Або напишіть нам напряму",
     responseTime: "Середній час відповіді: < 24 год",

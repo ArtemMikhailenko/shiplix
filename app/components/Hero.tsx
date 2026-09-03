@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useMotionValue, useTransform, animate } from "framer-motion";
 import { CONTACT } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 const STATS = [
-  { value: 50, suffix: "+", key: "projects" as const },
+  { value: 20, suffix: "+", key: "projects" as const },
   { value: 3, suffix: "+", key: "years" as const },
   { value: 98, suffix: "%", key: "delivery" as const },
-  { value: 5, suffix: "+", key: "industries" as const },
+  { value: 5, suffix: "", key: "industries" as const },
 ];
 
 function AnimatedNum({ value, suffix }: { value: number; suffix: string }) {
@@ -120,20 +120,57 @@ export default function Hero() {
   const prefersReduced = useReducedMotion();
   const { headingRef, contentRef } = useHeroParallax();
 
+  // The background video is ~5 MB — it must never block first paint, and it is
+  // skipped entirely on data-saver or slow connections. The poster still shows.
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (prefersReduced) return;
+
+    const conn = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+
+    if (conn?.saveData) return;
+    if (conn?.effectiveType && /2g|slow-2g|3g/.test(conn.effectiveType)) return;
+
+    const load = () => setVideoSrc("/hero-bg-opt.mp4");
+    const idle = (
+      window as Window & { requestIdleCallback?: (cb: () => void) => number }
+    ).requestIdleCallback;
+
+    if (idle) {
+      const id = idle(load);
+      return () =>
+        (
+          window as Window & {
+            cancelIdleCallback?: (handle: number) => void;
+          }
+        ).cancelIdleCallback?.(id);
+    }
+
+    const t = setTimeout(load, 1200);
+    return () => clearTimeout(t);
+  }, [prefersReduced]);
+
   return (
     <section className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden pb-12 md:pb-16">
       {/* ── Background video ── */}
       <div className="absolute inset-0 z-0">
         <video
+          key={videoSrc ? "video" : "poster"}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
+          poster="/hero-poster.jpg"
           className="hero-video h-full w-full object-cover"
           style={{ opacity: 0.6 }}
         >
-          <source src="/hero-bg-opt.mp4" type="video/mp4" />
+          {videoSrc && <source src={videoSrc} type="video/mp4" />}
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/40 to-bg" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/30 via-transparent to-bg/30" />
@@ -152,11 +189,10 @@ export default function Hero() {
                 delay={0.15}
               />
               {dict.hero.headlinePost.split("\n").map((line, i) => (
-                <StaggerText
-                  key={i}
-                  text={line}
-                  delay={0.25 + i * 0.1}
-                />
+                <span key={i}>
+                  {i > 0 && <br />}
+                  <StaggerText text={line} delay={0.25 + i * 0.1} />
+                </span>
               ))}
             </h1>
           </div>

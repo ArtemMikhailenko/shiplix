@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { type Locale, locales } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
+import { languageAlternates } from "@/app/lib/seo";
 import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
 import ProjectDetailContent from "./ProjectDetailContent";
 
@@ -50,6 +51,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://shiplix.it.com/${params.locale}/projects/${params.slug}`,
+      languages: languageAlternates(`/projects/${params.slug}`),
     },
   };
 }

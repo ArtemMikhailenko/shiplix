@@ -3,6 +3,7 @@ import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/app/components/SmoothScroll";
+import { SITE_URL } from "@/app/lib/seo";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shiplix.dev"),
+  metadataBase: new URL(SITE_URL),
   icons: { icon: "/icon.svg" },
   robots: { index: true, follow: true },
 };

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
+import { buildMetadata } from "@/app/lib/seo";
 import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
 import ProjectsContent from "./ProjectsContent";
 
@@ -10,25 +11,14 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const dict = await getDictionary(params.locale);
-  return {
+  return buildMetadata({
+    locale: params.locale,
+    path: "/projects",
     title: dict.projectsPage.metaTitle,
     description: dict.projectsPage.metaDescription,
-    openGraph: {
-      title: dict.projectsPage.metaTitle,
-      description: dict.projectsPage.metaDescription,
-      url: `https://shiplix.it.com/${params.locale}/projects`,
-      siteName: "Shiplix",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: dict.projectsPage.metaTitle,
-      description: dict.projectsPage.metaDescription,
-    },
-    alternates: {
-      canonical: `https://shiplix.it.com/${params.locale}/projects`,
-    },
-  };
+    ogTitle: dict.projectsPage.title,
+    ogSubtitle: dict.projectsPage.metaDescription,
+  });
 }
 
 export default async function ProjectsPage({

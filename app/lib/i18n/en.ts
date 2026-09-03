@@ -1,4 +1,9 @@
 const en = {
+  homePage: {
+    metaTitle: "Shiplix — SaaS, Marketplace & MVP Development Company",
+    metaDescription:
+      "Ukrainian product dev studio. We build production-ready SaaS platforms, marketplaces, fintech and mobile apps — MVP in 6-8 weeks, fixed-price sprints.",
+  },
   nav: {
     services: "Services",
     projects: "Projects",
@@ -405,6 +410,7 @@ const en = {
     formMessage: "Tell us about your project",
     formSubmit: "Send message →",
     formSuccess: "Message sent! We'll get back to you within 48 hours.",
+    formSending: "Sending…",
     formError: "Something went wrong. Please try email instead.",
     orReach: "Or reach us directly",
     responseTime: "Avg. response time: < 24h",
