@@ -173,22 +173,49 @@ export default function ProjectDetailContent({
               ))}
             </div>
 
-            <div className="space-y-10 max-w-3xl">
-              {caseStudy.sections.map((s) => (
-                <article key={s.heading}>
-                  <h3 className="text-xl md:text-2xl font-semibold text-text mb-4">
-                    {s.heading}
-                  </h3>
-                  {s.body.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-text-secondary leading-body mb-4 last:mb-0"
-                    >
-                      {para}
-                    </p>
-                  ))}
-                </article>
-              ))}
+            <div className="space-y-14 max-w-3xl">
+              {caseStudy.sections.map((s) => {
+                // Only some sections carry an illustrating screenshot.
+                const shot = s as { image?: string; caption?: string };
+                return (
+                  <article key={s.heading}>
+                    <h3 className="text-xl md:text-2xl font-semibold text-text mb-4">
+                      {s.heading}
+                    </h3>
+                    {s.body.split("\n\n").map((para, i) => (
+                      <p
+                        key={i}
+                        className="text-text-secondary leading-body mb-4 last:mb-0"
+                      >
+                        {para}
+                      </p>
+                    ))}
+                    {shot.image && (
+                      <figure className="mt-6">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setLightboxIdx(meta.images.indexOf(shot.image!))
+                          }
+                          className="block w-full rounded-card border border-border overflow-hidden bg-bg-surface hover:border-accent/30 transition-colors cursor-zoom-in"
+                        >
+                          <img
+                            src={shot.image}
+                            alt={shot.caption || s.heading}
+                            loading="lazy"
+                            className="w-full h-auto"
+                          />
+                        </button>
+                        {shot.caption && (
+                          <figcaption className="mt-3 text-xs text-text-tertiary">
+                            {shot.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    )}
+                  </article>
+                );
+              })}
             </div>
 
             <div className="mt-12 rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface p-6 md:p-8 max-w-3xl">
@@ -219,8 +246,8 @@ export default function ProjectDetailContent({
           </div>
         </section>
 
-        {/* Gallery */}
-        {meta.images.length > 1 && (
+        {/* Gallery — skipped when a case study already shows these inline */}
+        {!caseStudy && meta.images.length > 1 && (
           <section className="fade-up mb-16">
             <h2 className="text-xs font-mono font-medium uppercase tracking-widest text-accent mb-8">
               {d.galleryLabel}

@@ -1061,10 +1061,14 @@ const en = {
         {
           heading: "The marketplace loop",
           body: "The core flow is four states. A customer publishes an OPEN order — category, description, city, deadline, attachments. Specialists submit responses, which are offers against that order. The customer compares those offers and accepts one, moving the order to IN_PROGRESS, then COMPLETED (or CANCELLED).\n\nResponses are their own records rather than a direct assignment, so a customer can weigh several specialists side by side and the full history is preserved for reputation and dispute handling.",
+          image: "/projects/services-helper-flow.webp",
+          caption: "Both sides of the loop, as the product explains it to its own users",
         },
         {
           heading: "Finding the right specialist",
           body: "Discovery runs on two axes that matter in this domain: what and where. Orders and specialist profiles are both bound to a category and a city, so a plumber in Lviv never surfaces for a job in Odesa. On top of that, a profile carries skills, an hourly rate, availability, a portfolio, and a rating derived from completed work.\n\nThere is no separate search engine. At this catalogue size, indexed PostgreSQL queries over category, city and rating are faster to run and far cheaper to operate than adding Meilisearch or Elasticsearch to the stack — and they keep search results transactionally consistent with the data. Subscription tier feeds into ranking, which is what makes sponsored placement worth paying for without letting it override relevance.",
+          image: "/projects/services-helper-categories.webp",
+          caption: "Categories — one of the two axes discovery runs on",
         },
         {
           heading: "Keeping the deal on the platform",
@@ -1077,6 +1081,8 @@ const en = {
         {
           heading: "Monetization without a paywall on access",
           body: "Posting an order and responding to one are free. Specialists pay for reach instead — through subscription tiers (Free, Optimal, Premium) and sponsored placement, billed with Stripe. Charging per lead would tax exactly the behaviour the marketplace wants to encourage; a subscription decouples cost from volume and gives predictable revenue.\n\nSubscription state is driven by Stripe webhooks — ACTIVE, PAST_DUE, UNPAID, CANCELED — and access checks read that live status. A failed payment quietly narrows a specialist's reach instead of leaving a paid feature open.",
+          image: "/projects/services-helper-pricing.webp",
+          caption: "Three subscription tiers, billed through Stripe",
         },
         {
           heading: "Notifications as events, not calls",

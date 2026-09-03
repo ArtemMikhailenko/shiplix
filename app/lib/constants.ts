@@ -66,8 +66,13 @@ export const PROJECT_META: Record<
   servicesHelper: {
     tag: "Platform",
     stack: ["NestJS", "Next.js", "PostgreSQL", "TypeORM", "Stripe", "Cloudinary"],
-    image: "",
-    images: [],
+    image: "/projects/services-helper.webp",
+    images: [
+      "/projects/services-helper.webp",
+      "/projects/services-helper-flow.webp",
+      "/projects/services-helper-categories.webp",
+      "/projects/services-helper-pricing.webp",
+    ],
     duration: "",
     slug: "services-helper",
     liveUrl: "https://services-helper.com",
