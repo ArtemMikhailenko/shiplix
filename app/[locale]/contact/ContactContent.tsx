@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CONTACT } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
+import { trackEvent } from "@/app/lib/analytics";
 import { locales } from "@/app/lib/i18n/config";
 
 const BUDGET_KEYS = ["small", "medium", "large", "enterprise"] as const;
@@ -28,6 +29,16 @@ export default function ContactContent() {
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const startedRef = useRef(false);
+
+  /** Fires once per page view, so start-vs-submit drop-off is measurable.
+   *  Bound to both focus and input: autofill and paste can change a field
+   *  without ever firing focus. */
+  function handleFormStart() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("form_start", { form_id: "contact", locale });
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -52,14 +63,31 @@ export default function ContactContent() {
         const data = await res.json().catch(() => null);
         setErrorMsg(data?.error || dict.contactPage.formError);
         setStatus("error");
+        trackEvent("form_error", {
+          form_id: "contact",
+          locale,
+          status: res.status,
+          reason: data?.error || "request_failed",
+        });
         return;
       }
+
+      trackEvent("generate_lead", {
+        form_id: "contact",
+        locale,
+        budget: formData.budget || "not_specified",
+      });
 
       setFormData({ name: "", email: "", budget: "", message: "" });
       setStatus("success");
     } catch {
       setErrorMsg(dict.contactPage.formError);
       setStatus("error");
+      trackEvent("form_error", {
+        form_id: "contact",
+        locale,
+        reason: "network_error",
+      });
     }
   }
 
@@ -103,7 +131,12 @@ export default function ContactContent() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Form */}
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="fade-up space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              onFocusCapture={handleFormStart}
+              onInputCapture={handleFormStart}
+              className="fade-up space-y-6"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label
