@@ -27,8 +27,9 @@ export const PROJECT_KEYS = [
   "inciCore",
   "marketplace",
   "servicesHelper",
-  "crypto",
-  "mobile",
+  "similiaStudio",
+  "dcProduction",
+  "artexClean",
   // "edtech",
   // "analytics",
 ] as const;
@@ -77,21 +78,32 @@ export const PROJECT_META: Record<
     slug: "services-helper",
     liveUrl: "https://services-helper.com",
   },
-  crypto: {
-    tag: "Fintech",
-    stack: ["NestJS", "Next.js", "PostgreSQL", "Redis", "ethers.js"],
-    image: "/projects/crypto.webp",
-    images: ["/projects/crypto.webp"],
-    duration: "8 weeks",
-    slug: "crypto-processor",
+  similiaStudio: {
+    tag: "Web",
+    stack: ["Next.js", "MongoDB", "NextAuth", "Cloudinary", "Resend", "next-intl"],
+    image: "/projects/similia-studio.webp",
+    images: ["/projects/similia-studio.webp"],
+    duration: "",
+    slug: "similia-studio",
+    liveUrl: "https://similiastudio.com",
   },
-  mobile: {
-    tag: "Mobile",
-    stack: ["React Native", "Expo", "TypeScript", "ethers.js"],
-    image: "/projects/mobile.webp",
-    images: ["/projects/mobile.webp"],
-    duration: "6 weeks",
-    slug: "mobile-wallet",
+  dcProduction: {
+    tag: "Web",
+    stack: ["Next.js", "Payload CMS", "PostgreSQL", "GSAP", "next-intl", "Vercel Blob"],
+    image: "/projects/dc-production.webp",
+    images: ["/projects/dc-production.webp"],
+    duration: "",
+    slug: "dc-production",
+    liveUrl: "https://dreamchaseprod.com",
+  },
+  artexClean: {
+    tag: "Landing",
+    stack: ["Astro", "TypeScript", "Tailwind CSS"],
+    image: "/projects/artex-clean.webp",
+    images: ["/projects/artex-clean.webp"],
+    duration: "",
+    slug: "artex-cleaning",
+    liveUrl: "https://artex-clin.com",
   },
   // edtech: {
   //   tag: "EdTech",
@@ -114,9 +126,9 @@ export const PROJECT_META: Record<
 export const TAG_COLORS: Record<string, string> = {
   SaaS: "text-accent",
   Marketplace: "text-cyan",
-  Fintech: "text-orange",
-  Mobile: "text-green",
   Platform: "text-accent",
+  Web: "text-green",
+  Landing: "text-orange",
   EdTech: "text-pink",
   Dashboard: "text-cyan",
 };
@@ -165,7 +177,7 @@ export const TECH_STACK = [
 export const HERO_CARDS = [
   { tech: ["NestJS", "Next.js", "Stripe"] },
   { tech: ["Next.js", "PostgreSQL", "Redis"] },
-  { tech: ["NestJS", "ethers.js", "Redis"] },
+  { tech: ["Next.js", "MongoDB", "Cloudinary"] },
 ];
 
 export const CONTACT = {
@@ -331,8 +343,8 @@ export const SERVICE_PAGE_META: Record<
   ServicePageKey,
   {
     slug: string;
-    /** Case study shown as proof on the page. */
-    project: ProjectKey;
+    /** Case study shown as proof on the page, when one exists. */
+    project?: ProjectKey;
     stack: string[];
     color: string;
   }
@@ -345,13 +357,12 @@ export const SERVICE_PAGE_META: Record<
   },
   mvp: {
     slug: "mvp-development",
-    project: "mobile",
+    project: "similiaStudio",
     stack: ["Next.js", "NestJS", "React Native", "PostgreSQL", "Prisma"],
     color: "text-cyan",
   },
   crypto: {
     slug: "crypto-payment-integration",
-    project: "crypto",
     stack: ["NestJS", "ethers.js", "PostgreSQL", "Redis", "Next.js", "Webhooks"],
     color: "text-orange",
   },
@@ -375,7 +386,6 @@ export const SERVICE_PAGE_META: Record<
   },
   mobile: {
     slug: "mobile-app-development",
-    project: "mobile",
     stack: ["React Native", "Expo", "TypeScript", "NestJS", "PostgreSQL"],
     color: "text-green",
   },

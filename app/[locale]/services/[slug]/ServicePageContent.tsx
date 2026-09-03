@@ -30,8 +30,9 @@ export default function ServicePageContent({
   const text = dict.servicePages.items[serviceKey];
   const shared = dict.servicePages;
 
-  const project = PROJECT_META[meta.project];
-  const projectText = dict.projectItems[meta.project];
+  // Some service pages have no case study to point at yet.
+  const project = meta.project ? PROJECT_META[meta.project] : null;
+  const projectText = meta.project ? dict.projectItems[meta.project] : null;
   const others = SERVICE_PAGE_KEYS.filter((k) => k !== serviceKey);
 
   return (
@@ -167,7 +168,8 @@ export default function ServicePageContent({
           </section>
         </div>
 
-        {/* Case study */}
+        {/* Case study — only when this service has one */}
+        {project && projectText && (
         <section className="fade-up mb-16 md:mb-24">
           <p className="text-xs font-mono font-medium uppercase tracking-widest text-accent mb-6">
             {shared.caseLabel}
@@ -195,6 +197,7 @@ export default function ServicePageContent({
             </span>
           </Link>
         </section>
+        )}
 
         {/* FAQ */}
         <section className="fade-up mb-16 md:mb-24">

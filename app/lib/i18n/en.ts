@@ -24,7 +24,7 @@ const en = {
     cards: {
       c1: { tag: "SaaS", title: "Online Booking SaaS" },
       c2: { tag: "Marketplace", title: "Multi-Vendor Marketplace" },
-      c3: { tag: "Fintech", title: "Crypto Payment Processor" },
+      c3: { tag: "Web", title: "Photo Studio Booking" },
     },
     stats: {
       projects: "projects",
@@ -119,25 +119,26 @@ const en = {
       result: "A live services marketplace with separate client and specialist accounts, an order flow with categories, deadlines and file attachments, a searchable specialist catalog, two-way reviews and ratings, paid promotion via Stripe, and a fully multi-language interface.",
       features: "Client & specialist accounts · Order posting with attachments · Specialist catalog & search · Two-way reviews & ratings · Paid promotion (Stripe) · Media uploads · Multi-language (UA/RU/EN) · Role-based access",
     },
-    crypto: {
-      title: "Crypto Payment Processor",
-      desc: "Blockchain monitoring for ETH, TRON, BSC. Automatic transaction detection, merchant dashboard, webhook notifications.",
-      challenge:
-        "Building reliable blockchain monitoring across multiple networks with automatic transaction detection and merchant notifications.",
-      result:
-        "Payment processor supporting ETH, TRON, and BSC. Handles thousands of daily transactions with webhook notifications and merchant dashboard.",
-      features:
-        "Multi-chain monitoring · Auto transaction detection · Merchant dashboard · Webhook notifications · Wallet management · Transaction history · Security layer",
+    similiaStudio: {
+      title: "SIMILIA Studio — Photo Studio Booking",
+      desc: "Booking platform for a photo studio in Israel: hourly slot booking kept in sync with the studio's own calendar, portfolio galleries, equipment catalogue and an admin panel.",
+      challenge: "The studio took bookings by phone and messenger, which produced double bookings and a calendar nobody fully trusted. It needed self-service booking that stayed in sync with the calendar the team already worked from.",
+      result: "A three-language site where clients book studio time themselves, with slots reconciled against the studio's real calendar over iCal and Google, media served from Cloudinary, transactional email through Resend, and an admin panel for portfolio and equipment.",
+      features: "Hourly slot booking · Calendar sync (iCal / Google) · Portfolio galleries · Equipment catalogue · Admin panel · Transactional email · Multi-language · Cloudinary media",
     },
-    mobile: {
-      title: "Mobile App with Crypto Wallet",
-      desc: "Cross-platform app with built-in cryptocurrency wallet, token management, and secure key storage.",
-      challenge:
-        "Creating a secure cross-platform mobile app with built-in cryptocurrency wallet functionality and seamless key management.",
-      result:
-        "Polished app with token management, secure key storage, and smooth UX. From Figma mockup to App Store in 6 weeks.",
-      features:
-        "Crypto wallet · Token management · Secure key storage · Cross-platform · Push notifications · Biometric auth · Transaction history",
+    dcProduction: {
+      title: "DC.Production — Agency Site on Payload CMS",
+      desc: "Site for a full-service marketing agency, driven by a headless Payload CMS so the team publishes cases, services and pricing without a developer.",
+      challenge: "The agency published new work constantly and rewrote service copy just as often, but every change needed a developer — which made the site the slowest part of their marketing.",
+      result: "A CMS-driven site where the team edits everything in Payload with a rich-text editor, media stored on Vercel Blob, three language versions, and a presentation layer animated with GSAP.",
+      features: "Payload CMS · Editorial workflow · Rich-text content · Three languages · Media library · GSAP animation · PostgreSQL · Works & pricing",
+    },
+    artexClean: {
+      title: "ARTEX — Cleaning Service Landing",
+      desc: "High-conversion landing for a cleaning service with an instant price calculator, built on Astro and shipping almost no client-side JavaScript.",
+      challenge: "The company needed a landing that loads instantly on a phone and answers the one question that decides the call: what will this cost.",
+      result: "A static Astro build that ships HTML with almost no client JavaScript, an interactive calculator that prices a clean by room and bathroom count, and booking straight through phone, Telegram or WhatsApp.",
+      features: "Instant price calculator · Static Astro build · Near-zero client JS · Messenger booking · Reviews & guarantees · FAQ · Sitemap & SEO · Mobile-first",
     },
     edtech: {
       title: "EdTech Platform with Live Classes",
