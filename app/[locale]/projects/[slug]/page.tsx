@@ -75,6 +75,7 @@ export default async function ProjectDetailPage({
     description: text.desc,
     applicationCategory: meta.tag,
     operatingSystem: "Web",
+    ...(meta.liveUrl ? { url: meta.liveUrl } : {}),
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",

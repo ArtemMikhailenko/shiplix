@@ -70,9 +70,21 @@ export default function ProjectDetailContent({
             >
               {meta.tag}
             </span>
-            <span className="text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border">
-              {meta.duration}
-            </span>
+            {meta.duration && (
+              <span className="text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border">
+                {meta.duration}
+              </span>
+            )}
+            {meta.liveUrl && (
+              <a
+                href={meta.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-accent/30 text-accent hover:bg-accent/10 transition-colors"
+              >
+                {d.visitSite}
+              </a>
+            )}
           </div>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-heading leading-heading text-text mb-6">

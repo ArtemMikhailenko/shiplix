@@ -103,7 +103,7 @@ const en = {
         "Multi-tenant isolation · Time-slot validation · Conflict detection · Automated reminders · Staff management · Service configuration · Client databases · Horizontal scaling",
     },
     marketplace: {
-      title: "Multi-Vendor Marketplace",
+      title: "ENEZ Market — Multi-Vendor Marketplace",
       desc: "3 separate frontends, real-time notifications with Socket.io, Meilisearch, MinIO storage. 5 sprints, 200+ tasks.",
       challenge:
         "Complex multi-vendor platform requiring separate experiences for buyers, sellers, and administrators with real-time communication.",
@@ -111,6 +111,13 @@ const en = {
         "3 separate frontends with real-time notifications, full-text search via Meilisearch, and file storage with MinIO. 200+ tasks in 5 sprints.",
       features:
         "3 separate panels · Real-time notifications · Full-text search · File storage · Payments · Order management · Admin dashboard · Analytics",
+    },
+    servicesHelper: {
+      title: "Services Helper — Services Marketplace",
+      desc: "A two-sided services marketplace connecting clients with verified specialists — order posting, specialist catalog, two-way reviews and paid promotion.",
+      challenge: "Clients needed a trustworthy way to find local specialists, and specialists needed a steady channel for new orders. The platform had to serve two distinct roles, build reputation on both sides, and monetize without charging for basic access.",
+      result: "A live services marketplace with separate client and specialist accounts, an order flow with categories, deadlines and file attachments, a searchable specialist catalog, two-way reviews and ratings, paid promotion via Stripe, and a fully multi-language interface.",
+      features: "Client & specialist accounts · Order posting with attachments · Specialist catalog & search · Two-way reviews & ratings · Paid promotion (Stripe) · Media uploads · Multi-language (UA/RU/EN) · Role-based access",
     },
     crypto: {
       title: "Crypto Payment Processor",
@@ -280,6 +287,7 @@ const en = {
     ctaSchedule: "Schedule a call",
   },
   projectDetail: {
+    visitSite: "Visit live site ↗",
     featuresLabel: "Key features",
     galleryLabel: "Screenshots",
     ctaTitle: "Want something similar?",

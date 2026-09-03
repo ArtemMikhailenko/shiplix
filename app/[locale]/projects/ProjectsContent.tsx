@@ -15,7 +15,7 @@ import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { locales } from "@/app/lib/i18n/config";
 
-const CATEGORIES = ["All", "SaaS", "Marketplace", "Fintech", "Mobile"];
+const CATEGORIES = ["All", "SaaS", "Marketplace", "Platform", "Fintech", "Mobile"];
 
 type ViewMode = "grid" | "list";
 
@@ -56,9 +56,11 @@ function ProjectCard({
             >
               {meta.tag}
             </span>
-            <span className="absolute top-4 right-4 text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm">
-              {meta.duration}
-            </span>
+            {meta.duration && (
+              <span className="absolute top-4 right-4 text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm">
+                {meta.duration}
+              </span>
+            )}
           </div>
 
           <div className="p-6">
@@ -104,9 +106,11 @@ function ProjectCard({
                 >
                   {meta.tag}
                 </span>
-                <span className="text-[10px] font-mono text-text-tertiary">
-                  {meta.duration}
-                </span>
+                {meta.duration && (
+                  <span className="text-[10px] font-mono text-text-tertiary">
+                    {meta.duration}
+                  </span>
+                )}
               </div>
               <h2 className="text-xl md:text-2xl font-semibold text-text mb-3 group-hover:text-accent transition-colors duration-300">
                 {text.title}
@@ -201,11 +205,13 @@ function FeaturedProject({
           </div>
 
           <div className="p-6 md:p-8 lg:p-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-[10px] font-mono text-text-tertiary">
-                {meta.duration}
-              </span>
-            </div>
+            {meta.duration && (
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-[10px] font-mono text-text-tertiary">
+                  {meta.duration}
+                </span>
+              </div>
+            )}
             <h2 className="text-2xl md:text-3xl font-bold text-text mb-4 group-hover:text-accent transition-colors duration-300">
               {text.title}
             </h2>

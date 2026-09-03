@@ -26,6 +26,7 @@ export const SERVICE_META: Record<ServiceKey, { color: string }> = {
 export const PROJECT_KEYS = [
   "inciCore",
   "marketplace",
+  "servicesHelper",
   "crypto",
   "mobile",
   // "edtech",
@@ -42,6 +43,8 @@ export const PROJECT_META: Record<
     images: string[];
     duration: string;
     slug: string;
+    /** Public URL of the shipped product, when it can be linked. */
+    liveUrl?: string;
   }
 > = {
   inciCore: {
@@ -59,6 +62,15 @@ export const PROJECT_META: Record<
     images: ["/projects/marketplace.webp"],
     duration: "10 weeks",
     slug: "marketplace",
+  },
+  servicesHelper: {
+    tag: "Platform",
+    stack: ["NestJS", "Next.js", "PostgreSQL", "TypeORM", "Stripe", "Cloudinary"],
+    image: "",
+    images: [],
+    duration: "",
+    slug: "services-helper",
+    liveUrl: "https://services-helper.com",
   },
   crypto: {
     tag: "Fintech",
@@ -99,6 +111,7 @@ export const TAG_COLORS: Record<string, string> = {
   Marketplace: "text-cyan",
   Fintech: "text-orange",
   Mobile: "text-green",
+  Platform: "text-accent",
   EdTech: "text-pink",
   Dashboard: "text-cyan",
 };
