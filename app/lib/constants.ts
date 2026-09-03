@@ -295,3 +295,42 @@ export const TEAM_MEMBERS: TeamMember[] = [
     accentColor: "from-pink to-accent",
   },
 ];
+
+/* ── Service landing pages (SEO entry points) ── */
+
+export const SERVICE_PAGE_KEYS = ["saas", "mvp", "crypto"] as const;
+export type ServicePageKey = (typeof SERVICE_PAGE_KEYS)[number];
+
+export const SERVICE_PAGE_META: Record<
+  ServicePageKey,
+  {
+    slug: string;
+    /** Case study shown as proof on the page. */
+    project: ProjectKey;
+    stack: string[];
+    color: string;
+  }
+> = {
+  saas: {
+    slug: "saas-development",
+    project: "inciCore",
+    stack: ["NestJS", "Next.js", "PostgreSQL", "Redis", "Stripe", "Docker"],
+    color: "text-accent",
+  },
+  mvp: {
+    slug: "mvp-development",
+    project: "mobile",
+    stack: ["Next.js", "NestJS", "React Native", "PostgreSQL", "Prisma"],
+    color: "text-cyan",
+  },
+  crypto: {
+    slug: "crypto-payment-integration",
+    project: "crypto",
+    stack: ["NestJS", "ethers.js", "PostgreSQL", "Redis", "Next.js", "Webhooks"],
+    color: "text-orange",
+  },
+};
+
+export const SERVICE_WHAT_KEYS = ["w1", "w2", "w3", "w4", "w5", "w6"] as const;
+export const SERVICE_FAQ_KEYS = ["f1", "f2", "f3", "f4", "f5"] as const;
+export const SERVICE_DELIVERABLE_KEYS = ["d1", "d2", "d3", "d4", "d5"] as const;

@@ -2,7 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CONTACT } from "@/app/lib/constants";
+import {
+  CONTACT,
+  SERVICE_PAGE_KEYS,
+  SERVICE_PAGE_META,
+} from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { locales } from "@/app/lib/i18n/config";
 
@@ -19,10 +23,17 @@ export default function Footer() {
     { label: dict.footer.nav.contact, href: `/${locale}/contact` },
   ];
 
+  // Service landing pages are the site's SEO entry points — link them site-wide
+  // so they are not orphaned from the crawl.
+  const serviceLinks = SERVICE_PAGE_KEYS.map((key) => ({
+    label: dict.servicePages.items[key].label,
+    href: `/${locale}/services/${SERVICE_PAGE_META[key].slug}`,
+  }));
+
   return (
     <footer className="border-t border-border">
       <div className="max-w-container mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <Link
@@ -35,6 +46,22 @@ export default function Footer() {
             <p className="text-sm text-text-secondary max-w-xs">
               {dict.footer.tagline}
             </p>
+          </div>
+
+          {/* Services */}
+          <div>
+            <ul className="space-y-2">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Nav */}

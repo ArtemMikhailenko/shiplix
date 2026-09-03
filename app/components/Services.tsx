@@ -2,7 +2,14 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
+import { locales } from "@/app/lib/i18n/config";
+import {
+  SERVICE_PAGE_META,
+  type ServicePageKey,
+} from "@/app/lib/constants";
 
 const SERVICES = [
   { key: "saas" as const, stack: ["NestJS", "Next.js", "PostgreSQL", "Stripe"], color: "168, 85, 247" },
@@ -15,12 +22,22 @@ const SERVICES = [
   { key: "mvp" as const, stack: ["NestJS", "Next.js", "Docker"], color: "139, 92, 246" },
 ] as const;
 
+/** Homepage service -> its dedicated landing page, where one exists. */
+const SERVICE_LANDING: Partial<Record<(typeof SERVICES)[number]["key"], ServicePageKey>> = {
+  saas: "saas",
+  mvp: "mvp",
+  fintech: "crypto",
+};
+
 export default function Services() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
   const [active, setActive] = useState(0);
   const current = SERVICES[active];
+  const pathname = usePathname();
+  const locale = locales.find((l) => pathname.startsWith(`/${l}`)) || "en";
+  const landingKey = SERVICE_LANDING[current.key];
 
   return (
     <section id="services" className="py-20 md:py-[120px]" ref={ref}>
@@ -109,6 +126,14 @@ export default function Services() {
                     <p className="text-text-secondary text-base md:text-[17px] leading-relaxed max-w-lg">
                       {dict.services.items[current.key].desc}
                     </p>
+                    {landingKey && (
+                      <Link
+                        href={`/${locale}/services/${SERVICE_PAGE_META[landingKey].slug}`}
+                        className="inline-block mt-5 text-sm font-medium text-accent hover:underline"
+                      >
+                        {dict.servicePages.learnMore}
+                      </Link>
+                    )}
                   </div>
 
                   <div className="relative z-10 flex flex-wrap gap-2 mt-8">

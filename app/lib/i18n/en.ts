@@ -524,6 +524,233 @@ const en = {
       },
     },
   },
+  servicePages: {
+    learnMore: "Learn more →",
+    breadcrumbHome: "Home",
+    breadcrumbServices: "Services",
+    stackTitle: "Stack we use",
+    caseLabel: "Proof of work",
+    caseCta: "Read the full case study →",
+    deliverablesTitle: "What you get",
+    faqTitle: "Frequently asked questions",
+    otherTitle: "Other services",
+    items: {
+      saas: {
+        metaTitle: "SaaS Development Company — Multi-Tenant Platforms | Shiplix",
+        metaDescription:
+          "We build production-ready SaaS platforms: multi-tenant architecture, subscriptions, role-based access and Stripe billing. From spec to production in 8-14 weeks.",
+        label: "SaaS Development",
+        h1: "SaaS platform development, from architecture to production",
+        intro:
+          "Subscriptions, multi-tenancy, roles and billing are where SaaS projects stall. We have shipped all of it — and we build it into the architecture in the first sprint, not after launch.",
+        p1: "8-14 weeks",
+        p2: "Fixed-price sprints",
+        p3: "Multi-tenant from day one",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Multi-tenant architecture",
+            desc: "Isolated data per tenant on shared infrastructure — the model that lets one deployment serve salons, auto shops and clinics at the same time.",
+          },
+          w2: {
+            title: "Subscriptions & billing",
+            desc: "Stripe with EU VAT handling, plan upgrades, trials, invoices and failed-payment recovery.",
+          },
+          w3: {
+            title: "Roles & permissions",
+            desc: "Owners, staff and admins, with access enforced on the API — not just hidden in the interface.",
+          },
+          w4: {
+            title: "Admin & analytics panels",
+            desc: "The internal tooling your team actually runs the business on: usage, revenue and support.",
+          },
+          w5: {
+            title: "Integrations & automation",
+            desc: "Webhooks, document generation, automated notifications and third-party APIs.",
+          },
+          w6: {
+            title: "Scale & reliability",
+            desc: "PostgreSQL, Redis, CI/CD, monitoring and error tracking wired in from the first deploy.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec and architecture before any code",
+          d2: "Sprint demos every 1-2 weeks",
+          d3: "Your repository, full code access throughout",
+          d4: "CI/CD, monitoring and error tracking",
+          d5: "Post-launch support and iterations",
+        },
+        faq: {
+          f1: {
+            q: "How long does it take to build a SaaS platform?",
+            a: "A focused MVP takes 6-8 weeks. A full multi-tenant platform with billing, roles and admin panels typically runs 10-14 weeks. Zapys24, a multi-tenant booking SaaS, took 14 weeks from spec to production.",
+          },
+          f2: {
+            q: "How much does SaaS development cost?",
+            a: "We work in fixed-price sprints, so the cost of each stage is agreed before it starts. The total depends on scope — a discovery call and technical spec give you an exact estimate, free and with no commitment.",
+          },
+          f3: {
+            q: "Do you build multi-tenant architecture?",
+            a: "Yes, and we recommend deciding it up front. Retrofitting tenant isolation into a single-tenant codebase is one of the most expensive rewrites in SaaS, so we design that boundary in the first sprint.",
+          },
+          f4: {
+            q: "Which tech stack do you use for SaaS?",
+            a: "NestJS and PostgreSQL on the backend, Next.js on the frontend, Redis for caching and queues, Stripe for billing. Proven tools chosen so you can hire for them later.",
+          },
+          f5: {
+            q: "Do we own the code?",
+            a: "Yes. Work happens in your repository from day one and you have full access throughout. No vendor lock-in, no handover fee.",
+          },
+        },
+        ctaTitle: "Have a SaaS project in mind?",
+        ctaSub:
+          "Tell us what you are building. You will get a technical assessment and an estimate within 48 hours.",
+      },
+      mvp: {
+        metaTitle: "MVP Development Agency — Launch in 4-8 Weeks | Shiplix",
+        metaDescription:
+          "We build production-ready MVPs in 4-8 weeks: clean architecture that scales past validation, fixed-price sprints and full code ownership.",
+        label: "MVP Development",
+        h1: "MVP development in 4-8 weeks",
+        intro:
+          "An MVP is not a prototype you throw away. We build the smallest version real users can pay for — on architecture that survives the next two years of the product.",
+        p1: "4-8 weeks to launch",
+        p2: "Fixed-price sprints",
+        p3: "Production-ready, not a demo",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Scope that fits the deadline",
+            desc: "We cut the feature list to what actually validates the idea, and say plainly when something belongs in v2.",
+          },
+          w2: {
+            title: "Architecture that scales",
+            desc: "Clean boundaries from the start, so growth means adding features instead of paying for a rewrite.",
+          },
+          w3: {
+            title: "A full product, not a mockup",
+            desc: "Auth, payments, admin panel and deployment — everything a real user touches.",
+          },
+          w4: {
+            title: "Web and mobile",
+            desc: "Next.js on the web, React Native for iOS and Android from a single codebase.",
+          },
+          w5: {
+            title: "Launch-ready infrastructure",
+            desc: "CI/CD, monitoring and error tracking, so you see problems before your users report them.",
+          },
+          w6: {
+            title: "Iterations after launch",
+            desc: "We stay on through the first weeks of real feedback, when the changes that matter surface.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec, architecture and timeline up front",
+          d2: "Working demo every sprint, not status reports",
+          d3: "Your repository, full code access throughout",
+          d4: "Deployment, monitoring and error tracking",
+          d5: "Support and iterations after launch",
+        },
+        faq: {
+          f1: {
+            q: "How fast can you build an MVP?",
+            a: "Four to eight weeks, depending on scope. Our mobile crypto wallet went from design to shipped app in 6 weeks. We commit to the timeline in the technical spec, before development starts.",
+          },
+          f2: {
+            q: "What does an MVP cost?",
+            a: "We price per sprint with the scope fixed before each one. After a short discovery call we send a detailed proposal with the timeline and the total — free and with no commitment.",
+          },
+          f3: {
+            q: "Is the MVP production-ready or just a prototype?",
+            a: "Production-ready. It ships with authentication, payments, deployment, monitoring and error tracking. The scope is small; the engineering is not.",
+          },
+          f4: {
+            q: "Can the MVP scale after launch?",
+            a: "That is the reason to build it properly. Most clients continue with us after launch, adding features onto the same architecture instead of rebuilding.",
+          },
+          f5: {
+            q: "Do I need a technical spec before we start?",
+            a: "No — producing it is the first thing we do. Discovery gives you architecture, scope and a timeline before any code is written, and it is yours whether or not you continue with us.",
+          },
+        },
+        ctaTitle: "Ready to validate your idea?",
+        ctaSub:
+          "Tell us what you want to launch. You will get a technical assessment and an estimate within 48 hours.",
+      },
+      crypto: {
+        metaTitle: "Crypto Payment Integration & Blockchain Development | Shiplix",
+        metaDescription:
+          "Crypto payment processors, multi-chain monitoring for ETH, TRON and BSC, wallets and merchant dashboards — built, shipped and running in production.",
+        label: "Fintech & Crypto",
+        h1: "Crypto payment integration and blockchain development",
+        intro:
+          "We built a payment processor that monitors Ethereum, TRON and BSC, detects transactions automatically and notifies merchants by webhook. Crypto payments are our core work, not a side offering.",
+        p1: "ETH · TRON · BSC",
+        p2: "6-10 weeks",
+        p3: "Running in production",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Payment processors",
+            desc: "Automatic transaction detection across chains, confirmation handling and webhook notifications to your backend.",
+          },
+          w2: {
+            title: "Multi-chain monitoring",
+            desc: "Ethereum, TRON and BSC, with the node and reorg handling that makes detection trustworthy.",
+          },
+          w3: {
+            title: "Merchant dashboards",
+            desc: "Balances, transaction history, payout management and API keys for your own customers.",
+          },
+          w4: {
+            title: "Crypto wallets",
+            desc: "Custodial and non-custodial wallets, token management and secure key storage, on web and React Native.",
+          },
+          w5: {
+            title: "Fiat rails alongside crypto",
+            desc: "Stripe with EU VAT when you need card and crypto payments in the same checkout.",
+          },
+          w6: {
+            title: "Security & operations",
+            desc: "Key management, rate limiting, audit logs and monitoring designed in rather than bolted on.",
+          },
+        },
+        deliverables: {
+          d1: "Architecture and threat model before implementation",
+          d2: "Sprint demos on testnet every 1-2 weeks",
+          d3: "Your repository, full code access throughout",
+          d4: "Monitoring, alerting and audit logging",
+          d5: "Support through mainnet launch and after",
+        },
+        faq: {
+          f1: {
+            q: "Which blockchains do you work with?",
+            a: "Ethereum, TRON and BSC in production today, plus any EVM-compatible chain. We use ethers.js and run our own monitoring rather than depending on a single third-party API.",
+          },
+          f2: {
+            q: "How long does a crypto payment integration take?",
+            a: "A processor with multi-chain monitoring, a merchant dashboard and webhooks took us 8 weeks. A narrower integration into an existing product is usually 3-5 weeks.",
+          },
+          f3: {
+            q: "How do you make transaction detection reliable?",
+            a: "We monitor chains directly and confirm against block depth, so reorgs and dropped transactions do not turn into wrong balances. Webhooks retry until your backend acknowledges them.",
+          },
+          f4: {
+            q: "Can you build a crypto wallet app?",
+            a: "Yes. We shipped a React Native wallet with token management and secure key storage, running on iOS and Android from one codebase.",
+          },
+          f5: {
+            q: "Do you handle custody or licensing?",
+            a: "We build the software; custody and licensing stay with you or your provider. We will tell you plainly which parts of your model need a regulated partner before we start.",
+          },
+        },
+        ctaTitle: "Building something with crypto payments?",
+        ctaSub:
+          "Tell us about your product. You will get a technical assessment and an estimate within 48 hours.",
+      },
+    },
+  },
+
 } as const;
 
 export default en;

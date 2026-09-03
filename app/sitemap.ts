@@ -1,6 +1,11 @@
 import { MetadataRoute } from "next";
 import { locales } from "@/app/lib/i18n/config";
-import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
+import {
+  PROJECT_KEYS,
+  PROJECT_META,
+  SERVICE_PAGE_KEYS,
+  SERVICE_PAGE_META,
+} from "@/app/lib/constants";
 import { localeUrl, languageAlternates } from "@/app/lib/seo";
 
 /** Every indexable path, without the locale prefix. */
@@ -21,9 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const servicePaths = SERVICE_PAGE_KEYS.map((key) => ({
+    path: `/services/${SERVICE_PAGE_META[key].slug}`,
+    priority: 0.9,
+  }));
+
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const { path, priority } of [...STATIC_PATHS, ...projectPaths]) {
+  for (const { path, priority } of [
+    ...STATIC_PATHS,
+    ...servicePaths,
+    ...projectPaths,
+  ]) {
     for (const locale of locales) {
       entries.push({
         url: localeUrl(locale, path),
