@@ -255,33 +255,6 @@ export default function AboutContent() {
         </section>
 
         {/* Testimonial */}
-        <section className="fade-up mb-20 md:mb-28">
-          <div className="rounded-card border border-border bg-bg-elevated p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-cyan/5 pointer-events-none" />
-            <div className="relative">
-              <div className="text-4xl text-accent/20 font-serif mb-4">
-                &ldquo;
-              </div>
-              <blockquote className="text-lg md:text-xl text-text leading-body mb-6 max-w-3xl">
-                {dict.testimonials.items.t1.quote}
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">
-                  {dict.testimonials.items.t1.name.charAt(0)}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    {dict.testimonials.items.t1.name}
-                  </div>
-                  <div className="text-xs text-text-secondary">
-                    {dict.testimonials.items.t1.role} ·{" "}
-                    {dict.testimonials.items.t1.company}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="fade-up text-center">

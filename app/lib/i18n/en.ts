@@ -189,41 +189,6 @@ const en = {
         "Real-time charts · Custom reports · Alert system · ClickHouse engine · WebSocket updates · Role-based access · Data export · API integrations",
     },
   },
-  testimonials: {
-    label: "Testimonials",
-    title: "Don't just take our word for it",
-    sub: "Hear from the teams we've shipped products for.",
-    items: {
-      t1: {
-        quote:
-          "Shiplix delivered our SaaS platform 2 weeks ahead of schedule. Clean code, clear communication, and zero drama. Exactly what we needed.",
-        name: "Marcus Weber",
-        role: "CTO, ComplianceHub",
-        company: "SaaS · Germany",
-      },
-      t2: {
-        quote:
-          "We tested 3 agencies before Shiplix. They were the only team that truly understood marketplace complexity — separate panels, real-time sync, the works.",
-        name: "Sarah Chen",
-        role: "Founder, TradeNest",
-        company: "Marketplace · UAE",
-      },
-      t3: {
-        quote:
-          "Our crypto payment processor handles thousands of transactions daily. Shiplix built it to be bulletproof from day one. Rock-solid architecture.",
-        name: "Daniel Kovács",
-        role: "CEO, PayChain",
-        company: "Fintech · Hungary",
-      },
-      t4: {
-        quote:
-          "From a rough Figma mockup to a polished mobile app in 6 weeks. The team moved fast without cutting corners. Would hire again in a heartbeat.",
-        name: "Amira Al-Rashid",
-        role: "Product Lead, WalletX",
-        company: "Mobile · Saudi Arabia",
-      },
-    },
-  },
   stack: {
     label: "Tech stack",
     title: "Modern. Battle-tested. Built to scale.",
