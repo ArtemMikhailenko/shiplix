@@ -3,7 +3,10 @@
 import { useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CONTACT } from "@/app/lib/constants";
+import { CONTACT, TEAM_MEMBERS } from "@/app/lib/constants";
+
+/** The person who actually answers these messages. */
+const FOUNDER = TEAM_MEMBERS.find((m) => m.roleKey === "roleFounder");
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { trackEvent } from "@/app/lib/analytics";
@@ -303,6 +306,45 @@ export default function ContactContent() {
           {/* Sidebar */}
           <div className="lg:col-span-2">
             <div className="fade-up rounded-card border border-border bg-bg-elevated p-6 md:p-8 sticky top-24">
+              {/*
+                Buyers want to know who answers and when before they hand over
+                their project. This block says both, above the raw contacts.
+              */}
+              <h3 className="text-sm font-semibold text-text mb-5">
+                {dict.contactPage.nextTitle}
+              </h3>
+              <ol className="space-y-4 mb-8">
+                {(["next1", "next2", "next3"] as const).map((key, i) => (
+                  <li key={key} className="flex gap-3">
+                    <span className="shrink-0 w-6 h-6 rounded-full border border-accent/30 text-accent text-[11px] font-mono flex items-center justify-center mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <div className="text-sm font-medium text-text">
+                        {dict.contactPage[key].t}
+                      </div>
+                      <div className="text-xs text-text-secondary leading-relaxed mt-1">
+                        {dict.contactPage[key].d}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="border-t border-border pt-6 mb-6 flex items-center gap-3">
+                <span className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-deep to-cyan flex items-center justify-center text-white text-xs font-bold shrink-0">
+                  {FOUNDER?.initials}
+                </span>
+                <div>
+                  <div className="text-sm font-medium text-text">
+                    {FOUNDER ? dict.teamPage.members[FOUNDER.nameKey] : ""}
+                  </div>
+                  <div className="text-xs text-text-tertiary">
+                    {FOUNDER ? dict.teamPage[FOUNDER.roleKey] : ""}
+                  </div>
+                </div>
+              </div>
+
               <h3 className="text-sm font-semibold text-text mb-6">
                 {dict.contactPage.orReach}
               </h3>

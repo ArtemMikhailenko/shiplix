@@ -450,9 +450,22 @@ const en = {
     },
     formMessage: "Tell us about your project",
     formSubmit: "Send message →",
-    formSuccess: "Message sent! We'll get back to you within 48 hours.",
+    formSuccess: "Message sent. Artem reads every inquiry personally — expect a reply within 24 hours, and a technical assessment with an estimate within 48.",
     formSending: "Sending…",
     formError: "Something went wrong. Please try email instead.",
+    nextTitle: "What happens next",
+    next1: {
+      t: "Artem reads it",
+      d: "Not a shared inbox. The founder reads every inquiry himself.",
+    },
+    next2: {
+      t: "A reply within 24 hours",
+      d: "With the questions we need answered to scope the work properly.",
+    },
+    next3: {
+      t: "An assessment within 48 hours",
+      d: "Architecture, scope and a timeline with pricing. Free, no commitment.",
+    },
     orReach: "Or reach us directly",
     responseTime: "Avg. response time: < 24h",
     scheduleCall: "Schedule a call →",
