@@ -38,9 +38,9 @@ function ProjectCard({
       <Link href={`/${locale}/projects/${meta.slug}`} className="block">
         <article className="card-reveal group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
           <div className="relative h-[200px] bg-bg-surface flex items-center justify-center overflow-hidden">
-            {meta.image ? (
+            {meta.logo || meta.image ? (
               <img
-                src={meta.image}
+                src={meta.logo || meta.image}
                 alt={text.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -179,11 +179,11 @@ function FeaturedProject({
         <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
           <div className="relative h-[220px] lg:h-full bg-bg-surface flex items-center justify-center overflow-hidden">
-            {meta.image ? (
+            {meta.logo || meta.image ? (
               <img
-                src={meta.image}
+                src={meta.logo || meta.image}
                 alt={text.title}
-                className="absolute inset-0 w-full h-full object-contain p-4"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
               <div className="text-text-tertiary text-7xl font-mono opacity-[0.05] select-none">

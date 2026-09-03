@@ -50,9 +50,12 @@ export const PROJECT_META: Record<
     slug: string;
     /** Public URL of the shipped product, when it can be linked. */
     liveUrl?: string;
+    /** Brand mark shown on the portfolio card; `image` stays the detail hero. */
+    logo?: string;
   }
 > = {
   inciCore: {
+    logo: "/projects/logo-zapys24.webp",
     tag: "SaaS",
     stack: ["NestJS", "React", "TypeScript", "PostgreSQL", "CRM"],
     image: "/projects/og-zapys.webp",
@@ -61,6 +64,7 @@ export const PROJECT_META: Record<
     slug: "zapys24",
   },
   marketplace: {
+    logo: "/projects/logo-enez.webp",
     tag: "Marketplace",
     stack: ["Next.js 14", "NestJS", "PostgreSQL", "Redis", "Socket.io"],
     image: "/projects/marketplace.webp",
@@ -69,6 +73,7 @@ export const PROJECT_META: Record<
     slug: "marketplace",
   },
   servicesHelper: {
+    logo: "/projects/logo-services-helper.webp",
     tag: "Platform",
     stack: ["NestJS", "Next.js", "PostgreSQL", "TypeORM", "Stripe", "Cloudinary"],
     image: "/projects/services-helper.webp",
@@ -83,6 +88,7 @@ export const PROJECT_META: Record<
     liveUrl: "https://services-helper.com",
   },
   similiaStudio: {
+    logo: "/projects/logo-similia.webp",
     tag: "Web",
     stack: ["Next.js", "MongoDB", "NextAuth", "Cloudinary", "Resend", "next-intl"],
     image: "/projects/similia-studio.webp",
@@ -92,6 +98,7 @@ export const PROJECT_META: Record<
     liveUrl: "https://similiastudio.com",
   },
   dcProduction: {
+    logo: "/projects/logo-dc-production.webp",
     tag: "Web",
     stack: ["Next.js", "Payload CMS", "PostgreSQL", "GSAP", "next-intl", "Vercel Blob"],
     image: "/projects/dc-production.webp",
@@ -101,14 +108,16 @@ export const PROJECT_META: Record<
     liveUrl: "https://dreamchaseprod.com",
   },
   orthoDent: {
+    logo: "/projects/logo-orthostore.webp",
     tag: "E-Commerce",
     stack: ["Next.js", "NestJS", "MongoDB", "Ant Design", "JWT", "Swagger"],
-    image: "",
-    images: [],
+    image: "/projects/logo-orthostore.webp",
+    images: ["/projects/logo-orthostore.webp"],
     duration: "",
-    slug: "orthodent-pro",
+    slug: "orthostore",
   },
   rentaLviv: {
+    logo: "/projects/logo-rentalviv.webp",
     tag: "Web",
     stack: ["Next.js", "MongoDB", "Cloudinary", "dnd-kit"],
     image: "/projects/rentalviv.webp",
@@ -118,14 +127,16 @@ export const PROJECT_META: Record<
     liveUrl: "https://www.rentalviv.com",
   },
   iCleaning: {
+    logo: "/projects/logo-icleaning.webp",
     tag: "Web",
     stack: ["Next.js", "MongoDB", "Stripe", "Cloudinary", "Swiper"],
-    image: "",
-    images: [],
+    image: "/projects/logo-icleaning.webp",
+    images: ["/projects/logo-icleaning.webp"],
     duration: "",
     slug: "icleaning",
   },
   vbkPartner: {
+    logo: "/projects/logo-vbk-partner.webp",
     tag: "Web",
     stack: ["Next.js", "React", "TypeScript"],
     image: "/projects/vbk-partner.webp",
@@ -135,6 +146,7 @@ export const PROJECT_META: Record<
     liveUrl: "https://vbk-partner.com",
   },
   artexClean: {
+    logo: "/projects/logo-artex.webp",
     tag: "Landing",
     stack: ["Astro", "TypeScript", "Tailwind CSS"],
     image: "/projects/artex-clean.webp",

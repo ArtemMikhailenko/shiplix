@@ -127,7 +127,7 @@ const en = {
       features: "Hourly slot booking · Calendar sync (iCal / Google) · Portfolio galleries · Equipment catalogue · Admin panel · Transactional email · Multi-language · Cloudinary media",
     },
     orthoDent: {
-      title: "OrthoDent Pro — Dental Supplies Store",
+      title: "ORTHOSTORE — Dental Supplies Store",
       desc: "Online store for dental products, split into three deployables: a Next.js storefront, an admin panel with sales analytics, and a NestJS API.",
       challenge: "A dental supplier needed a real store — catalogue, cart, checkout, order tracking and customer accounts — plus an internal panel staff could run stock and orders from, without either side blocking the other's release.",
       result: "Three separate applications against one API: a storefront with catalogue, checkout, payment and order status; an Ant Design admin panel with sales charts; and a NestJS backend with JWT auth, Swagger docs and rate limiting.",
