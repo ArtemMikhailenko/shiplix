@@ -15,7 +15,7 @@ import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { locales } from "@/app/lib/i18n/config";
 
-const CATEGORIES = ["All", "SaaS", "Marketplace", "Platform", "Web", "Landing"];
+const CATEGORIES = ["All", "SaaS", "Marketplace", "Platform", "E-Commerce", "Web", "Landing"];
 
 type ViewMode = "grid" | "list";
 
