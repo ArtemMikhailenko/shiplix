@@ -16,7 +16,13 @@ function ProjectCard({
 }: {
   slug: string;
   locale: string;
-  meta: { tag: string; stack: string[]; image: string; duration: string };
+  meta: {
+    tag: string;
+    stack: string[];
+    image: string;
+    duration: string;
+    logo?: string;
+  };
   text: { title: string };
   index: number;
 }) {
@@ -40,7 +46,7 @@ function ProjectCard({
       <Link href={`/${locale}/projects/${slug}`} className="group block">
         <div className="relative aspect-[16/11] rounded-xl overflow-hidden bg-bg-elevated">
           <motion.img
-            src={meta.image}
+            src={meta.logo || meta.image}
             alt={text.title}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             style={{ y: imgY, scale: 1.12 }}

@@ -239,18 +239,6 @@ export const CONTACT = {
   calendly: "https://calendly.com/shiplix/30min",
 };
 
-export const CLIENTS = [
-  "Enez",
-  "TradeNest",
-  "PayChain",
-  "WalletX",
-  "NovaTech",
-  "BrightPath",
-  "CloudSync",
-  "DataPulse",
-  "SwiftPay",
-  "GreenVolt",
-];
 
 export type TeamRole =
   | "roleFounder"
