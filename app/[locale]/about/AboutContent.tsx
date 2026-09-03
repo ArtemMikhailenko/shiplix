@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { STAT_KEYS, STAT_META, TECH_STACK } from "@/app/lib/constants";
+import { Icon, type IconName } from "@/app/components/ui/Icon";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 
@@ -20,12 +21,12 @@ const VALUE_COLORS: Record<string, string> = {
   growth: "text-orange",
 };
 
-const INDUSTRY_ICONS: Record<string, string> = {
-  saas: "☁",
-  fintech: "₿",
-  ecommerce: "🛒",
-  marketplace: "🏪",
-  mobile: "📱",
+const INDUSTRY_ICONS: Record<string, IconName> = {
+  saas: "cloud",
+  fintech: "coins",
+  ecommerce: "cart",
+  marketplace: "store",
+  mobile: "phone",
 };
 
 const INDUSTRY_COLORS: Record<string, string> = {
@@ -194,9 +195,9 @@ export default function AboutContent() {
                 className="group rounded-card border border-border bg-bg-elevated p-5 text-center hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_-12px_rgba(139,92,246,0.15)] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 transition-all duration-300"
               >
                 <div
-                  className={`text-2xl mb-3 ${INDUSTRY_COLORS[key]} group-hover:scale-110 transition-transform duration-300`}
+                  className={`mb-3 flex justify-center ${INDUSTRY_COLORS[key]} group-hover:scale-110 transition-transform duration-300`}
                 >
-                  {INDUSTRY_ICONS[key]}
+                  <Icon name={INDUSTRY_ICONS[key]} size={26} />
                 </div>
                 <div className="text-sm font-medium text-text group-hover:text-accent transition-colors duration-300">
                   {dict.aboutPage.industries[key]}

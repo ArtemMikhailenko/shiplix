@@ -9,6 +9,7 @@ import {
   CONTACT,
   type ProjectKey,
 } from "@/app/lib/constants";
+import { Icon } from "@/app/components/ui/Icon";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { locales } from "@/app/lib/i18n/config";
@@ -281,7 +282,7 @@ export default function ProjectDetailContent({
               onClick={() => setLightboxIdx(null)}
               aria-label="Close"
             >
-              ✕
+              <Icon name="close" size={22} />
             </button>
 
             {meta.images.length > 1 && (
@@ -297,7 +298,7 @@ export default function ProjectDetailContent({
                   }}
                   aria-label="Previous"
                 >
-                  ‹
+                  <Icon name="chevronLeft" size={30} />
                 </button>
                 <button
                   className="absolute right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-3xl cursor-pointer"
@@ -307,7 +308,7 @@ export default function ProjectDetailContent({
                   }}
                   aria-label="Next"
                 >
-                  ›
+                  <Icon name="chevronRight" size={30} />
                 </button>
               </>
             )}

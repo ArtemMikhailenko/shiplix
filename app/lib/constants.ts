@@ -337,9 +337,13 @@ export interface TeamMember {
   nameKey: TeamMemberKey;
   roleKey: TeamRole;
   initials: string;
+  /** Local file under /public/team. LinkedIn CDN URLs expire — do not use them. */
+  /**
+   * A GitHub avatar or a local file under /public/team.
+   * Never a LinkedIn CDN URL — those are signed and expire.
+   */
   photo?: string;
   location: string;
-  flag: string;
   focus: string;
   experience: string;
   stack: string[];
@@ -356,11 +360,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     nameKey: "artem",
     roleKey: "roleFounder",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D4E03AQGN68Pbzb8jfg/profile-displayphoto-crop_800_800/B4EZecCIa_GwAI-/0/1750669499557?e=1777507200&v=beta&t=23ONCXfXtZmK7z_MIbDqK3418o7x5P9X50eJWRA9QW0",
     initials: "AM",
     location: "Kyiv, Ukraine",
-    flag: "🇺🇦",
     focus: "Architecture & Product",
     experience: "5+",
     stack: ["Next.js", "NestJS", "PostgreSQL", "Management"],
@@ -374,11 +375,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     nameKey: "pavlo",
     roleKey: "roleFull",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D4D03AQFeOp70FIXKoQ/profile-displayphoto-shrink_800_800/B4DZRvcTZtHYAk-/0/1737036478560?e=1777507200&v=beta&t=0U9T4l_LBcjg7Gply-oN4noUSz7lTAnGEoymEeYRBAo",
     initials: "PS",
     location: "Kyiv, Ukraine",
-    flag: "🇺🇦",
     focus: "Full-Stack & DevOps",
     experience: "4+",
     stack: ["NestJS", "Next.js", "Kubernetes", "DigitalOcean"],
@@ -391,12 +389,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "volodymyr",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D4D03AQEgLeBLukZGrA/profile-displayphoto-crop_800_800/B4DZeOJZLqGkAQ-/0/1750436517066?e=1777507200&v=beta&t=WU8esMvBcm9agtHSV6pNO4W7hPwfSj3HKxCUCt84oWk",
     roleKey: "roleFull",
     initials: "VL",
     location: "Kryvyi Rih, Ukraine",
-    flag: "🇺🇦",
     focus: "Full-Stack & System Design",
     experience: "4+",
     stack: ["Microservices", "React", "Databases", "NestJS", "Python"],
@@ -414,7 +409,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleKey: "roleFull",
     initials: "AL",
     location: "Kyiv, Ukraine",
-    flag: "🇺🇦",
     focus: "Frontend & Web3",
     experience: "3+",
     stack: ["React Native", "WEB3", "Solidity"],
@@ -426,12 +420,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "oleksandr",
-    photo:
-      "https://media.licdn.com/dms/image/v2/C4D03AQFMQa1zTWx2aQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517545128882?e=1777507200&v=beta&t=b9y2B2mXuhY3F3v9ozIb8Xw8uFZehORQ1WnImcUf-pg",
     roleKey: "roleTest",
     initials: "OH",
     location: "Lviv, Ukraine",
-    flag: "🇺🇦",
     focus: "Manual Testing & QA",
     experience: "6+",
     stack: ["Manual Testing", "QA", "Automation"],

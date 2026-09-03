@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { TEAM_MEMBERS } from "@/app/lib/constants";
+import { Icon } from "@/app/components/ui/Icon";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 
@@ -98,7 +99,7 @@ export default function TeamContent() {
 
                 <div className="space-y-3 mb-5">
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="text-text-tertiary">{member.flag}</span>
+                    <Icon name="mapPin" size={16} className="text-text-tertiary shrink-0" />
                     <span className="text-text-secondary">
                       {member.location}
                     </span>
