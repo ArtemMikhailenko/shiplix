@@ -33,9 +33,6 @@ const en = {
       deploy: "to deploy",
     },
   },
-  clients: {
-    label: "Trusted by teams across Europe, Middle East & USA",
-  },
   stats: {
     projects: "Projects shipped",
     projectsDesc: "Web apps, mobile, SaaS — from MVP to scale",
@@ -181,6 +178,13 @@ const en = {
       challenge: "An instructor selling classes and retreats needed a site that carries the calm of the practice itself, not a generic fitness template.",
       result: "A cinematic, typography-driven site with full-bleed imagery, a class and retreat catalogue, testimonials and direct booking, in two languages.",
       features: "Cinematic hero · Class catalogue · Retreats & events · Testimonials · Two languages · Direct booking · Smooth scroll · Mobile-first",
+    },
+    profixter: {
+      title: "Profixter — Handyman Membership Platform",
+      desc: "Membership platform for a Long Island handyman service: visit booking with real calendar slots, member accounts and a membership signup funnel.",
+      challenge: "Small household jobs keep appearing, and finding a trustworthy handyman for each one is the friction. The business needed customers to book a visit in a few taps and to subscribe rather than hunt for help each time.",
+      result: "A US-market site where a visitor picks a date and a time slot without calling anyone, signs up for the membership, and returns to the same local team through a member account.",
+      features: "Calendar slot booking · Membership signup · Member accounts · Free first visit funnel · Project gallery · How-it-works flow · Lead capture · Mobile-first",
     },
     dcProduction: {
       title: "DC.Production — Agency Site on Payload CMS",

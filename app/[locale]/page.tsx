@@ -1,5 +1,4 @@
 import Hero from "@/app/components/Hero";
-import Clients from "@/app/components/Clients";
 import Services from "@/app/components/Services";
 import Projects from "@/app/components/Projects";
 import Stack from "@/app/components/Stack";
@@ -85,7 +84,6 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
       <Hero />
-      <Clients />
       <ScrollLine />
       <Services />
       <ScrollLine />
