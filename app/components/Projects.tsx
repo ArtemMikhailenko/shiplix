@@ -89,8 +89,10 @@ export default function Projects() {
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
 
-  const left = PROJECT_KEYS.filter((_, i) => i % 2 === 0);
-  const right = PROJECT_KEYS.filter((_, i) => i % 2 === 1);
+  // The homepage shows a curated set; the full portfolio lives on /projects.
+  const featured = PROJECT_KEYS.filter((key) => PROJECT_META[key].featured);
+  const left = featured.filter((_, i) => i % 2 === 0);
+  const right = featured.filter((_, i) => i % 2 === 1);
 
   return (
     <section id="work" className="py-20 md:py-[120px]" ref={ref}>

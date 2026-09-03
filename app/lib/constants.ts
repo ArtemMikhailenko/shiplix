@@ -32,6 +32,10 @@ export const PROJECT_KEYS = [
   "rentaLviv",
   "iCleaning",
   "vbkPartner",
+  "fasqon",
+  "hashTech",
+  "transfersLviv",
+  "vladYoga",
   "dcProduction",
   "artexClean",
   // "edtech",
@@ -52,9 +56,12 @@ export const PROJECT_META: Record<
     liveUrl?: string;
     /** Brand mark shown on the portfolio card; `image` stays the detail hero. */
     logo?: string;
+    /** Shown in the curated set on the homepage. */
+    featured?: boolean;
   }
 > = {
   inciCore: {
+    featured: true,
     logo: "/projects/logo-zapys24.webp",
     tag: "SaaS",
     stack: ["NestJS", "React", "TypeScript", "PostgreSQL", "CRM"],
@@ -64,6 +71,7 @@ export const PROJECT_META: Record<
     slug: "zapys24",
   },
   marketplace: {
+    featured: true,
     logo: "/projects/logo-enez.webp",
     tag: "Marketplace",
     stack: ["Next.js 14", "NestJS", "PostgreSQL", "Redis", "Socket.io"],
@@ -73,6 +81,7 @@ export const PROJECT_META: Record<
     slug: "marketplace",
   },
   servicesHelper: {
+    featured: true,
     logo: "/projects/logo-services-helper.webp",
     tag: "Platform",
     stack: ["NestJS", "Next.js", "PostgreSQL", "TypeORM", "Stripe", "Cloudinary"],
@@ -88,6 +97,7 @@ export const PROJECT_META: Record<
     liveUrl: "https://services-helper.com",
   },
   similiaStudio: {
+    featured: true,
     logo: "/projects/logo-similia.webp",
     tag: "Web",
     stack: ["Next.js", "MongoDB", "NextAuth", "Cloudinary", "Resend", "next-intl"],
@@ -97,7 +107,49 @@ export const PROJECT_META: Record<
     slug: "similia-studio",
     liveUrl: "https://similiastudio.com",
   },
+  fasqon: {
+    featured: true,
+    logo: "/projects/logo-fasqon.webp",
+    tag: "Web",
+    stack: ["Next.js", "next-intl", "Framer Motion", "anime.js", "Swiper"],
+    image: "/projects/fasqon.webp",
+    images: ["/projects/fasqon.webp"],
+    duration: "",
+    slug: "fasqon",
+    liveUrl: "https://fasqon.com",
+  },
+  hashTech: {
+    logo: "/projects/logo-hashtech.webp",
+    tag: "Landing",
+    stack: ["Next.js", "GSAP", "Swiper", "TypeScript"],
+    image: "/projects/hashtech.webp",
+    images: ["/projects/hashtech.webp"],
+    duration: "",
+    slug: "hashtech",
+    liveUrl: "https://hashtech.dev",
+  },
+  transfersLviv: {
+    logo: "/projects/logo-transfers.webp",
+    tag: "Web",
+    stack: ["Next.js", "MongoDB", "Cloudinary", "TipTap"],
+    image: "/projects/transfers-lviv.webp",
+    images: ["/projects/transfers-lviv.webp"],
+    duration: "",
+    slug: "transfers-lviv",
+    liveUrl: "https://transferslviv.com",
+  },
+  vladYoga: {
+    logo: "/projects/logo-yoga.webp",
+    tag: "Landing",
+    stack: ["Next.js", "React", "TypeScript"],
+    image: "/projects/vladyoga.webp",
+    images: ["/projects/vladyoga.webp"],
+    duration: "",
+    slug: "vladyoga",
+    liveUrl: "https://vladyoga.com",
+  },
   dcProduction: {
+    featured: true,
     logo: "/projects/logo-dc-production.webp",
     tag: "Web",
     stack: ["Next.js", "Payload CMS", "PostgreSQL", "GSAP", "next-intl", "Vercel Blob"],
