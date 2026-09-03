@@ -36,7 +36,7 @@ function ProjectCard({
   if (viewMode === "grid") {
     return (
       <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-        <article className="fade-up group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
+        <article className="card-reveal group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
           <div className="relative h-[200px] bg-bg-surface flex items-center justify-center overflow-hidden">
             {meta.image ? (
               <img
@@ -92,7 +92,7 @@ function ProjectCard({
 
   return (
     <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-      <article className="fade-up group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
+      <article className="card-reveal group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
         <div className="p-6 md:p-8">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1">
@@ -171,7 +171,7 @@ function FeaturedProject({
 
   return (
     <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-      <article className="fade-up group relative rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface overflow-hidden mb-12 hover:border-accent/40 transition-all duration-500">
+      <article className="card-reveal group relative rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface overflow-hidden mb-12 hover:border-accent/40 transition-all duration-500">
         <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
           <div className="relative h-[220px] lg:h-full bg-bg-surface flex items-center justify-center overflow-hidden">

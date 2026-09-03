@@ -77,6 +77,32 @@ body::after {
   transform: translateY(0);
 }
 
+/*
+ * Entrance for dynamically rendered cards (projects grid/list, filters).
+ * Unlike .fade-up it does NOT depend on IntersectionObserver: the base
+ * state is visible, so a card can never get stuck at opacity 0 when React
+ * reuses the node across a view toggle. The keyframe is pure decoration.
+ */
+.card-reveal {
+  /*
+   * opacity is never touched here: the card is visible by default, so it
+   * cannot get stuck hidden if the animation is throttled (backgrounded
+   * tab) or the node is reused across a view toggle. Only the transform
+   * animates, and a frozen frame at worst leaves the card shifted 16px,
+   * still fully visible.
+   */
+  animation: card-reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes card-reveal {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: none;
+  }
+}
+
 /* ── Marquee ── */
 @keyframes marquee-scroll {
   0% {
@@ -135,6 +161,9 @@ body::after {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .card-reveal {
+    animation: none;
   }
   .reveal-up {
     clip-path: none;
