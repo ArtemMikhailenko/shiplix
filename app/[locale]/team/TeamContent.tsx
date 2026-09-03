@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { TEAM_MEMBERS } from "@/app/lib/constants";
 import { Icon } from "@/app/components/ui/Icon";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
@@ -70,11 +69,14 @@ export default function TeamContent() {
                   className={`w-32 h-32 rounded-full bg-gradient-to-br ${member.accentColor} flex items-center justify-center text-white text-2xl font-bold shadow-lg overflow-hidden`}
                 >
                   {member.photo ? (
-                    <Image
+                    /* plain img: next/image routes through Vercel's
+                       optimizer, which is over quota and returns 402 */
+                    <img
                       src={member.photo}
                       alt={dict.teamPage.members[member.nameKey]}
                       width={128}
                       height={128}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   ) : (

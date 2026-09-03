@@ -339,8 +339,9 @@ export interface TeamMember {
   initials: string;
   /** Local file under /public/team. LinkedIn CDN URLs expire — do not use them. */
   /**
-   * A GitHub avatar or a local file under /public/team.
-   * Never a LinkedIn CDN URL — those are signed and expire.
+   * A local file under /public/team. Not a remote URL: LinkedIn CDN links
+   * are signed and expire, and remote images go through Vercel's optimizer,
+   * whose quota is exhausted (402).
    */
   photo?: string;
   location: string;
@@ -374,7 +375,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "pavlo",
-    photo: "https://avatars.githubusercontent.com/u/89521405?v=4",
+    photo: "/team/pavlo.webp",
     roleKey: "roleFull",
     initials: "PS",
     location: "Kyiv, Ukraine",
@@ -390,7 +391,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "volodymyr",
-    photo: "https://avatars.githubusercontent.com/u/107991551?v=4",
+    photo: "/team/volodymyr.webp",
     roleKey: "roleFull",
     initials: "VL",
     location: "Kryvyi Rih, Ukraine",
@@ -407,7 +408,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "anton",
-    photo: "https://avatars.githubusercontent.com/u/72727911?v=4",
+    photo: "/team/anton.webp",
     roleKey: "roleFull",
     initials: "AL",
     location: "Kyiv, Ukraine",
