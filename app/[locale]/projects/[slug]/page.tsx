@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { type Locale, locales } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
-import { languageAlternates } from "@/app/lib/seo";
+import { languageAlternates, SITE_URL } from "@/app/lib/seo";
 import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
 import ProjectDetailContent from "./ProjectDetailContent";
 
@@ -87,6 +87,30 @@ export default async function ProjectDetailPage({
     },
   };
 
+  // Long-form technical write-ups are marked up as TechArticle so the depth
+  // is machine-readable, not just prose in a div.
+  const caseStudy = (
+    dict.caseStudies as Partial<
+      Record<typeof projectKey, (typeof dict.caseStudies)["servicesHelper"]>
+    >
+  )[projectKey];
+
+  const articleJsonLd = caseStudy
+    ? {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        headline: text.title,
+        description: caseStudy.intro,
+        url: `https://shiplix.it.com/${params.locale}/projects/${params.slug}`,
+        inLanguage: params.locale,
+        author: { "@id": `${SITE_URL}/#organization` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        about: caseStudy.sections.map((s) => s.heading),
+        articleSection: caseStudy.sectionLabel,
+        keywords: meta.stack.join(", "),
+      }
+    : null;
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -114,6 +138,14 @@ export default async function ProjectDetailPage({
 
   return (
     <>
+      {articleJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(articleJsonLd),
+          }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

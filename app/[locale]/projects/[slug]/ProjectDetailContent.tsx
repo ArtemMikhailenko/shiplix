@@ -27,6 +27,13 @@ export default function ProjectDetailContent({
   const text = dict.projectItems[projectKey];
   const d = dict.projectDetail;
 
+  // Only some projects carry a long-form technical write-up.
+  const caseStudy = (
+    dict.caseStudies as Partial<
+      Record<ProjectKey, (typeof dict.caseStudies)["servicesHelper"]>
+    >
+  )[projectKey];
+
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
   return (
@@ -137,6 +144,60 @@ export default function ProjectDetailContent({
                   <div className="text-sm text-text font-medium">{feature}</div>
                 </div>
               ))}
+            </div>
+          </section>
+        )}
+
+        {/* Deep-dive case study */}
+        {caseStudy && (
+          <section className="fade-up mb-16">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-widest text-accent mb-8">
+              {caseStudy.sectionLabel}
+            </h2>
+
+            <p className="text-text-secondary text-lg leading-body max-w-3xl mb-10">
+              {caseStudy.intro}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+              {caseStudy.metrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-card border border-border bg-bg-elevated p-5"
+                >
+                  <div className="text-2xl font-bold text-accent mb-1">
+                    {m.value}
+                  </div>
+                  <div className="text-xs text-text-tertiary">{m.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-10 max-w-3xl">
+              {caseStudy.sections.map((s) => (
+                <article key={s.heading}>
+                  <h3 className="text-xl md:text-2xl font-semibold text-text mb-4">
+                    {s.heading}
+                  </h3>
+                  {s.body.split("\n\n").map((para, i) => (
+                    <p
+                      key={i}
+                      className="text-text-secondary leading-body mb-4 last:mb-0"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-12 rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface p-6 md:p-8 max-w-3xl">
+              <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-green mb-4">
+                {caseStudy.outcomeTitle}
+              </h3>
+              <p className="text-text-secondary leading-body">
+                {caseStudy.outcome}
+              </p>
             </div>
           </section>
         )}
