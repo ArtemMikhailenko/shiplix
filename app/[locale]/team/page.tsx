@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
-import { buildMetadata } from "@/app/lib/seo";
+import {
+  buildMetadata,
+  ORG_ID,
+  SITE_NAME,
+  SITE_URL,
+  organizationRef,
+} from "@/app/lib/seo";
 import { TEAM_MEMBERS } from "@/app/lib/constants";
 import TeamContent from "./TeamContent";
 
@@ -28,18 +34,29 @@ export default async function TeamPage({
 }) {
   const dict = await getDictionary(params.locale);
 
+  // Same @id as the homepage entity, so this page adds members to the known
+  // organization instead of declaring a second, competing one.
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Shiplix",
-    url: "https://shiplix.it.com",
-    member: TEAM_MEMBERS.map((m) => ({
-      "@type": "Person",
-      name: dict.teamPage.members[m.nameKey],
-      jobTitle: dict.teamPage[m.roleKey],
-      url: m.socials.linkedin || m.socials.github || undefined,
-      image: m.photo || undefined,
-    })),
+    "@id": ORG_ID,
+    name: SITE_NAME,
+    url: SITE_URL,
+    member: TEAM_MEMBERS.map((m) => {
+      const profiles = [m.socials.linkedin, m.socials.github].filter(
+        (url): url is string => Boolean(url)
+      );
+      return {
+        "@type": "Person",
+        name: dict.teamPage.members[m.nameKey],
+        jobTitle: dict.teamPage[m.roleKey],
+        url: profiles[0],
+        sameAs: profiles.length ? profiles : undefined,
+        image: m.photo || undefined,
+        worksFor: organizationRef,
+        knowsAbout: m.stack,
+      };
+    }),
   };
 
   const breadcrumbJsonLd = {

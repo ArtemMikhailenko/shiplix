@@ -17,6 +17,60 @@ export function languageAlternates(path = ""): Record<string, string> {
   return languages;
 }
 
+/* ── Organization identity ──────────────────────────────────────────────
+ * One source of truth for the entity signals every schema block emits.
+ * Search engines and LLMs use sameAs to resolve "Shiplix" to a single
+ * organization, so only verified, first-party profiles belong here —
+ * a wrong link ties the entity to someone else's account.
+ */
+
+export const ORG_ID = `${SITE_URL}/#organization`;
+
+/** Reference the organization instead of redeclaring it on every page. */
+export const organizationRef = { "@id": ORG_ID } as const;
+
+export function orgSameAs(profiles: {
+  linkedin?: string;
+  github?: string;
+  clutch?: string;
+}): string[] {
+  return [profiles.linkedin, profiles.github, profiles.clutch].filter(
+    (url): url is string => Boolean(url)
+  );
+}
+
+/**
+ * Full delivery range, from landing pages through to large marketplaces
+ * and mobile. Feeds schema.org knowsAbout and /llms.txt.
+ */
+export const ORG_EXPERTISE = [
+  "Web development",
+  "Landing pages and corporate websites",
+  "CRM systems",
+  "SaaS platform development",
+  "E-commerce and online stores",
+  "Marketplace development",
+  "Mobile app development",
+  "React Native",
+  "Next.js",
+  "NestJS",
+  "MVP development",
+  "Business process automation",
+  "Payment integrations",
+] as const;
+
+/** Services offered, in the order the studio actually positions them. */
+export const ORG_OFFERS = [
+  "Landing pages and corporate websites",
+  "CRM systems",
+  "SaaS platform development",
+  "E-commerce and online stores",
+  "Marketplace development",
+  "Mobile app development",
+  "MVP development",
+  "Automation and integrations",
+] as const;
+
 /** Social preview image, rendered on the fly by /api/og. */
 export function ogImage(title: string, subtitle?: string) {
   const params = new URLSearchParams({ title });

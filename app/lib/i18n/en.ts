@@ -684,7 +684,7 @@ const en = {
         label: "Fintech & Crypto",
         h1: "Crypto payment integration and blockchain development",
         intro:
-          "We built a payment processor that monitors Ethereum, TRON and BSC, detects transactions automatically and notifies merchants by webhook. Crypto payments are our core work, not a side offering.",
+          "We built a payment processor that monitors Ethereum, TRON and BSC, detects transactions automatically and notifies merchants by webhook — production code handling real volume, not a proof of concept.",
         p1: "ETH · TRON · BSC",
         p2: "6-10 weeks",
         p3: "Running in production",

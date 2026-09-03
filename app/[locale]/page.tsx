@@ -9,7 +9,15 @@ import { ScrollLine } from "@/app/components/ui/ScrollLine";
 import { CONTACT } from "@/app/lib/constants";
 import { type Locale } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
-import { SITE_URL, SITE_NAME, localeUrl } from "@/app/lib/seo";
+import {
+  SITE_URL,
+  SITE_NAME,
+  ORG_ID,
+  ORG_EXPERTISE,
+  ORG_OFFERS,
+  orgSameAs,
+  localeUrl,
+} from "@/app/lib/seo";
 
 export default async function Home({
   params,
@@ -21,21 +29,28 @@ export default async function Home({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": `${SITE_URL}/#organization`,
+    "@id": ORG_ID,
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/icon.svg`,
     image: `${SITE_URL}/api/og`,
     description: dict.homePage.metaDescription,
     email: CONTACT.email,
+    foundingDate: "2023",
     priceRange: "$$",
+    knowsAbout: [...ORG_EXPERTISE],
     areaServed: ["Europe", "United States", "Middle East"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Kyiv",
       addressCountry: "UA",
     },
-    sameAs: [CONTACT.linkedin],
+    sameAs: orgSameAs({
+      linkedin: CONTACT.linkedin,
+      // Uncomment `github` in CONTACT once the org account is confirmed —
+      // it flows into every schema block from here.
+      github: (CONTACT as { github?: string }).github,
+    }),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
@@ -43,13 +58,7 @@ export default async function Home({
       url: `${localeUrl(params.locale, "/contact")}`,
       availableLanguage: ["English", "Ukrainian", "Russian"],
     },
-    makesOffer: [
-      "SaaS platform development",
-      "Marketplace development",
-      "Fintech and crypto integrations",
-      "React Native mobile apps",
-      "MVP development",
-    ].map((name) => ({
+    makesOffer: ORG_OFFERS.map((name) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name },
     })),
