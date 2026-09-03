@@ -40,8 +40,8 @@ function ProjectCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      initial={{ y: 40 }}
+      animate={inView ? { y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link href={`/${locale}/projects/${slug}`} className="group block">
@@ -101,8 +101,8 @@ export default function Projects() {
         {/* ── Header ── */}
         <motion.div
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ y: 24 }}
+          animate={inView ? { y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>

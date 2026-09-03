@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CONTACT } from "@/app/lib/constants";
 import { Button } from "@/app/components/ui/Button";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
@@ -74,7 +73,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <Button variant="ghost" href={`mailto:${CONTACT.email}`} className="hidden sm:inline-flex text-xs px-4 py-2">
+          <Button variant="ghost" href={`/${locale}/contact`} className="hidden sm:inline-flex text-xs px-4 py-2">
             {dict.nav.getInTouch}
           </Button>
 
@@ -122,7 +121,7 @@ export default function Nav() {
                 </Link>
               )
             )}
-            <Button variant="primary" href={`mailto:${CONTACT.email}`} className="mt-2 text-sm w-full">
+            <Button variant="primary" href={`/${locale}/contact`} className="mt-2 text-sm w-full">
               {dict.nav.getInTouch}
             </Button>
           </div>

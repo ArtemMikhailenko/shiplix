@@ -54,8 +54,8 @@ export default function Stack() {
     <section id="stack" className="py-20 md:py-[120px] overflow-hidden" ref={ref}>
       <div className="max-w-container mx-auto px-6 mb-10">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ y: 24 }}
+          animate={inView ? { y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
@@ -69,8 +69,8 @@ export default function Stack() {
 
       <motion.div
         className="space-y-5 md:space-y-7"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
+        initial={{ y: 12 }}
+        animate={inView ? { y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <MarqueeRow items={ROW_1} speed="35s" />

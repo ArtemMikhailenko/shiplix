@@ -43,7 +43,7 @@ export default async function ContactPage({
         "@type": "ContactPoint",
         contactType: "sales",
         email: CONTACT.email,
-        url: CONTACT.calendly,
+        url: `https://shiplix.it.com/${params.locale}/contact`,
         availableLanguage: ["English", "Ukrainian", "Russian"],
       },
       sameAs: [

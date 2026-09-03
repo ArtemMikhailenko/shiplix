@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useMotionValue, useTransform, animate } from "framer-motion";
-import { CONTACT } from "@/app/lib/constants";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { locales } from "@/app/lib/i18n/config";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 const STATS = [
@@ -119,6 +121,8 @@ export default function Hero() {
   const dict = useDictionary();
   const prefersReduced = useReducedMotion();
   const { headingRef, contentRef } = useHeroParallax();
+  const pathname = usePathname();
+  const locale = locales.find((l) => pathname.startsWith(`/${l}`)) || "en";
 
   // The background video is ~5 MB — it must never block first paint, and it is
   // skipped entirely on data-saver or slow connections. The poster still shows.
@@ -215,12 +219,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.6 }}
           >
-            <a
-              href={`mailto:${CONTACT.email}`}
+            <Link
+              href={`/${locale}/contact`}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full bg-accent-deep text-white hover:bg-[#7c3aed] transition-colors duration-200"
             >
               {dict.hero.cta1}
-            </a>
+            </Link>
             <a
               href="#work"
               className="text-sm text-text-secondary hover:text-text transition-colors duration-200 border-b border-text-tertiary/30 hover:border-text-secondary pb-0.5"

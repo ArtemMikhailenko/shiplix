@@ -3,12 +3,17 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform} from "framer-motion";
 import { useSafeInView } from "@/app/lib/useSafeInView";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CONTACT } from "@/app/lib/constants";
+import { locales } from "@/app/lib/i18n/config";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 export default function CTA() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useSafeInView(ref, { once: true, margin: "-60px" });
+  const pathname = usePathname();
+  const locale = locales.find((l) => pathname.startsWith(`/${l}`)) || "en";
   const dict = useDictionary();
 
   /* ── Scroll-driven upward shift for heading ── */
@@ -36,9 +41,23 @@ export default function CTA() {
         </motion.div>
 
         <motion.div
+          initial={{ y: 12 }}
+          animate={inView ? { y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-8"
+        >
+          <Link
+            href={`/${locale}/contact`}
+            className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-medium rounded-pill bg-accent-deep text-white hover:bg-accent transition-all duration-300 hover:shadow-[0_4px_20px_-4px_rgba(124,58,237,0.4)]"
+          >
+            {dict.hero.cta1}
+          </Link>
+        </motion.div>
+
+        <motion.div
           className="flex flex-col sm:flex-row gap-6 text-base"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
+          initial={{ y: 12 }}
+          animate={inView ? { y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <a

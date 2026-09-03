@@ -362,14 +362,6 @@ export default function ContactContent() {
               </div>
 
               <div className="pt-6 border-t border-border space-y-4">
-                <a
-                  href={CONTACT.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 w-full justify-center px-6 py-3 text-sm font-medium rounded-pill bg-accent-deep text-white hover:bg-[#7c3aed] hover:shadow-[0_0_24px_rgba(139,92,246,0.25)] transition-all duration-200"
-                >
-                  {dict.contactPage.scheduleCall}
-                </a>
                 <p className="text-xs text-text-tertiary text-center">
                   {dict.contactPage.responseTime}
                 </p>

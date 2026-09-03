@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   PROJECT_META,
   TAG_COLORS,
-  CONTACT,
   type ProjectKey,
 } from "@/app/lib/constants";
 import { Icon } from "@/app/components/ui/Icon";
@@ -340,14 +339,6 @@ export default function ProjectDetailContent({
                 >
                   {d.ctaButton}
                 </Link>
-                <a
-                  href={CONTACT.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium px-8 py-3.5 rounded-pill border border-border text-text-secondary hover:text-text hover:border-border-hover transition-all duration-200"
-                >
-                  {d.ctaSchedule}
-                </a>
               </div>
 
               <div className="mt-8">

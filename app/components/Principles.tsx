@@ -30,8 +30,8 @@ function Principle({
     <motion.div
       ref={ref}
       className="relative border-t border-white/[0.06] py-12 md:py-16 overflow-hidden group"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      initial={{ y: 30 }}
+      animate={inView ? { y: 0 } : {}}
       transition={{
         duration: 0.7,
         delay: index * 0.05,
@@ -72,8 +72,8 @@ export default function Principles() {
       <div className="max-w-container mx-auto px-6">
         <motion.div
           className="mb-8"
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ y: 24 }}
+          animate={inView ? { y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-4">
@@ -100,8 +100,8 @@ export default function Principles() {
         {/* ── Process — compact 3-step below ── */}
         <motion.div
           className="mt-16 md:mt-20"
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ y: 24 }}
+          animate={inView ? { y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-8">

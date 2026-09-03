@@ -8,7 +8,6 @@ import {
   PROJECT_META,
   TAG_COLORS,
   STAT_META,
-  CONTACT,
   type ProjectKey,
 } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
@@ -506,14 +505,6 @@ export default function ProjectsContent() {
                 >
                   {dict.projectsPage.ctaButton}
                 </Link>
-                <a
-                  href={CONTACT.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium px-8 py-3.5 rounded-pill border border-border text-text-secondary hover:text-text hover:border-border-hover transition-all duration-200"
-                >
-                  {dict.projectsPage.ctaSchedule}
-                </a>
               </div>
             </div>
           </div>
