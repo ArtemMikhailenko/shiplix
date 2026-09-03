@@ -190,3 +190,49 @@ body::after {
     animation-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Film grain over the whole page. Flat black reads as empty; a little
+ * noise gives the dark surfaces something to catch. Generated inline as
+ * SVG turbulence, so it costs no request and no image asset.
+ */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/*
+ * A soft bloom behind a section, so long dark pages have some depth
+ * instead of one continuous black field.
+ */
+.glow {
+  position: relative;
+}
+
+.glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -140px;
+  width: min(900px, 120%);
+  height: 420px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.13) 0%,
+    rgba(124, 58, 237, 0) 70%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    opacity: 0.03;
+  }
+}

@@ -374,6 +374,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "pavlo",
+    photo: "https://avatars.githubusercontent.com/u/89521405?v=4",
     roleKey: "roleFull",
     initials: "PS",
     location: "Kyiv, Ukraine",
@@ -389,6 +390,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     nameKey: "volodymyr",
+    photo: "https://avatars.githubusercontent.com/u/107991551?v=4",
     roleKey: "roleFull",
     initials: "VL",
     location: "Kryvyi Rih, Ukraine",

@@ -2,8 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { STAT_KEYS, STAT_META, TECH_STACK } from "@/app/lib/constants";
-import { Icon, type IconName } from "@/app/components/ui/Icon";
+import {
+  STAT_KEYS,
+  STAT_META,
+  TECH_STACK,
+  PROJECT_META,
+  type ProjectKey,
+} from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 
@@ -21,29 +26,21 @@ const VALUE_COLORS: Record<string, string> = {
   growth: "text-orange",
 };
 
-const INDUSTRY_ICONS: Record<string, IconName> = {
-  saas: "cloud",
-  fintech: "coins",
-  ecommerce: "cart",
-  marketplace: "store",
-  mobile: "phone",
-};
-
-const INDUSTRY_COLORS: Record<string, string> = {
-  saas: "text-accent",
-  fintech: "text-orange",
-  ecommerce: "text-green",
-  marketplace: "text-cyan",
-  mobile: "text-pink",
-};
-
-const INDUSTRY_SLUGS: Record<string, string> = {
-  saas: "zapys24",
-  fintech: "crypto-processor",
-  ecommerce: "marketplace",
+/** The project that actually backs each industry claim. */
+const INDUSTRY_PROOF = {
+  saas: "inciCore",
+  fintech: "fasqon",
+  ecommerce: "orthoDent",
   marketplace: "marketplace",
-  mobile: "mobile-wallet",
-};
+  mobile: "zapys24Mobile",
+} as const satisfies Record<string, ProjectKey>;
+
+/** Product screens shown under the projects-shipped figure. */
+const PROOF_SHOTS = [
+  "servicesHelper",
+  "similiaStudio",
+  "transfersLviv",
+] as const satisfies readonly ProjectKey[];
 
 export default function AboutContent() {
   const dict = useDictionary();
@@ -76,7 +73,7 @@ export default function AboutContent() {
         </nav>
 
         {/* Hero */}
-        <div className="fade-up mb-20 md:mb-28">
+        <div className="fade-up glow mb-20 md:mb-28">
           <span className="inline-block text-xs font-mono font-medium uppercase tracking-widest text-accent mb-6">
             {dict.aboutPage.missionLabel}
           </span>
@@ -99,15 +96,32 @@ export default function AboutContent() {
                 {dict.aboutPage.missionText}
               </p>
             </div>
-            <div className="relative rounded-card border border-border bg-bg-elevated p-8 md:p-10 flex items-center justify-center overflow-hidden">
+            <div className="relative rounded-card border border-border bg-bg-elevated overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-cyan/5 pointer-events-none" />
-              <div className="relative text-center">
+              <div className="relative p-8 md:p-10 text-center">
                 <div className="text-6xl md:text-7xl font-bold text-accent mb-2 font-mono">
                   {STAT_META.projects.value}
                 </div>
                 <div className="text-text-secondary text-sm">
                   {dict.stats.projects}
                 </div>
+              </div>
+              {/* The number is a claim; the screens behind it are the evidence. */}
+              <div className="relative grid grid-cols-3 gap-px bg-border/60">
+                {PROOF_SHOTS.map((key) => (
+                  <Link
+                    key={key}
+                    href={`/${locale}/projects/${PROJECT_META[key].slug}`}
+                    className="group relative block h-24 md:h-28 overflow-hidden bg-bg-surface"
+                  >
+                    <img
+                      src={PROJECT_META[key].image}
+                      alt={dict.projectItems[key].title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -121,24 +135,31 @@ export default function AboutContent() {
           <h2 className="text-2xl md:text-3xl font-bold text-text mb-10 max-w-xl">
             {dict.aboutPage.storyTitle}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <div className="relative pl-6 border-l-2 border-accent/20">
-              <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-accent" />
-              <p className="text-text-secondary leading-body">
+          {/*
+            Every other section on this page is a uniform grid of cards.
+            The story is the most human copy here, so it gets an editorial
+            split instead: a lead paragraph at reading size, the rest
+            beside it.
+          */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-7">
+              <p className="text-text text-xl md:text-2xl leading-relaxed font-light">
                 {dict.aboutPage.storyP1}
               </p>
             </div>
-            <div className="relative pl-6 border-l-2 border-cyan/20">
-              <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-cyan" />
-              <p className="text-text-secondary leading-body">
-                {dict.aboutPage.storyP2}
-              </p>
-            </div>
-            <div className="relative pl-6 border-l-2 border-green/20">
-              <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-green" />
-              <p className="text-text-secondary leading-body">
-                {dict.aboutPage.storyP3}
-              </p>
+            <div className="lg:col-span-5 space-y-8 lg:pt-2">
+              <div className="relative pl-6 border-l-2 border-cyan/20">
+                <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-cyan" />
+                <p className="text-text-secondary leading-body">
+                  {dict.aboutPage.storyP2}
+                </p>
+              </div>
+              <div className="relative pl-6 border-l-2 border-green/20">
+                <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-green" />
+                <p className="text-text-secondary leading-body">
+                  {dict.aboutPage.storyP3}
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -188,22 +209,31 @@ export default function AboutContent() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {(
               ["saas", "fintech", "ecommerce", "marketplace", "mobile"] as const
-            ).map((key) => (
-              <Link
-                key={key}
-                href={`/${locale}/projects/${INDUSTRY_SLUGS[key]}`}
-                className="group rounded-card border border-border bg-bg-elevated p-5 text-center hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_-12px_rgba(139,92,246,0.15)] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 transition-all duration-300"
-              >
-                <div
-                  className={`mb-3 flex justify-center ${INDUSTRY_COLORS[key]} group-hover:scale-110 transition-transform duration-300`}
+            ).map((key) => {
+              const proof = INDUSTRY_PROOF[key];
+              return (
+                <Link
+                  key={key}
+                  href={`/${locale}/projects/${PROJECT_META[proof].slug}`}
+                  className="group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_-12px_rgba(124,58,237,0.15)] focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 transition-all duration-300"
                 >
-                  <Icon name={INDUSTRY_ICONS[key]} size={26} />
-                </div>
-                <div className="text-sm font-medium text-text group-hover:text-accent transition-colors duration-300">
-                  {dict.aboutPage.industries[key]}
-                </div>
-              </Link>
-            ))}
+                  {/* the client who proves this industry, not a generic glyph */}
+                  <div className="h-20 overflow-hidden">
+                    <img
+                      src={PROJECT_META[proof].logo}
+                      alt={dict.projectItems[proof].title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <div className="text-sm font-medium text-text group-hover:text-accent transition-colors duration-300">
+                      {dict.aboutPage.industries[key]}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -258,7 +288,7 @@ export default function AboutContent() {
         {/* Testimonial */}
 
         {/* CTA */}
-        <section className="fade-up text-center">
+        <section className="fade-up glow text-center">
           <div className="rounded-card border border-border bg-bg-elevated p-10 md:p-16 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
             <div className="relative">
