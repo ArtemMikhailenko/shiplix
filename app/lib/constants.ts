@@ -302,6 +302,8 @@ export const SERVICE_PAGE_KEYS = [
   "ecommerce",
   "marketplace",
   "saas",
+  "crm",
+  "mobile",
   "mvp",
   "crypto",
 ] as const;
@@ -346,6 +348,18 @@ export const SERVICE_PAGE_META: Record<
     project: "marketplace",
     stack: ["Next.js", "NestJS", "PostgreSQL", "Redis", "Socket.io", "Meilisearch"],
     color: "text-cyan",
+  },
+  crm: {
+    slug: "crm-development",
+    project: "inciCore",
+    stack: ["NestJS", "Next.js", "PostgreSQL", "Redis", "Prisma", "Webhooks"],
+    color: "text-accent",
+  },
+  mobile: {
+    slug: "mobile-app-development",
+    project: "mobile",
+    stack: ["React Native", "Expo", "TypeScript", "NestJS", "PostgreSQL"],
+    color: "text-green",
   },
 };
 

@@ -884,6 +884,142 @@ const en = {
         ctaTitle: "Building a marketplace?",
         ctaSub: "Tell us who your buyers and sellers are. You will get a technical assessment and an estimate within 48 hours.",
       },
+      crm: {
+        metaTitle: "CRM Development Company — Custom CRM Systems | Shiplix",
+        metaDescription: "We build custom CRM systems: pipelines, roles, automation, document generation and integrations with the tools you already use. Production-ready in 8-12 weeks.",
+        label: "CRM Development",
+        h1: "Custom CRM development that fits how your team works",
+        intro: "Generic CRMs force your process into their boxes. We build a CRM around your actual pipeline — the stages, roles and automations your team runs — instead of the other way round.",
+        p1: "8-12 weeks",
+        p2: "Fixed-price sprints",
+        p3: "Built around your process",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Pipelines & deal flow",
+            desc: "Custom stages, statuses and transitions that mirror how work actually moves through your team.",
+          },
+          w2: {
+            title: "Roles & permissions",
+            desc: "Sales, managers and admins each see and do exactly what they should — enforced on the API, not hidden in the UI.",
+          },
+          w3: {
+            title: "Automation",
+            desc: "Reminders, status changes, assignment rules and follow-ups that run without anyone remembering to trigger them.",
+          },
+          w4: {
+            title: "Document generation",
+            desc: "Contracts, invoices and offers generated from records — the feature we built into Zapys24's booking flow.",
+          },
+          w5: {
+            title: "Integrations",
+            desc: "Email, telephony, messengers, accounting and your website — the CRM sits at the center, not on an island.",
+          },
+          w6: {
+            title: "Reporting & dashboards",
+            desc: "The numbers your team runs on: conversion, pipeline value, workload and revenue, in views built for your questions.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec and architecture before any code",
+          d2: "Sprint demos every 1-2 weeks",
+          d3: "Your repository, full code access throughout",
+          d4: "Data migration from your current system",
+          d5: "Support, training and iterations after launch",
+        },
+        faq: {
+          f1: {
+            q: "How long does it take to build a CRM?",
+            a: "A focused CRM with pipelines, roles and core automation takes 8-10 weeks. Add document generation, telephony and deep integrations and it runs to 12-14. The technical spec fixes the timeline before development starts.",
+          },
+          f2: {
+            q: "Should we build a custom CRM or use HubSpot or Salesforce?",
+            a: "If your process fits a standard sales pipeline, an off-the-shelf CRM is cheaper and faster — we will say so. Custom pays off when your workflow is unusual, when per-seat pricing gets expensive at your team size, or when the CRM has to sit deep inside your own product and data.",
+          },
+          f3: {
+            q: "Can you migrate our data from the current system?",
+            a: "Yes. Migrating contacts, deals and history is part of the project. We map your existing data to the new model and run the import so you launch with everything already in place.",
+          },
+          f4: {
+            q: "How much does CRM development cost?",
+            a: "We price in fixed-price sprints with the scope agreed before each one. After a discovery call you get a detailed proposal with a timeline and total — free and with no commitment.",
+          },
+          f5: {
+            q: "Will it integrate with the tools we already use?",
+            a: "That is usually the point of building custom. We integrate email, telephony, messengers, accounting and your website against their APIs, so the CRM reflects reality instead of becoming another place to enter data twice.",
+          },
+        },
+        ctaTitle: "Need a CRM built around your process?",
+        ctaSub: "Tell us how your team works today. You will get a technical assessment and an estimate within 48 hours.",
+      },
+      mobile: {
+        metaTitle: "Mobile App Development Company — iOS & Android | Shiplix",
+        metaDescription: "We build cross-platform mobile apps with React Native: one codebase for iOS and Android, native performance, from idea to the App Store in 6-12 weeks.",
+        label: "Mobile Development",
+        h1: "Mobile app development for iOS and Android",
+        intro: "One codebase, both stores. We build cross-platform apps in React Native — from a service booking app to a crypto wallet — with the backend, deployment and store submission handled end to end.",
+        p1: "6-12 weeks",
+        p2: "iOS & Android, one codebase",
+        p3: "Idea to App Store",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Cross-platform apps",
+            desc: "React Native and Expo — iOS and Android from one codebase, without paying to build and maintain each twice.",
+          },
+          w2: {
+            title: "Backend & API",
+            desc: "The app is half the product; we build the NestJS backend, database and API that stand behind it.",
+          },
+          w3: {
+            title: "Auth & payments",
+            desc: "Sign-in, subscriptions, in-app purchases and payment providers wired in and tested on real devices.",
+          },
+          w4: {
+            title: "Native capabilities",
+            desc: "Push notifications, camera, geolocation, biometrics and secure storage — the platform features users expect.",
+          },
+          w5: {
+            title: "Offline & sync",
+            desc: "Apps that keep working without a connection and reconcile cleanly once it returns.",
+          },
+          w6: {
+            title: "Store submission",
+            desc: "We handle App Store and Google Play submission, review requirements and release, not just the build.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec, architecture and timeline up front",
+          d2: "Testable build on device every sprint",
+          d3: "Your repository, full code access throughout",
+          d4: "App Store and Google Play submission",
+          d5: "Support and iterations after launch",
+        },
+        faq: {
+          f1: {
+            q: "How fast can you build a mobile app?",
+            a: "A focused app takes 6-8 weeks; one with a full backend, payments and complex flows runs 10-12. Our React Native crypto wallet went from design to shipped app in 6 weeks. The timeline is fixed in the technical spec before development starts.",
+          },
+          f2: {
+            q: "Native or cross-platform — React Native or Swift and Kotlin?",
+            a: "For most products React Native is the right call: one codebase ships to both stores at close to native performance, for roughly half the cost of building twice. We will recommend fully native only when an app is genuinely performance- or hardware-bound, and say so honestly.",
+          },
+          f3: {
+            q: "Do you build the backend too?",
+            a: "Yes. Most apps need one — accounts, data, payments, notifications. We build the NestJS backend and API alongside the app, so it is one team and one coherent system rather than two vendors pointing at each other.",
+          },
+          f4: {
+            q: "Do you handle App Store and Google Play submission?",
+            a: "Yes. Submission, review requirements, store listings and the first release are part of the project. Getting through review is often where solo builds stall, so we take it to the finish.",
+          },
+          f5: {
+            q: "How much does mobile app development cost?",
+            a: "We price in fixed-price sprints with the scope agreed before each one. After a discovery call you get a detailed proposal with a timeline and total — free and with no commitment.",
+          },
+        },
+        ctaTitle: "Have a mobile app in mind?",
+        ctaSub: "Tell us what you want to build. You will get a technical assessment and an estimate within 48 hours.",
+      },
     },
   },
 
