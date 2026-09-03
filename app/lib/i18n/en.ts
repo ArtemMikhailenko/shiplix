@@ -748,6 +748,142 @@ const en = {
         ctaSub:
           "Tell us about your product. You will get a technical assessment and an estimate within 48 hours.",
       },
+      ecommerce: {
+        metaTitle: "E-Commerce Development Company — Custom Online Stores | Shiplix",
+        metaDescription: "We build custom online stores: catalogs, cart and checkout, payment integrations, inventory and ERP sync. Production-ready in 6-10 weeks.",
+        label: "E-Commerce Development",
+        h1: "E-commerce development — custom online stores that scale",
+        intro: "Off-the-shelf platforms stop where your business gets specific: custom pricing rules, unusual logistics, an ERP that has to stay in sync. We build storefronts around how you actually sell.",
+        p1: "6-10 weeks",
+        p2: "Fixed-price sprints",
+        p3: "Built on your rules",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Storefront & catalog",
+            desc: "Product pages, filtering and search that stay fast as the catalog grows past a few thousand SKUs.",
+          },
+          w2: {
+            title: "Cart & checkout",
+            desc: "The part that decides revenue: guest checkout, saved carts, discounts, and a flow measured in clicks rather than steps.",
+          },
+          w3: {
+            title: "Payments",
+            desc: "Stripe with EU VAT, local providers, cards and alternative methods in a single checkout.",
+          },
+          w4: {
+            title: "Inventory & orders",
+            desc: "Stock tracking, order states, returns and the admin panel your team runs the day from.",
+          },
+          w5: {
+            title: "Integrations",
+            desc: "ERP, accounting, delivery services and marketing tools — a store is rarely the only system involved.",
+          },
+          w6: {
+            title: "Performance & SEO",
+            desc: "Server-rendered pages, optimized images and product structured data, so pages load fast and rank.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec and architecture before any code",
+          d2: "Sprint demos every 1-2 weeks",
+          d3: "Your repository, full code access throughout",
+          d4: "Analytics and conversion tracking wired in",
+          d5: "Support and iterations after launch",
+        },
+        faq: {
+          f1: {
+            q: "How long does it take to build an online store?",
+            a: "A focused store with catalog, checkout and payments takes 6-8 weeks. Add ERP sync, complex pricing rules or multi-warehouse logistics and it runs to 10-12. The technical spec fixes the timeline before development starts.",
+          },
+          f2: {
+            q: "Should we build custom or use Shopify or WooCommerce?",
+            a: "If you sell a straightforward catalog with standard checkout, use Shopify — we will tell you so rather than sell you a build. Custom pays off when the platform fights you: unusual pricing, deep ERP integration, marketplace mechanics, or per-order costs that make a percentage fee expensive at your volume.",
+          },
+          f3: {
+            q: "How much does e-commerce development cost?",
+            a: "We price in fixed-price sprints with the scope agreed before each one. After a discovery call you get a detailed proposal with a timeline and total — free and with no commitment.",
+          },
+          f4: {
+            q: "Can you integrate our ERP or accounting system?",
+            a: "Yes. Stock, prices and orders usually need to stay in sync with a system you already run. We build the integration against its API, or a scheduled sync where no API exists.",
+          },
+          f5: {
+            q: "Will the store be fast and SEO-ready?",
+            a: "Pages are server-rendered with optimized images and product structured data, so they load quickly and are eligible for rich results in Google. Core Web Vitals are part of the delivery, not an afterthought.",
+          },
+        },
+        ctaTitle: "Planning an online store?",
+        ctaSub: "Tell us what you sell and how. You will get a technical assessment and an estimate within 48 hours.",
+      },
+      marketplace: {
+        metaTitle: "Marketplace Development Company — Multi-Vendor Platforms | Shiplix",
+        metaDescription: "We build multi-vendor marketplaces: separate buyer, seller and admin panels, real-time search, split payments and payouts. Shipped in 10-16 weeks.",
+        label: "Marketplace Development",
+        h1: "Multi-vendor marketplace development",
+        intro: "A marketplace is three products in one — what buyers see, what sellers manage, and what you administer. We have built all three, with real-time search and payouts, across 200+ tasks in 5 sprints.",
+        p1: "10-16 weeks",
+        p2: "3 separate panels",
+        p3: "Real-time search & payouts",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Buyer, seller and admin panels",
+            desc: "Three separate experiences with their own logic and permissions — not one interface with buttons hidden from some users.",
+          },
+          w2: {
+            title: "Search that scales",
+            desc: "Meilisearch-backed full-text search with filters and facets that stay instant as listings grow.",
+          },
+          w3: {
+            title: "Payments & payouts",
+            desc: "Split payments, commission rules, seller balances and payout schedules.",
+          },
+          w4: {
+            title: "Real-time communication",
+            desc: "Socket.io notifications, buyer-seller messaging and live order status.",
+          },
+          w5: {
+            title: "Moderation & trust",
+            desc: "Listing review, seller verification, ratings and dispute handling — the mechanics that keep a marketplace usable.",
+          },
+          w6: {
+            title: "Built to grow",
+            desc: "PostgreSQL, Redis, file storage and background jobs sized for catalog and traffic growth from the start.",
+          },
+        },
+        deliverables: {
+          d1: "Technical spec and architecture before any code",
+          d2: "Sprint demos every 1-2 weeks",
+          d3: "Your repository, full code access throughout",
+          d4: "CI/CD, monitoring and error tracking",
+          d5: "Support and iterations after launch",
+        },
+        faq: {
+          f1: {
+            q: "How long does it take to build a marketplace?",
+            a: "A marketplace MVP with core buyer, seller and admin flows takes 10-12 weeks. Our multi-vendor platform with three frontends, real-time notifications and full-text search came to 200+ tasks across 5 sprints.",
+          },
+          f2: {
+            q: "Why is a marketplace harder than an online store?",
+            a: "A store has one seller — you. A marketplace has to keep many sellers honest and paid: separate panels, commission and payout logic, moderation, disputes and search across inventory you do not control. That is why it is roughly twice the work of a comparable store.",
+          },
+          f3: {
+            q: "How do payments between buyers and sellers work?",
+            a: "Money is collected centrally, commission is deducted, and seller balances are paid out on a schedule. We implement the split, the ledger and the payout flow, and will flag early which parts of your model need a licensed payment provider.",
+          },
+          f4: {
+            q: "Can it handle a large catalog?",
+            a: "Yes. Search runs through Meilisearch rather than direct database queries, which is what keeps filtering instant as listings scale. Storage, caching and background jobs are planned for growth in the first sprint.",
+          },
+          f5: {
+            q: "Can we start with a marketplace MVP?",
+            a: "That is usually the right call. We launch with the core loop — list, find, buy, get paid — and add moderation, analytics and advanced seller tools once real sellers are using it.",
+          },
+        },
+        ctaTitle: "Building a marketplace?",
+        ctaSub: "Tell us who your buyers and sellers are. You will get a technical assessment and an estimate within 48 hours.",
+      },
     },
   },
 

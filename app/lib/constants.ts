@@ -154,7 +154,7 @@ export const CONTACT = {
   email: "artemlend@gmail.com",
   telegram: "@artem_mykhailenko99",
   linkedin: "https://linkedin.com/company/shiplix",
-  // github: "https://github.com/shiplix",
+  github: "https://github.com/shiplix",
   calendly: "https://calendly.com/shiplix/30min",
 };
 
@@ -298,7 +298,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
 
 /* ── Service landing pages (SEO entry points) ── */
 
-export const SERVICE_PAGE_KEYS = ["saas", "mvp", "crypto"] as const;
+export const SERVICE_PAGE_KEYS = [
+  "ecommerce",
+  "marketplace",
+  "saas",
+  "mvp",
+  "crypto",
+] as const;
 export type ServicePageKey = (typeof SERVICE_PAGE_KEYS)[number];
 
 export const SERVICE_PAGE_META: Record<
@@ -328,6 +334,18 @@ export const SERVICE_PAGE_META: Record<
     project: "crypto",
     stack: ["NestJS", "ethers.js", "PostgreSQL", "Redis", "Next.js", "Webhooks"],
     color: "text-orange",
+  },
+  ecommerce: {
+    slug: "ecommerce-development",
+    project: "marketplace",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Stripe", "Prisma", "Redis"],
+    color: "text-green",
+  },
+  marketplace: {
+    slug: "marketplace-development",
+    project: "marketplace",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Redis", "Socket.io", "Meilisearch"],
+    color: "text-cyan",
   },
 };
 

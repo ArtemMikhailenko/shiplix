@@ -27,6 +27,8 @@ const SERVICE_LANDING: Partial<Record<(typeof SERVICES)[number]["key"], ServiceP
   saas: "saas",
   mvp: "mvp",
   fintech: "crypto",
+  ecommerce: "ecommerce",
+  marketplace: "marketplace",
 };
 
 export default function Services() {
