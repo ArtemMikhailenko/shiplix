@@ -71,14 +71,14 @@ export default function ProjectDetailContent({
         <div className="fade-up mb-12 md:mb-16">
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <span
-              className={`text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border ${
+              className={`text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border ${
                 TAG_COLORS[meta.tag] || "text-text-secondary"
               }`}
             >
               {meta.tag}
             </span>
             {meta.duration && (
-              <span className="text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border">
+              <span className="text-[12px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border">
                 {meta.duration}
               </span>
             )}
@@ -87,7 +87,7 @@ export default function ProjectDetailContent({
                 href={meta.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-accent/30 text-accent hover:bg-accent/10 transition-colors"
+                className="text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-accent/30 text-accent hover:bg-accent/10 transition-colors"
               >
                 {d.visitSite}
               </a>
@@ -116,13 +116,13 @@ export default function ProjectDetailContent({
         {/* Challenge & Result */}
         <div className="fade-up grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           <div className="rounded-card border border-border bg-bg-elevated p-6 md:p-8">
-            <h2 className="text-[10px] font-mono font-medium uppercase tracking-widest text-orange mb-4">
+            <h2 className="text-[12px] font-mono font-medium uppercase tracking-widest text-orange mb-4">
               {dict.projectsPage.challenge}
             </h2>
             <p className="text-text-secondary leading-body">{text.challenge}</p>
           </div>
           <div className="rounded-card border border-border bg-bg-elevated p-6 md:p-8">
-            <h2 className="text-[10px] font-mono font-medium uppercase tracking-widest text-green mb-4">
+            <h2 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-4">
               {dict.projectsPage.result}
             </h2>
             <p className="text-text-secondary leading-body">{text.result}</p>
@@ -219,7 +219,7 @@ export default function ProjectDetailContent({
             </div>
 
             <div className="mt-12 rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface p-6 md:p-8 max-w-3xl">
-              <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-green mb-4">
+              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-4">
                 {caseStudy.outcomeTitle}
               </h3>
               <p className="text-text-secondary leading-body">

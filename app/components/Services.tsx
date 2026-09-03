@@ -143,7 +143,7 @@ export default function Services() {
                     {current.stack.map((t) => (
                       <span
                         key={t}
-                        className="text-[11px] font-mono uppercase tracking-wider text-text-tertiary border border-white/[0.08] rounded-full px-3 py-1.5"
+                        className="text-[12px] font-mono uppercase tracking-wider text-text-tertiary border border-white/[0.08] rounded-full px-3 py-1.5"
                       >
                         {t}
                       </span>

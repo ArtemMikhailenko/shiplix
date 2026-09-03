@@ -245,7 +245,7 @@ export default function Hero() {
               <span className="text-3xl md:text-4xl font-bold tracking-tight text-text">
                 <AnimatedNum value={s.value} suffix={s.suffix} />
               </span>
-              <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-text-tertiary">
+              <span className="text-[12px] font-mono uppercase tracking-[0.12em] text-text-tertiary">
                 {dict.stats[s.key]}
               </span>
               {i < STATS.length - 1 && (

@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
         <Link
           key={locale}
           href={switchedPath(locale)}
-          className={`text-[11px] font-mono px-2 py-1 rounded transition-colors duration-200 ${
+          className={`text-[12px] font-mono px-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded transition-colors duration-200 ${
             locale === currentLocale
               ? "text-accent bg-accent-glow"
               : "text-text-tertiary hover:text-text-secondary"

@@ -20,12 +20,12 @@ const config: Config = {
         },
         text: {
           DEFAULT: "#f5f5f7",
-          secondary: "#8a8a8e",
-          tertiary: "#56565a",
+          secondary: "#a1a1a8",
+          tertiary: "#86868c",
         },
         accent: {
           DEFAULT: "#b4a0ff",
-          deep: "#8b5cf6",
+          deep: "#7c3aed",
           glow: "rgba(139,92,246,0.08)",
         },
         cyan: "#67e8f9",

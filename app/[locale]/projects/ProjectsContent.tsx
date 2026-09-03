@@ -50,14 +50,14 @@ function ProjectCard({
               </div>
             )}
             <span
-              className={`absolute top-4 left-4 text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
+              className={`absolute top-4 left-4 text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
                 TAG_COLORS[meta.tag] || "text-text-secondary"
               }`}
             >
               {meta.tag}
             </span>
             {meta.duration && (
-              <span className="absolute top-4 right-4 text-[10px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm">
+              <span className="absolute top-4 right-4 text-[12px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm">
                 {meta.duration}
               </span>
             )}
@@ -75,13 +75,13 @@ function ProjectCard({
               {meta.stack.slice(0, 4).map((tech) => (
                 <span
                   key={tech}
-                  className="text-[10px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
+                  className="text-[12px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
                 >
                   {tech}
                 </span>
               ))}
               {meta.stack.length > 4 && (
-                <span className="text-[10px] font-mono text-text-tertiary px-2 py-1">
+                <span className="text-[12px] font-mono text-text-tertiary px-2 py-1">
                   +{meta.stack.length - 4}
                 </span>
               )}
@@ -100,14 +100,14 @@ function ProjectCard({
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <span
-                  className={`text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border ${
+                  className={`text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border ${
                     TAG_COLORS[meta.tag] || "text-text-secondary"
                   }`}
                 >
                   {meta.tag}
                 </span>
                 {meta.duration && (
-                  <span className="text-[10px] font-mono text-text-tertiary">
+                  <span className="text-[12px] font-mono text-text-tertiary">
                     {meta.duration}
                   </span>
                 )}
@@ -123,7 +123,7 @@ function ProjectCard({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="p-4 rounded-card bg-bg-surface border border-border">
-              <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
+              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
                 {dict.projectsPage.challenge}
               </h3>
               <p className="text-sm text-text-secondary leading-body">
@@ -131,7 +131,7 @@ function ProjectCard({
               </p>
             </div>
             <div className="p-4 rounded-card bg-bg-surface border border-border">
-              <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-green mb-2">
+              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-2">
                 {dict.projectsPage.result}
               </h3>
               <p className="text-sm text-text-secondary leading-body">
@@ -141,14 +141,14 @@ function ProjectCard({
           </div>
 
           <div>
-            <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-2">
+            <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-2">
               {dict.projectsPage.techStack}
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {meta.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-[10px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
+                  className="text-[12px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
                 >
                   {tech}
                 </span>
@@ -191,11 +191,11 @@ function FeaturedProject({
               </div>
             )}
             <div className="absolute top-4 left-4 flex items-center gap-2">
-              <span className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill bg-accent-deep text-white">
+              <span className="text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill bg-accent-deep text-white">
                 {dict.projectsPage.featured}
               </span>
               <span
-                className={`text-[10px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
+                className={`text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
                   TAG_COLORS[meta.tag] || "text-text-secondary"
                 }`}
               >
@@ -207,7 +207,7 @@ function FeaturedProject({
           <div className="p-6 md:p-8 lg:p-10">
             {meta.duration && (
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-[10px] font-mono text-text-tertiary">
+                <span className="text-[12px] font-mono text-text-tertiary">
                   {meta.duration}
                 </span>
               </div>
@@ -221,7 +221,7 @@ function FeaturedProject({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div className="p-4 rounded-card bg-bg-surface/50 border border-border">
-                <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
+                <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
                   {dict.projectsPage.challenge}
                 </h3>
                 <p className="text-sm text-text-secondary leading-body">
@@ -229,7 +229,7 @@ function FeaturedProject({
                 </p>
               </div>
               <div className="p-4 rounded-card bg-bg-surface/50 border border-border">
-                <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-green mb-2">
+                <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-2">
                   {dict.projectsPage.result}
                 </h3>
                 <p className="text-sm text-text-secondary leading-body">
@@ -239,7 +239,7 @@ function FeaturedProject({
             </div>
 
             <div>
-              <h3 className="text-[10px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
+              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
                 {dict.projectsPage.techStack}
               </h3>
               <div className="flex flex-wrap gap-1.5">
@@ -350,7 +350,7 @@ export default function ProjectsContent() {
           <div className="flex items-center gap-1 p-1 rounded-lg bg-bg-elevated border border-border">
             <button
               onClick={() => setViewMode("grid")}
-              className={`text-xs font-medium px-3 py-1.5 rounded-md transition-all duration-200 cursor-pointer ${
+              className={`text-xs font-medium px-3 py-1.5 min-h-[40px] rounded-md transition-all duration-200 cursor-pointer ${
                 viewMode === "grid"
                   ? "bg-accent-deep text-white"
                   : "text-text-secondary hover:text-text"
@@ -400,7 +400,7 @@ export default function ProjectsContent() {
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`text-xs font-medium px-3 py-1.5 rounded-md transition-all duration-200 cursor-pointer ${
+              className={`text-xs font-medium px-3 py-1.5 min-h-[40px] rounded-md transition-all duration-200 cursor-pointer ${
                 viewMode === "list"
                   ? "bg-accent-deep text-white"
                   : "text-text-secondary hover:text-text"

@@ -124,7 +124,7 @@ export default function FaqContent() {
                     <h3 className="flex-1 text-base md:text-lg font-medium text-text group-hover:text-accent transition-colors duration-200">
                       {item.q}
                       {isPopular && (
-                        <span className="inline-flex ml-2 px-2 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded-full bg-accent/10 text-accent align-middle">
+                        <span className="inline-flex ml-2 px-2 py-0.5 text-[12px] font-mono font-bold uppercase tracking-wider rounded-full bg-accent/10 text-accent align-middle">
                           {dict.faqPage.popularBadge}
                         </span>
                       )}

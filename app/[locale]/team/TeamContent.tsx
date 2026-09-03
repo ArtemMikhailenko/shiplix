@@ -104,13 +104,13 @@ export default function TeamContent() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="text-[10px] font-mono text-text-tertiary uppercase tracking-widest">
+                    <span className="text-[12px] font-mono text-text-tertiary uppercase tracking-widest">
                       {dict.teamPage.focusLabel}
                     </span>
                     <span className="text-text-secondary">{member.focus}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="text-[10px] font-mono text-text-tertiary uppercase tracking-widest">
+                    <span className="text-[12px] font-mono text-text-tertiary uppercase tracking-widest">
                       {dict.teamPage.experienceLabel}
                     </span>
                     <span className="text-text-secondary">
@@ -125,7 +125,7 @@ export default function TeamContent() {
                     {member.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[10px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
+                        className="text-[12px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
                       >
                         {tech}
                       </span>

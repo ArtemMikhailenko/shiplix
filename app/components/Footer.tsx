@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                    className="text-sm text-text-secondary hover:text-text transition-colors duration-200 inline-flex items-center min-h-[44px] md:min-h-0"
                   >
                     {link.label}
                   </Link>
@@ -71,7 +71,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                    className="text-sm text-text-secondary hover:text-text transition-colors duration-200 inline-flex items-center min-h-[44px] md:min-h-0"
                   >
                     {link.label}
                   </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200 inline-flex items-center min-h-[44px] md:min-h-0"
                 >
                   Email
                 </a>
@@ -96,7 +96,7 @@ export default function Footer() {
                   href={`https://t.me/${CONTACT.telegram.replace("@", "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200 inline-flex items-center min-h-[44px] md:min-h-0"
                 >
                   Telegram
                 </a>
@@ -106,7 +106,7 @@ export default function Footer() {
                   href={CONTACT.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200"
+                  className="text-sm text-text-secondary hover:text-text transition-colors duration-200 inline-flex items-center min-h-[44px] md:min-h-0"
                 >
                   LinkedIn
                 </a>

@@ -58,12 +58,12 @@ function ProjectCard({
               {meta.stack.slice(0, 4).map((t) => (
                 <span
                   key={t}
-                  className="text-[10px] font-mono uppercase tracking-wider text-white/80 bg-white/10 backdrop-blur-sm px-2 py-1 rounded"
+                  className="text-[12px] font-mono uppercase tracking-wider text-white/80 bg-white/10 backdrop-blur-sm px-2 py-1 rounded"
                 >
                   {t}
                 </span>
               ))}
-              <span className="text-[10px] font-mono uppercase tracking-wider text-white/60 ml-auto">
+              <span className="text-[12px] font-mono uppercase tracking-wider text-white/60 ml-auto">
                 {meta.duration}
               </span>
             </div>
@@ -73,7 +73,7 @@ function ProjectCard({
           <h3 className="text-lg md:text-xl font-semibold text-text tracking-tight group-hover:text-accent transition-colors duration-200 leading-snug">
             {text.title}
           </h3>
-          <span className="shrink-0 text-[11px] font-mono text-text-tertiary mt-1 uppercase tracking-wide">
+          <span className="shrink-0 text-[12px] font-mono text-text-tertiary mt-1 uppercase tracking-wide">
             {meta.tag}
           </span>
         </div>
