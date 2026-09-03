@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence} from "framer-motion";
+import { useSafeInView } from "@/app/lib/useSafeInView";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
@@ -34,7 +35,7 @@ const SERVICE_LANDING: Partial<Record<(typeof SERVICES)[number]["key"], ServiceP
 
 export default function Services() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
   const [active, setActive] = useState(0);
   const current = SERVICES[active];

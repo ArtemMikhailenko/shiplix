@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform} from "framer-motion";
+import { useSafeInView } from "@/app/lib/useSafeInView";
 import { CONTACT } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 export default function CTA() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
 
   /* ── Scroll-driven upward shift for heading ── */

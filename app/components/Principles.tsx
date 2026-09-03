@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion} from "framer-motion";
+import { useSafeInView } from "@/app/lib/useSafeInView";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 const PRINCIPLES = [
@@ -23,7 +24,7 @@ function Principle({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.div
@@ -63,7 +64,7 @@ function Principle({
 
 export default function Principles() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
 
   return (

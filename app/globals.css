@@ -64,17 +64,26 @@ body::after {
   clip-path: inset(0 0 0 0);
 }
 
-/* Classic fade-up (kept for simple use) */
+/*
+ * Entrance animation for page sections.
+ *
+ * Deliberately CSS-only. The previous version toggled a .visible class
+ * from an IntersectionObserver, which React wiped on every re-render —
+ * the same conflict that blanked the projects grid on filter changes.
+ * Opacity is never touched, so a section cannot end up invisible whatever
+ * happens to JS, the observer, or the render cycle.
+ */
 .fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fade-up-in 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fade-up-in {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: none;
+  }
 }
 
 /*
@@ -158,9 +167,7 @@ body::after {
 /* ── Accessibility: respect motion preferences ── */
 @media (prefers-reduced-motion: reduce) {
   .fade-up {
-    opacity: 1;
-    transform: none;
-    transition: none;
+    animation: none;
   }
   .card-reveal {
     animation: none;

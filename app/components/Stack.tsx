@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion} from "framer-motion";
+import { useSafeInView } from "@/app/lib/useSafeInView";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 const ROW_1 = ["Next.js", "React", "TypeScript", "Tailwind CSS", "NestJS", "Node.js", "PostgreSQL", "Redis"];
@@ -46,7 +47,7 @@ function MarqueeRow({
 
 export default function Stack() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
 
   return (

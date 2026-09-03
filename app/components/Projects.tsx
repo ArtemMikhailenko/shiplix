@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform} from "framer-motion";
+import { useSafeInView } from "@/app/lib/useSafeInView";
 import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
@@ -27,7 +28,7 @@ function ProjectCard({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
 
   /* ── Image parallax ── */
   const { scrollYProgress } = useScroll({
@@ -84,7 +85,7 @@ function ProjectCard({
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useSafeInView(ref, { once: true, margin: "-60px" });
   const dict = useDictionary();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
