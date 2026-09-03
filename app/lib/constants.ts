@@ -70,7 +70,7 @@ export const PROJECT_META: Record<
     images: [
       "/projects/services-helper.webp",
       "/projects/services-helper-flow.webp",
-      "/projects/services-helper-categories.webp",
+      "/projects/services-helper-search.webp",
       "/projects/services-helper-pricing.webp",
     ],
     duration: "",

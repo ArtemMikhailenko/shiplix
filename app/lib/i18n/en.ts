@@ -1034,7 +1034,7 @@ const en = {
   caseStudies: {
     servicesHelper: {
       sectionLabel: "How it's built",
-      intro: "Services Helper is a two-sided services marketplace: customers post what they need done, verified specialists respond with offers, and both sides rate each other afterwards. Here is how it is built and the decisions that shaped it.",
+      intro: "A two-sided services marketplace: customers post a job, verified specialists respond with offers, and both sides rate each other afterwards. These are the decisions that shaped it.",
       metrics: [
         {
           value: "3",
@@ -1056,53 +1056,41 @@ const en = {
       sections: [
         {
           heading: "Two sides, modeled apart",
-          body: "A customer and a specialist are not the same user with a role flag. They share almost no data or behaviour: a specialist owns a profile, a portfolio, a subscription and a rating; a customer owns orders. We modeled them as separate entities behind one session-based auth layer, with email verification, password reset and Google sign-in.\n\nThe payoff is unambiguous permissions — an endpoint belongs to one side or the other, never to \"a user who might be either\". The trade-off is that someone who both hires and works keeps two accounts; in this domain that is rare and worth the clarity.",
+          body: "A customer and a specialist are not one user with a role flag. They share almost no data: a specialist owns a profile, portfolio, subscription and rating; a customer owns orders. We modeled them as separate entities behind one session-based auth layer.\n\nPermissions stay unambiguous — an endpoint belongs to one side, never to \"a user who might be either\". The public profile is split from the account record too, keeping constantly-written data like rating and subscription off the row authentication depends on.",
         },
         {
           heading: "The marketplace loop",
-          body: "The core flow is four states. A customer publishes an OPEN order — category, description, city, deadline, attachments. Specialists submit responses, which are offers against that order. The customer compares those offers and accepts one, moving the order to IN_PROGRESS, then COMPLETED (or CANCELLED).\n\nResponses are their own records rather than a direct assignment, so a customer can weigh several specialists side by side and the full history is preserved for reputation and dispute handling.",
           image: "/projects/services-helper-flow.webp",
           caption: "Both sides of the loop, as the product explains it to its own users",
+          body: "Four states carry the transaction. A customer publishes an OPEN order — category, city, deadline, attachments. Specialists submit responses, which are offers against it. The customer accepts one, moving the order to IN_PROGRESS, then COMPLETED or CANCELLED.\n\nResponses are their own records rather than a direct assignment, so a customer compares several specialists instead of being matched to one.",
         },
         {
           heading: "Finding the right specialist",
-          body: "Discovery runs on two axes that matter in this domain: what and where. Orders and specialist profiles are both bound to a category and a city, so a plumber in Lviv never surfaces for a job in Odesa. On top of that, a profile carries skills, an hourly rate, availability, a portfolio, and a rating derived from completed work.\n\nThere is no separate search engine. At this catalogue size, indexed PostgreSQL queries over category, city and rating are faster to run and far cheaper to operate than adding Meilisearch or Elasticsearch to the stack — and they keep search results transactionally consistent with the data. Subscription tier feeds into ranking, which is what makes sponsored placement worth paying for without letting it override relevance.",
-          image: "/projects/services-helper-categories.webp",
-          caption: "Categories — one of the two axes discovery runs on",
+          image: "/projects/services-helper-search.webp",
+          caption: "Search is built on the two axes that matter: service and city",
+          body: "Discovery runs on what and where. Orders and profiles both bind to a category and a city, so a plumber in Lviv never surfaces for a job in Odesa.\n\nThere is no separate search engine. At this catalogue size, indexed PostgreSQL queries over category, city and rating are faster to ship and cheaper to run than adding Meilisearch, and they keep results consistent with the data. Subscription tier feeds into ranking — which is what makes paid placement worth buying without letting it override relevance.",
         },
         {
           heading: "Keeping the deal on the platform",
-          body: "The hardest commercial problem for a services marketplace is two parties meeting once and then dealing off-platform. Contact details a customer marks as confidential are revealed only to the specialist they actually choose — not to everyone who responds.\n\nThat single rule keeps the incentive to publish the order, and to stay inside the system, alive past the first message.",
+          body: "The hardest commercial problem for a services marketplace is two parties meeting once and then dealing off-platform. Contact details a customer marks confidential go only to the specialist they actually choose — not to everyone who responds. That single rule keeps the incentive to stay inside the system alive past the first message.",
         },
         {
           heading: "Reputation that cuts both ways",
-          body: "Reviews are two-way: customers rate specialists, and specialists rate customers. A one-sided rating protects only the buyer, but on a services marketplace the specialist carries just as much risk — no-shows, scope disputes, non-payment. Giving both sides a visible history raises the cost of bad behaviour for everyone and makes the platform safer to work on, not just to buy from.",
+          body: "Reviews run in both directions. A one-sided rating protects only the buyer, but here the specialist carries just as much risk — no-shows, scope disputes, non-payment. Visible history on both sides makes the platform safe to work on, not only to buy from.",
         },
         {
           heading: "Monetization without a paywall on access",
-          body: "Posting an order and responding to one are free. Specialists pay for reach instead — through subscription tiers (Free, Optimal, Premium) and sponsored placement, billed with Stripe. Charging per lead would tax exactly the behaviour the marketplace wants to encourage; a subscription decouples cost from volume and gives predictable revenue.\n\nSubscription state is driven by Stripe webhooks — ACTIVE, PAST_DUE, UNPAID, CANCELED — and access checks read that live status. A failed payment quietly narrows a specialist's reach instead of leaving a paid feature open.",
           image: "/projects/services-helper-pricing.webp",
           caption: "Three subscription tiers, billed through Stripe",
+          body: "Posting an order and responding to one are free. Specialists pay for reach instead, through subscription tiers and sponsored placement billed with Stripe. Charging per lead would tax exactly the behaviour the marketplace wants more of.\n\nSubscription state is driven by Stripe webhooks — ACTIVE, PAST_DUE, UNPAID, CANCELED — and access checks read that live status, so a failed payment narrows reach instead of leaving a paid feature open.",
         },
         {
-          heading: "Notifications as events, not calls",
-          body: "A dozen things need to notify someone: a new order in a category, a new response, an accepted offer, a completed job, a new review, a subscription change, a complaint. Rather than have the order service know how to send email, each action emits an event, and notification handlers turn events into in-app records and email.\n\nThe services that own business logic stay unaware of delivery, so a new channel or a new notification type is added in one place instead of threaded through every flow.",
-        },
-        {
-          heading: "Trust and safety",
-          body: "Complaints are first-class. A complaint moves through PENDING → IN_REVIEW → RESOLVED or REJECTED, worked from an admin panel. Without a moderation path a services marketplace fills with disputes it cannot resolve and loses the trust it runs on, so the queue and its state machine were built in rather than bolted on later.",
-        },
-        {
-          heading: "Built for production",
-          body: "Session-based auth with email verification and password reset, Google OAuth, rate limiting and HTTP hardening with Helmet are in from the first deploy, not retrofitted. Portfolio images and order attachments are offloaded to Cloudinary rather than served from the app. The whole interface ships in Ukrainian, Russian and English through next-intl.",
-        },
-        {
-          heading: "The data model",
-          body: "Nineteen entities carry the domain. The important ones are Customer and Pro as the two sides, SpecialistProfile holding everything a Pro shows the market, Order and OrderResponse as the transaction, Review for two-way reputation, Subscription for billing state, Complaint for disputes, and Notification for the event trail — with Category and City as the axes everything is filtered on.\n\nKeeping SpecialistProfile separate from Pro is deliberate: identity and authentication change rarely, while the public profile, rating and subscription change constantly. Splitting them keeps the hot, frequently-written data away from the record that authentication depends on.",
+          heading: "What production demanded",
+          body: "Notifications are events, not calls: each action emits one and handlers turn it into an in-app record and an email, so business logic never learns how to send mail. Complaints run a real state machine worked from an admin panel — without a moderation path a services marketplace fills with disputes it cannot resolve. Rate limiting, HTTP hardening, email verification and Cloudinary-hosted media were in from the first deploy.",
         },
       ],
       outcomeTitle: "The result",
-      outcome: "A live services marketplace running the full loop — post, respond, hire, deliver, review, pay — with subscription monetization, complaint moderation and three-language support, in production at services-helper.com.",
+      outcome: "A live services marketplace running the full loop — post, respond, hire, deliver, review, pay — with subscription monetization, moderation and three languages, in production at services-helper.com.",
     },
   },
 } as const;
