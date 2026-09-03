@@ -116,6 +116,13 @@ const en = {
       result: "A live services marketplace with separate client and specialist accounts, an order flow with categories, deadlines and file attachments, a searchable specialist catalog, two-way reviews and ratings, paid promotion via Stripe, and a fully multi-language interface.",
       features: "Client & specialist accounts · Order posting with attachments · Specialist catalog & search · Two-way reviews & ratings · Paid promotion (Stripe) · Media uploads · Multi-language (UA/RU/EN) · Role-based access",
     },
+    zapys24Mobile: {
+      title: "Zapys24 Mobile — Booking Apps for iOS and Android",
+      desc: "Two React Native apps shipped to the App Store and Google Play: one for clients booking appointments, one for the businesses taking them.",
+      challenge: "The booking platform lived on the web, but both sides of it act from a phone — a client picking a slot on the move, a salon running its day between appointments. Two audiences with opposite needs could not share a single app.",
+      result: "Two Expo apps against one NestJS backend: a client app with map-based discovery, push notifications and booking, and Zapys24 Pro for businesses managing schedule and staff. Both published on the App Store and Google Play.",
+      features: "Two apps, one API · Map discovery (Mapbox) · Push notifications (Firebase) · Booking & schedule management · Published on App Store & Google Play · Image upload · Deep linking · Shared design system",
+    },
     similiaStudio: {
       title: "SIMILIA Studio — Photo Studio Booking",
       desc: "Booking platform for a photo studio in Israel: hourly slot booking kept in sync with the studio's own calendar, portfolio galleries, equipment catalogue and an admin panel.",
