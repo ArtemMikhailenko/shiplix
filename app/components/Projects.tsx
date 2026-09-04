@@ -45,9 +45,15 @@ function ProjectCard({
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link href={`/${locale}/projects/${slug}`} className="group block">
+        {/*
+          Screenshots here, not logos: the section is headed "code we're
+          proud of", and on a card this large a centred logo strands itself
+          in empty space. The brand marks stay on the portfolio grid, where
+          the cards are small and the job is recognition.
+        */}
         <div className="relative aspect-[16/11] rounded-xl overflow-hidden bg-bg-elevated">
           <motion.img
-            src={meta.logo || meta.image}
+            src={meta.image || meta.logo}
             alt={text.title}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             style={{ y: imgY, scale: 1.12 }}
