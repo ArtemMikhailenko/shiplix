@@ -31,7 +31,7 @@ export async function GET() {
   const projects = PROJECT_KEYS.map((key) => {
     const item = dict.projectItems[key];
     const meta = PROJECT_META[key];
-    return `- [${item.title}](${en(`/projects/${meta.slug}`)}): ${item.desc} Stack: ${meta.stack.join(", ")}. Delivered in ${meta.duration}.`;
+    return `- [${item.title}](${en(`/projects/${meta.slug}`)}): ${item.desc} Stack: ${meta.stack.join(", ")}.${meta.duration ? ` Delivered in ${meta.duration}.` : ""}`;
   });
 
   const body = `# ${SITE_NAME}
@@ -63,7 +63,7 @@ ${projects.join("\n")}
 
 ## Technology
 
-Next.js, React, TypeScript, Tailwind CSS, NestJS, Node.js, PostgreSQL, Redis, Prisma, React Native, Expo, Docker, Socket.io, Meilisearch, Stripe.
+Next.js, React, TypeScript, Tailwind CSS, NestJS, Node.js, PostgreSQL, Redis, Prisma, React Native, Expo, Docker, Socket.io, OpenSearch, Stripe.
 
 ## Notes
 

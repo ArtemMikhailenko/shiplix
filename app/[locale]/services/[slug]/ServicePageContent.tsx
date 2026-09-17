@@ -12,6 +12,7 @@ import {
   type ServicePageKey,
 } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
+import { formatDuration } from "@/app/lib/format";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { locales } from "@/app/lib/i18n/config";
 import { Button } from "@/app/components/ui/Button";
@@ -183,7 +184,7 @@ export default function ServicePageContent({
                 {project.tag}
               </span>
               <span className="text-xs font-mono text-text-tertiary">
-                {project.duration}
+                {formatDuration(project.duration, dict.projectsPage.weeks)}
               </span>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold text-text mb-3">

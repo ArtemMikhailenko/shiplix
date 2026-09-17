@@ -14,7 +14,7 @@ import {
 
 const SERVICES = [
   { key: "saas" as const, stack: ["NestJS", "Next.js", "PostgreSQL", "Stripe"], color: "168, 85, 247" },
-  { key: "marketplace" as const, stack: ["Next.js", "Socket.io", "Redis", "Meilisearch"], color: "59, 130, 246" },
+  { key: "marketplace" as const, stack: ["Next.js", "Socket.io", "Redis", "OpenSearch"], color: "59, 130, 246" },
   { key: "mobile" as const, stack: ["React Native", "Expo", "TypeScript"], color: "16, 185, 129" },
   { key: "fintech" as const, stack: ["NestJS", "ethers.js", "PostgreSQL"], color: "245, 158, 11" },
   { key: "ecommerce" as const, stack: ["Next.js", "Stripe", "Prisma"], color: "236, 72, 153" },

@@ -7,12 +7,14 @@ import { motion, useScroll, useTransform} from "framer-motion";
 import { useSafeInView } from "@/app/lib/useSafeInView";
 import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
+import { formatDuration } from "@/app/lib/format";
 
 function ProjectCard({
   slug,
   locale,
   meta,
   text,
+  durationLabel,
   index,
 }: {
   slug: string;
@@ -25,6 +27,7 @@ function ProjectCard({
     logo?: string;
   };
   text: { title: string };
+  durationLabel: string;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,7 +68,7 @@ function ProjectCard({
                 </span>
               ))}
               <span className="text-[12px] font-mono uppercase tracking-wider text-white/60 ml-auto">
-                {meta.duration}
+                {durationLabel}
               </span>
             </div>
           </div>
@@ -131,6 +134,7 @@ export default function Projects() {
                 locale={locale}
                 meta={PROJECT_META[key]}
                 text={dict.projectItems[key]}
+                durationLabel={formatDuration(PROJECT_META[key].duration, dict.projectsPage.weeks)}
                 index={i * 2}
               />
             ))}
@@ -143,6 +147,7 @@ export default function Projects() {
                 locale={locale}
                 meta={PROJECT_META[key]}
                 text={dict.projectItems[key]}
+                durationLabel={formatDuration(PROJECT_META[key].duration, dict.projectsPage.weeks)}
                 index={i * 2 + 1}
               />
             ))}

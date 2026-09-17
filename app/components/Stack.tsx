@@ -6,7 +6,7 @@ import { useSafeInView } from "@/app/lib/useSafeInView";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 
 const ROW_1 = ["Next.js", "React", "TypeScript", "Tailwind CSS", "NestJS", "Node.js", "PostgreSQL", "Redis"];
-const ROW_2 = ["Prisma", "React Native", "Expo", "Docker", "Socket.io", "Meilisearch", "Stripe", "Webhooks"];
+const ROW_2 = ["Prisma", "React Native", "Expo", "Docker", "Socket.io", "OpenSearch", "Stripe", "Webhooks"];
 
 function MarqueeRow({
   items,

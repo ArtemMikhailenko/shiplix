@@ -1,261 +1,276 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   PROJECT_KEYS,
   PROJECT_META,
-  TAG_COLORS,
   STAT_META,
   type ProjectKey,
 } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { locales } from "@/app/lib/i18n/config";
+import {
+  Arrow,
+  BrowserFrame,
+  MonoLabel,
+  brandOf,
+  splitList,
+} from "./projectUi";
 
-const CATEGORIES = ["All", "SaaS", "Marketplace", "Platform", "Mobile", "E-Commerce", "Web", "Landing"];
+const CATEGORIES = [
+  "All",
+  "SaaS",
+  "Marketplace",
+  "Platform",
+  "Mobile",
+  "E-Commerce",
+  "Web",
+  "Landing",
+] as const;
 
 type ViewMode = "grid" | "list";
+type Dict = ReturnType<typeof useDictionary>;
 
-function ProjectCard({
+/** The metrics strip sits after this many grid cards, once the eye has warmed up. */
+const METRICS_AFTER = 6;
+
+function FeaturedCase({
   projectKey,
   dict,
-  viewMode,
   locale,
 }: {
   projectKey: ProjectKey;
-  dict: ReturnType<typeof useDictionary>;
-  viewMode: ViewMode;
+  dict: Dict;
   locale: string;
 }) {
   const meta = PROJECT_META[projectKey];
   const text = dict.projectItems[projectKey];
 
-  if (viewMode === "grid") {
-    return (
-      <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-        <article className="card-reveal group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
-          <div className="relative h-[200px] bg-bg-surface flex items-center justify-center overflow-hidden">
-            {meta.logo || meta.image ? (
-              <img
-                src={meta.logo || meta.image}
-                alt={text.title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            ) : (
-              <div className="text-text-tertiary text-5xl font-mono opacity-[0.06] group-hover:opacity-[0.12] transition-opacity duration-500 select-none">
-                {meta.tag}
-              </div>
-            )}
-            <span
-              className={`absolute top-4 left-4 text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
-                TAG_COLORS[meta.tag] || "text-text-secondary"
-              }`}
-            >
-              {meta.tag}
-            </span>
-            {meta.duration && (
-              <span className="absolute top-4 right-4 text-[12px] font-mono text-text-tertiary px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm">
-                {meta.duration}
-              </span>
-            )}
-          </div>
-
-          <div className="p-6">
-            <h2 className="text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-300">
-              {text.title}
-            </h2>
-            <p className="text-sm text-text-secondary leading-body mb-5 line-clamp-3">
-              {text.desc}
-            </p>
-
-            <div className="flex flex-wrap gap-1.5">
-              {meta.stack.slice(0, 4).map((tech) => (
-                <span
-                  key={tech}
-                  className="text-[12px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
-                >
-                  {tech}
-                </span>
-              ))}
-              {meta.stack.length > 4 && (
-                <span className="text-[12px] font-mono text-text-tertiary px-2 py-1">
-                  +{meta.stack.length - 4}
-                </span>
-              )}
-            </div>
-          </div>
-        </article>
-      </Link>
-    );
-  }
-
   return (
-    <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-      <article className="card-reveal group rounded-card border border-border bg-bg-elevated overflow-hidden hover:border-accent/30 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,92,246,0.15)]">
-        <div className="p-6 md:p-8">
-          <div className="flex items-start justify-between gap-4 mb-4">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-3">
-                <span
-                  className={`text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border ${
-                    TAG_COLORS[meta.tag] || "text-text-secondary"
-                  }`}
-                >
-                  {meta.tag}
-                </span>
-                {meta.duration && (
-                  <span className="text-[12px] font-mono text-text-tertiary">
-                    {meta.duration}
-                  </span>
-                )}
-              </div>
-              <h2 className="text-xl md:text-2xl font-semibold text-text mb-3 group-hover:text-accent transition-colors duration-300">
-                {text.title}
-              </h2>
-              <p className="text-text-secondary leading-body mb-6">
-                {text.desc}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="p-4 rounded-card bg-bg-surface border border-border">
-              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
-                {dict.projectsPage.challenge}
-              </h3>
-              <p className="text-sm text-text-secondary leading-body">
-                {text.challenge}
-              </p>
-            </div>
-            <div className="p-4 rounded-card bg-bg-surface border border-border">
-              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-2">
-                {dict.projectsPage.result}
-              </h3>
-              <p className="text-sm text-text-secondary leading-body">
-                {text.result}
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-2">
-              {dict.projectsPage.techStack}
-            </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {meta.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-[12px] font-mono text-text-tertiary px-2 py-1 rounded bg-bg-hover border border-border"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
+    <Link
+      href={`/${locale}/projects/${meta.slug}`}
+      className="group card-reveal relative mb-16 grid items-center gap-8 overflow-hidden rounded-card border border-border bg-bg-elevated p-4 transition-colors duration-500 hover:border-accent/30 sm:p-6 lg:grid-cols-[1.35fr_1fr] lg:gap-12 lg:p-8"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-20 -top-40 h-[420px] w-[620px] rounded-full bg-accent-deep/20 opacity-60 blur-[120px] transition-opacity duration-700 group-hover:opacity-100"
+      />
+      <BrowserFrame
+        src={meta.image}
+        alt={text.title}
+        eager
+        className="relative"
+      />
+      <div className="relative">
+        <div className="mb-5 flex items-center gap-3">
+          <MonoLabel className="text-accent">
+            {dict.projectsPage.featured}
+          </MonoLabel>
+          <span className="h-px w-6 bg-border-hover" aria-hidden="true" />
+          <MonoLabel>{meta.tag}</MonoLabel>
         </div>
-      </article>
+        <h2 className="mb-4 text-3xl font-bold leading-heading tracking-heading text-text md:text-4xl">
+          {brandOf(text.title)}
+        </h2>
+        <p className="mb-8 text-lg leading-snug text-text-secondary md:text-xl">
+          {text.tagline}
+        </p>
+        <ul className="mb-8 divide-y divide-border border-y border-border">
+          {splitList(text.facts).map((fact) => (
+            <li
+              key={fact}
+              className="flex items-center gap-3 py-3 text-sm text-text"
+            >
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
+              {fact}
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="font-mono text-[12px] text-text-tertiary">
+            {meta.stack.slice(0, 4).join(" · ")}
+          </p>
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+            {dict.projectsPage.viewCase}
+            <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </div>
+      </div>
     </Link>
   );
 }
 
-function FeaturedProject({
+function CaseCard({
   projectKey,
   dict,
   locale,
 }: {
   projectKey: ProjectKey;
-  dict: ReturnType<typeof useDictionary>;
+  dict: Dict;
   locale: string;
 }) {
   const meta = PROJECT_META[projectKey];
   const text = dict.projectItems[projectKey];
 
   return (
-    <Link href={`/${locale}/projects/${meta.slug}`} className="block">
-      <article className="card-reveal group relative rounded-card border border-accent/20 bg-gradient-to-b from-bg-elevated to-bg-surface overflow-hidden mb-12 hover:border-accent/40 transition-all duration-500">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
-          <div className="relative h-[220px] lg:h-full bg-bg-surface flex items-center justify-center overflow-hidden">
-            {meta.logo || meta.image ? (
-              <img
-                src={meta.logo || meta.image}
-                alt={text.title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            ) : (
-              <div className="text-text-tertiary text-7xl font-mono opacity-[0.05] select-none">
-                {meta.tag}
-              </div>
-            )}
-            <div className="absolute top-4 left-4 flex items-center gap-2">
-              <span className="text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill bg-accent-deep text-white">
-                {dict.projectsPage.featured}
-              </span>
-              <span
-                className={`text-[12px] font-mono font-medium px-2.5 py-1 rounded-pill border border-border bg-bg-elevated/80 backdrop-blur-sm ${
-                  TAG_COLORS[meta.tag] || "text-text-secondary"
-                }`}
-              >
-                {meta.tag}
-              </span>
-            </div>
+    <Link
+      href={`/${locale}/projects/${meta.slug}`}
+      className="group card-reveal flex flex-col"
+    >
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-10 -bottom-4 h-24 rounded-full bg-accent-deep/30 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+        />
+        <BrowserFrame
+          src={meta.image}
+          alt={text.title}
+          className="relative transition-colors duration-500 group-hover:border-accent/30"
+        />
+      </div>
+      <div className="flex flex-1 flex-col pt-5">
+        <div className="mb-2 flex items-center justify-between">
+          <MonoLabel>{meta.tag}</MonoLabel>
+          <Arrow className="text-text-tertiary transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent" />
+        </div>
+        <h2 className="mb-1.5 text-lg font-semibold text-text transition-colors duration-300 group-hover:text-accent">
+          {brandOf(text.title)}
+        </h2>
+        <p className="mb-4 text-[15px] leading-snug text-text-secondary">
+          {text.tagline}
+        </p>
+        <p className="mt-auto line-clamp-1 font-mono text-[12px] text-text-tertiary">
+          {splitList(text.facts).join(" · ")}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+function CaseRow({
+  projectKey,
+  dict,
+  locale,
+}: {
+  projectKey: ProjectKey;
+  dict: Dict;
+  locale: string;
+}) {
+  const meta = PROJECT_META[projectKey];
+  const text = dict.projectItems[projectKey];
+
+  return (
+    <Link
+      href={`/${locale}/projects/${meta.slug}`}
+      className="group grid grid-cols-[88px_minmax(0,1fr)_auto] items-center gap-4 border-b border-border py-5 md:grid-cols-[128px_minmax(0,1fr)_minmax(0,1.5fr)_120px_auto] md:gap-8"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-bg-surface">
+        <img
+          src={meta.image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-105 ${
+            meta.image.includes("/logo-") ? "object-contain" : "object-cover object-top"
+          }`}
+        />
+      </div>
+      <div className="min-w-0">
+        <h2 className="text-base font-semibold text-text transition-colors duration-300 group-hover:text-accent md:text-lg">
+          {brandOf(text.title)}
+        </h2>
+        <p className="mt-1 line-clamp-1 text-sm text-text-secondary md:hidden">
+          {text.tagline}
+        </p>
+      </div>
+      <p className="hidden text-sm leading-snug text-text-secondary md:block">
+        {text.tagline}
+      </p>
+      <span className="hidden md:block">
+        <MonoLabel>{meta.tag}</MonoLabel>
+      </span>
+      <Arrow className="text-text-tertiary transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent" />
+    </Link>
+  );
+}
+
+function MetricsStrip({ dict }: { dict: Dict }) {
+  return (
+    <div className="col-span-full my-4 grid grid-cols-2 border-y border-border lg:grid-cols-4">
+      <div className="col-span-2 flex items-center py-8 lg:col-span-1 lg:pr-8">
+        <p className="text-lg leading-snug text-text">
+          {dict.projectsPage.metricsLabel}
+        </p>
+      </div>
+      {(["projects", "years", "industries"] as const).map((key) => (
+        <div
+          key={key}
+          className="border-border py-8 lg:border-l lg:pl-8"
+        >
+          <div className="text-4xl font-bold tabular-nums tracking-heading text-text md:text-5xl">
+            {STAT_META[key].value}
           </div>
-
-          <div className="p-6 md:p-8 lg:p-10">
-            {meta.duration && (
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-[12px] font-mono text-text-tertiary">
-                  {meta.duration}
-                </span>
-              </div>
-            )}
-            <h2 className="text-2xl md:text-3xl font-bold text-text mb-4 group-hover:text-accent transition-colors duration-300">
-              {text.title}
-            </h2>
-            <p className="text-text-secondary leading-body mb-8 text-base">
-              {text.desc}
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              <div className="p-4 rounded-card bg-bg-surface/50 border border-border">
-                <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-orange mb-2">
-                  {dict.projectsPage.challenge}
-                </h3>
-                <p className="text-sm text-text-secondary leading-body">
-                  {text.challenge}
-                </p>
-              </div>
-              <div className="p-4 rounded-card bg-bg-surface/50 border border-border">
-                <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-green mb-2">
-                  {dict.projectsPage.result}
-                </h3>
-                <p className="text-sm text-text-secondary leading-body">
-                  {text.result}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-[12px] font-mono font-medium uppercase tracking-widest text-text-tertiary mb-3">
-                {dict.projectsPage.techStack}
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {meta.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs font-mono text-text-tertiary px-2.5 py-1.5 rounded bg-bg-hover border border-border"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div className="mt-2 text-sm text-text-tertiary">
+            {dict.stats[key]}
           </div>
         </div>
-      </article>
-    </Link>
+      ))}
+    </div>
+  );
+}
+
+function ViewToggle({
+  viewMode,
+  setViewMode,
+  dict,
+}: {
+  viewMode: ViewMode;
+  setViewMode: (mode: ViewMode) => void;
+  dict: Dict;
+}) {
+  const btn = (mode: ViewMode, label: string, icon: React.ReactNode) => (
+    <button
+      type="button"
+      onClick={() => setViewMode(mode)}
+      aria-pressed={viewMode === mode}
+      aria-label={label}
+      title={label}
+      className={`flex min-h-[40px] min-w-[40px] items-center justify-center rounded-md transition-colors duration-200 ${
+        viewMode === mode
+          ? "bg-bg-hover text-text"
+          : "text-text-tertiary hover:text-text"
+      }`}
+    >
+      {icon}
+    </button>
+  );
+
+  return (
+    <div className="flex items-center gap-1 rounded-lg border border-border bg-bg-elevated p-1">
+      {btn(
+        "grid",
+        dict.projectsPage.gridView,
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+        </svg>,
+      )}
+      {btn(
+        "list",
+        dict.projectsPage.listView,
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 3h12M1 7h12M1 11h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>,
+      )}
+    </div>
   );
 }
 
@@ -264,248 +279,138 @@ export default function ProjectsContent() {
   const ref = useFadeUp();
   const pathname = usePathname();
   const locale = locales.find((l) => pathname.startsWith(`/${l}`)) || "en";
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState<(typeof CATEGORIES)[number]>("All");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
+
+  const countFor = (cat: (typeof CATEGORIES)[number]) =>
+    cat === "All"
+      ? PROJECT_KEYS.length
+      : PROJECT_KEYS.filter((k) => PROJECT_META[k].tag === cat).length;
 
   const filtered: ProjectKey[] =
     filter === "All"
       ? [...PROJECT_KEYS]
       : PROJECT_KEYS.filter((k) => PROJECT_META[k].tag === filter);
 
-  const featuredKey = filtered[0];
-  const restKeys = filtered.slice(1);
+  const [featuredKey, ...restKeys] = filtered;
+  const showMetrics = filter === "All" && restKeys.length > METRICS_AFTER;
 
   return (
-    <main className="pt-32 pb-20 md:pt-40 md:pb-28" ref={ref}>
-      <div className="max-w-container mx-auto px-6">
+    <main className="pb-20 pt-32 md:pb-28 md:pt-40" ref={ref}>
+      <div className="mx-auto max-w-container px-6">
         {/* Breadcrumbs */}
-        <nav
-          aria-label="Breadcrumb"
-          className="fade-up mb-8 text-sm text-text-tertiary"
-        >
+        <nav aria-label="Breadcrumb" className="fade-up mb-10 text-sm text-text-tertiary">
           <ol className="flex items-center gap-2">
             <li>
-              <Link
-                href={`/${locale}`}
-                className="hover:text-text transition-colors"
-              >
+              <Link href={`/${locale}`} className="transition-colors hover:text-text">
                 {dict.projectsPage.breadcrumbHome}
               </Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li className="text-text">
-              {dict.projectsPage.breadcrumbProjects}
-            </li>
+            <li className="text-text">{dict.projectsPage.breadcrumbProjects}</li>
           </ol>
         </nav>
 
         {/* Header */}
-        <div className="fade-up mb-12 md:mb-16">
-          <span className="inline-block text-xs font-mono font-medium uppercase tracking-widest text-accent mb-6">
-            {dict.projectsPage.label}
-          </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-heading leading-heading text-text mb-4">
-            {dict.projectsPage.title}
-          </h1>
-          <p className="text-text-secondary text-base md:text-lg leading-body max-w-2xl">
-            {dict.projectsPage.sub}
-          </p>
-        </div>
-
-        {/* Stats bar */}
-        <div className="fade-up flex flex-wrap items-center gap-6 md:gap-10 mb-12 md:mb-16">
-          {(["projects", "years", "industries"] as const).map((key) => (
-            <div key={key} className="flex items-baseline gap-2">
-              <span
-                className={`text-2xl md:text-3xl font-bold ${STAT_META[key].color}`}
-              >
-                {STAT_META[key].value}
-              </span>
-              <span className="text-sm text-text-secondary">
-                {dict.stats[key]}
-              </span>
+        <header className="fade-up mb-12 flex items-end justify-between gap-8 md:mb-16">
+          <div>
+            <div className="mb-5">
+              <MonoLabel className="text-accent">{dict.projectsPage.label}</MonoLabel>
             </div>
-          ))}
-        </div>
-
-        {/* Filter + View toggle */}
-        <div className="fade-up flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`text-sm font-medium px-4 py-2 rounded-pill transition-all duration-200 cursor-pointer ${
-                  filter === cat
-                    ? "bg-accent-deep text-white"
-                    : "bg-bg-elevated text-text-secondary border border-border hover:border-border-hover hover:text-text"
-                }`}
-              >
-                {cat === "All" ? dict.projectsPage.filterAll : cat}
-              </button>
-            ))}
+            <h1 className="mb-5 text-5xl font-bold leading-[1.02] tracking-heading text-text md:text-6xl lg:text-7xl">
+              {dict.projectsPage.title}
+            </h1>
+            <p className="max-w-xl text-base leading-body text-text-secondary md:text-lg">
+              {dict.projectsPage.sub}
+            </p>
           </div>
-
-          <div className="flex items-center gap-1 p-1 rounded-lg bg-bg-elevated border border-border">
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`text-xs font-medium px-3 py-1.5 min-h-[40px] rounded-md transition-all duration-200 cursor-pointer ${
-                viewMode === "grid"
-                  ? "bg-accent-deep text-white"
-                  : "text-text-secondary hover:text-text"
-              }`}
-            >
-              <span className="flex items-center gap-1.5">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect
-                    x="1"
-                    y="1"
-                    width="5"
-                    height="5"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="8"
-                    y="1"
-                    width="5"
-                    height="5"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="1"
-                    y="8"
-                    width="5"
-                    height="5"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="8"
-                    y="8"
-                    width="5"
-                    height="5"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-                {dict.projectsPage.gridView}
-              </span>
-            </button>
-            <button
-              onClick={() => setViewMode("list")}
-              className={`text-xs font-medium px-3 py-1.5 min-h-[40px] rounded-md transition-all duration-200 cursor-pointer ${
-                viewMode === "list"
-                  ? "bg-accent-deep text-white"
-                  : "text-text-secondary hover:text-text"
-              }`}
-            >
-              <span className="flex items-center gap-1.5">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect
-                    x="1"
-                    y="1.5"
-                    width="12"
-                    height="3"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="1"
-                    y="6.5"
-                    width="12"
-                    height="3"
-                    rx="1"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x="1"
-                    y="11.5"
-                    width="12"
-                    height="1.5"
-                    rx="0.75"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  />
-                </svg>
-                {dict.projectsPage.listView}
-              </span>
-            </button>
+          <div
+            aria-hidden="true"
+            className="hidden select-none text-[120px] font-bold leading-[0.8] tracking-heading text-white/[0.07] tabular-nums md:block lg:text-[168px]"
+          >
+            {String(PROJECT_KEYS.length).padStart(2, "0")}
           </div>
+        </header>
+
+        {/* Filters + view */}
+        <div className="fade-up mb-10 flex flex-col justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap gap-x-1 gap-y-1" role="group" aria-label={dict.projectsPage.label}>
+            {CATEGORIES.filter((cat) => countFor(cat) > 0).map((cat) => {
+              const active = filter === cat;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setFilter(cat)}
+                  aria-pressed={active}
+                  className={`inline-flex min-h-[40px] items-center gap-1.5 rounded-pill px-3 text-sm transition-colors duration-200 ${
+                    active
+                      ? "bg-bg-hover text-text"
+                      : "text-text-tertiary hover:text-text-secondary"
+                  }`}
+                >
+                  {active && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                  )}
+                  {cat === "All" ? dict.projectsPage.filterAll : cat}
+                  <span className="font-mono text-[11px] text-text-tertiary">
+                    {countFor(cat)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <ViewToggle viewMode={viewMode} setViewMode={setViewMode} dict={dict} />
         </div>
 
-        {/* Results counter */}
-        <div className="fade-up mb-8 text-sm text-text-tertiary">
-          {dict.projectsPage.showing.replace(
-            "{count}",
-            String(filtered.length),
-          )}
-        </div>
-
-        {/* Featured project */}
-        {featuredKey && (
-          <FeaturedProject
-            projectKey={featuredKey}
-            dict={dict}
-            locale={locale}
-          />
+        {/* Featured case */}
+        {featuredKey && viewMode === "grid" && (
+          <FeaturedCase projectKey={featuredKey} dict={dict} locale={locale} />
         )}
 
-        {/* Rest of projects */}
-        {restKeys.length > 0 ? (
-          <div
-            className={
-              viewMode === "grid"
-                ? "grid grid-cols-1 md:grid-cols-2 gap-6"
-                : "grid grid-cols-1 gap-6"
-            }
-          >
-            {restKeys.map((key) => (
-              <ProjectCard
-                key={key}
-                projectKey={key}
-                dict={dict}
-                viewMode={viewMode}
-                locale={locale}
-              />
-            ))}
-          </div>
-        ) : (
-          !featuredKey && (
-            <div className="fade-up text-center py-20">
-              <p className="text-text-tertiary text-lg">
-                {dict.projectsPage.noProjects}
-              </p>
+        {/* Cases */}
+        {viewMode === "grid" ? (
+          restKeys.length > 0 && (
+            <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+              {restKeys.map((key, i) => (
+                <Fragment key={key}>
+                  {showMetrics && i === METRICS_AFTER && <MetricsStrip dict={dict} />}
+                  <CaseCard projectKey={key} dict={dict} locale={locale} />
+                </Fragment>
+              ))}
             </div>
           )
+        ) : (
+          <div className="border-t border-border">
+            {filtered.map((key) => (
+              <CaseRow key={key} projectKey={key} dict={dict} locale={locale} />
+            ))}
+          </div>
+        )}
+
+        {filtered.length === 0 && (
+          <p className="py-20 text-center text-lg text-text-tertiary">
+            {dict.projectsPage.noProjects}
+          </p>
         )}
 
         {/* CTA */}
-        <section className="fade-up mt-20 md:mt-28 text-center">
-          <div className="rounded-card border border-border bg-bg-elevated p-10 md:p-14 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent pointer-events-none" />
+        <section className="fade-up mt-24 text-center md:mt-32">
+          <div className="relative overflow-hidden rounded-card border border-border bg-bg-elevated p-10 md:p-14">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-deep/5 to-transparent" />
             <div className="relative">
-              <h2 className="text-2xl md:text-3xl font-bold text-text mb-4">
+              <h2 className="mb-4 text-2xl font-bold text-text md:text-3xl">
                 {dict.projectsPage.ctaTitle}
               </h2>
-              <p className="text-text-secondary text-base md:text-lg leading-body max-w-xl mx-auto mb-8">
+              <p className="mx-auto mb-8 max-w-xl text-base leading-body text-text-secondary md:text-lg">
                 {dict.projectsPage.ctaSub}
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-2 bg-accent-deep hover:bg-accent text-white text-sm font-medium px-8 py-3.5 rounded-pill transition-all duration-300 hover:shadow-[0_4px_20px_-4px_rgba(139,92,246,0.4)]"
-                >
-                  {dict.projectsPage.ctaButton}
-                </Link>
-              </div>
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center gap-2 rounded-pill bg-accent-deep px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-accent hover:shadow-[0_4px_20px_-4px_rgba(139,92,246,0.4)]"
+              >
+                {dict.projectsPage.ctaButton}
+              </Link>
             </div>
           </div>
         </section>
