@@ -104,7 +104,7 @@ export default function ProjectDetailContent({
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 top-12 h-[60%] w-[80%] -translate-x-1/2 rounded-full bg-accent-deep/25 blur-[140px]"
           />
-          <BrowserFrame src={meta.image} alt={text.title} eager className="relative" />
+          <BrowserFrame src={meta.image} alt={text.title} eager natural className="relative" />
         </div>
 
         <div className="grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">

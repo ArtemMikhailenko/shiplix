@@ -72,13 +72,21 @@ export function BrowserFrame({
   alt,
   className = "",
   eager = false,
+  natural = false,
 }: {
   src: string;
   alt: string;
   className?: string;
   eager?: boolean;
+  /**
+   * Show the screenshot at its own aspect ratio instead of cropping it into a
+   * fixed frame. Use for large single images, where cropping cuts off the
+   * page's own header and edges.
+   */
+  natural?: boolean;
 }) {
   const isLogo = src.includes("/logo-");
+  const showNatural = natural && !isLogo;
   return (
     <div
       className={`overflow-hidden rounded-xl border border-white/[0.08] bg-bg-surface shadow-[0_24px_60px_-28px_rgba(0,0,0,0.9)] ${className}`}
@@ -91,17 +99,29 @@ export function BrowserFrame({
         <span className="h-2 w-2 rounded-full bg-white/15" />
         <span className="h-2 w-2 rounded-full bg-white/15" />
       </div>
-      <div className="relative aspect-[16/10] overflow-hidden bg-bg">
+      {showNatural ? (
         <img
           src={src}
           alt={alt}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
-          className={`absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
-            isLogo ? "object-contain" : "object-cover object-top"
-          }`}
+          className="block h-auto w-full"
         />
-      </div>
+      ) : (
+        // 16:9 matches most of our screenshots (1.7–1.85), so the fixed frame
+        // trims little from the sides while keeping grid cards aligned.
+        <div className="relative aspect-[16/9] overflow-hidden bg-bg">
+          <img
+            src={src}
+            alt={alt}
+            loading={eager ? "eager" : "lazy"}
+            decoding="async"
+            className={`absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
+              isLogo ? "object-contain" : "object-cover object-top"
+            }`}
+          />
+        </div>
+      )}
     </div>
   );
 }
