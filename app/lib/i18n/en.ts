@@ -1154,6 +1154,290 @@ const en = {
       outcomeTitle: "The result",
       outcome: "A live services marketplace running the full loop — post, respond, hire, deliver, review, pay — with subscription monetization, moderation and three languages, in production at services-helper.com.",
     },
+    inciCore: {
+      sectionLabel: "How it's built",
+      intro: "A booking CRM that a beauty salon, a car service and a riding club can all run from the same codebase — a public booking page, a business app and a client app on one API. These are the decisions that shaped it.",
+      metrics: [
+        {
+          value: "50+",
+          label: "Backend modules",
+        },
+        {
+          value: "129",
+          label: "Schema migrations",
+        },
+        {
+          value: "2",
+          label: "Mobile apps, one API",
+        },
+        {
+          value: "24/7",
+          label: "Self-service booking",
+        },
+      ],
+      sections: [
+        {
+          heading: "Industry is a field, not a fork",
+          image: "/projects/zapys24-equestrian.webp",
+          caption: "The same platform, dressed for a riding club",
+          body: "Every business carries an industry code, kept deliberately separate from the beauty-specific business type. Terminology, form sections and the booking rules are read from an industry config; the booking service picks its strategy from a registry keyed by the same code.\n\nThat one decision is what lets a riding club and a nail studio share a deployment. Resources are generic — a chair, a stall or a lift are the same entity with different words around them — and beauty stays the default, so adding an industry changes nothing for the businesses already running.",
+        },
+        {
+          heading: "Two clients cannot take the same slot",
+          body: "Creating a booking opens a transaction and immediately takes a PostgreSQL advisory lock on the staff member and on every resource involved, each key prefixed by class so a staff id and a resource id can never collide. Only then does it check for overlaps.\n\nResources carry capacity: a resource counts as busy only once overlapping bookings reach that number, so a room for eight is not blocked by the first person who books it. All the interval, buffer and overlap maths runs in business-local minutes, which is what keeps it correct across time zones.",
+        },
+        {
+          heading: "The business keeps its own money",
+          body: "Prepayments do not pass through the platform. A business connects its own monobank merchant credentials, stored per business, and invoices are raised against that account; LiqPay is the alternative.\n\nThe platform therefore never becomes a payment intermediary — nothing to hold, nothing to pay out, no regulatory role that a booking product has no business taking on. The money lands in the salon's own bank.",
+        },
+        {
+          heading: "Reminders are the product",
+          image: "/projects/zapys24-platform.webp",
+          caption: "Notifications and reminders — the part businesses actually pay for",
+          body: "Notifications are split by channel — booking, business, platform, social — so a client can mute marketing without losing the reminder about tomorrow's appointment.\n\nEmail renders from Handlebars templates, push goes through Firebase, and SMS runs against a per-plan quota, because SMS is the one channel that costs real money per message. Telegram carries operational alerts to the team, never to clients.",
+        },
+        {
+          heading: "A booking site without a web developer",
+          body: "Each business can publish its own booking site from a template. The template itself lives in code — palette, fonts, block layout — because design changes together with the renderer, not separately from it. The database stores exactly one thing about it: the lowest plan that may publish it.\n\nDisabling a template removes it from the picker without taking down the sites already published on it. That asymmetry is deliberate: an admin tidying up the template list should not be able to switch off someone's working site.",
+        },
+        {
+          heading: "Subscriptions on three fronts",
+          body: "The same subscription has to work when it is bought on the web and when Apple sells it inside the app. Web billing runs through the platform's own plans and add-ons; in-app purchases are verified server-side against Apple's App Store Server library, so the entitlement comes from the receipt rather than from the client.\n\nPlans compare by rank, not by name — otherwise every feature check would list \"basic\" and \"pro\" by hand and drift apart the first time a tier is added.",
+        },
+        {
+          heading: "What production demanded",
+          body: "Background work runs on Bull queues over Redis, which also carries the cache. Media goes to S3-compatible storage and is resized with sharp on the way in. Sessions are signed and cookie-based, passwords hashed with argon2, endpoints rate-limited, health exposed through Terminus and the API documented in Swagger.\n\nThe unglamorous parts — Excel exports for accountants, staff payouts, expense tracking, a support desk — are in because a CRM that a business runs its day on cannot stop at the calendar.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "A booking platform in production at zapys24.com: a web cabinet, a client app and a business app on iOS and Android, with two industries live and the model ready for the rest.",
+    },
+    marketplace: {
+      sectionLabel: "How it's built",
+      intro: "A multi-vendor marketplace where several sellers compete on one product card: a storefront, a seller cabinet and an admin panel on a single API, with search, delivery, payments and fiscal receipts wired in. These are the decisions that shaped it.",
+      metrics: [
+        {
+          value: "3",
+          label: "Frontends, one API",
+        },
+        {
+          value: "11",
+          label: "Order states",
+        },
+        {
+          value: "4",
+          label: "Delivery carriers",
+        },
+        {
+          value: "103",
+          label: "Schema migrations",
+        },
+      ],
+      sections: [
+        {
+          heading: "A product is not an offer",
+          body: "The catalogue product and the seller's offer are separate entities. One card describes the thing; each seller attaches an offer to it with its own price, stock, media and wholesale price tiers.\n\nEverything difficult about a marketplace follows from that split: matching an incoming item to an existing product, merging duplicates that slipped through, and deciding which offer a buyer sees first. Getting it wrong the other way — one product row per seller — produces a catalogue where the same item appears forty times and no filter can fix it.",
+        },
+        {
+          heading: "Search that does not hand the page to one seller",
+          body: "Search runs on OpenSearch, with product attributes indexed as nested documents so filters can be built per category instead of per field, and with the full category path indexed so a filter on a parent category still finds everything underneath.\n\nResults are not a flat relevance list. Offers are bucketed by seller, buckets are ordered by their best offer, and then interleaved — so a marketplace with one large seller and fifty small ones still shows the small ones. A marketplace that lets its biggest seller own every result page stops attracting new sellers.",
+        },
+        {
+          heading: "Sellers upload feeds, not spreadsheets by hand",
+          body: "Catalogue growth comes from an import pipeline: raw items land first, field mappings are saved per seller as presets, media problems are recorded per item instead of failing the batch, and matching proposes the catalogue product each item belongs to.\n\nNew brands and categories wait for approval before they reach search facets. Without that gate, one careless feed renames a whole branch of the catalogue.",
+        },
+        {
+          heading: "Eleven states, and who moved them",
+          body: "An order goes from created through paid, processing, awaiting shipment, shipped, delivered and completed, with cancellation, refund and return as first-class states rather than flags.\n\nEvery transition records what caused it and who did it: order creation, a payment webhook, a refund job, a Nova Poshta tracking push, an admin, a seller's manager or a scheduler. When a buyer asks why an order says what it says, the answer is in the row, not in the logs.",
+        },
+        {
+          heading: "Money, delivery and the tax office",
+          body: "Payments run through LiqPay, monobank and Hutko behind one provider interface, so adding an acquirer is a new file rather than a new branch through checkout. Cash on delivery stays a payment method like any other.\n\nDelivery covers Nova Poshta, Ukrposhta, Meest and Delivery Auto — branch and locker directories, label printing, and tracking that pushes status back into the order. Fiscal receipts go through Checkbox, Cashalot or Vchasno, because in Ukraine a receipt is not a feature request, it is the law.",
+        },
+        {
+          heading: "Built to be operated",
+          body: "Buyer-to-seller chat runs over websockets with Redis behind it. Notifications, reviews, complaints, audit trails, CMS blocks for the footer and static pages, seller analytics and an advertising module all live as their own modules on the same API.\n\nOne hundred and three migrations is the honest measure of a marketplace: the schema keeps moving because the business keeps discovering what it actually sells.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "A working multi-vendor marketplace at enez.com.ua — buyer storefront, seller cabinet and admin panel on one API, with faceted search, four carriers, three acquirers and fiscal receipts in production.",
+    },
+    zapys24Mobile: {
+      sectionLabel: "How it's built",
+      intro: "Two React Native apps on the Zapys24 API: one for the client who books, one for the business that runs the day. Both are published on the App Store and Google Play. These are the decisions that shaped them.",
+      metrics: [
+        {
+          value: "2",
+          label: "Apps, one backend",
+        },
+        {
+          value: "iOS",
+          label: "App Store",
+        },
+        {
+          value: "Android",
+          label: "Google Play",
+        },
+        {
+          value: "0",
+          label: "Shared screens",
+        },
+      ],
+      sections: [
+        {
+          heading: "Two apps, not one app with a switch",
+          body: "A client and a salon owner share almost nothing: one browses, books and gets reminders; the other works a calendar, staff, clients and money all day. Putting both behind a role flag produces an app where half the navigation is always dead weight.\n\nSo they ship separately, against the same API. The client app leans on maps and search; the business app is a working tool with a calendar at its centre. Each store listing then describes one thing, which is also what review teams expect.",
+        },
+        {
+          heading: "Finding a salon, not a list of salons",
+          body: "The client app puts the map first: device location, Mapbox rendering, and results tied to what is actually nearby rather than to a national list. Booking is a bottom sheet over the map, so choosing a time never costs the context of where the place is.",
+        },
+        {
+          heading: "Push that earns its permission",
+          body: "Notifications go through Firebase Messaging on both platforms and are categorised on the server, so a reminder about tomorrow's appointment and a promotion are not the same subscription.\n\nThe permission prompt is asked for at the moment it makes sense — after a booking exists — not on first launch. An app that burns the prompt on launch loses the channel it actually needs.",
+        },
+        {
+          heading: "Fast on a bad connection",
+          body: "Server state is cached by React Query, and what must survive a cold start is written to MMKV, which is fast enough to read synchronously while the first screen renders. Tokens live in the platform secure store, never in plain storage.\n\nThe result is that opening the app on mobile data shows yesterday's schedule instantly and corrects it a moment later, instead of showing a spinner.",
+        },
+        {
+          heading: "What the stores demanded",
+          body: "In-app subscriptions are verified server-side against Apple's App Store Server library — the entitlement comes from the receipt, not from the device. Account deletion is reachable from inside the app and from the web, because both stores now require it.\n\nBuilds and submissions run through Expo, which keeps the native project out of the repository and the release process in one command.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "Two apps in production on the App Store and Google Play, sharing one NestJS backend with the web cabinet — clients book from the map, businesses run the day from the phone.",
+    },
+    orthoDent: {
+      sectionLabel: "How it's built",
+      intro: "An online store for orthodontic supplies: a Next.js storefront, an admin panel with sales analytics and a NestJS API, built for a professional buyer who knows exactly what they need. These are the decisions that shaped it.",
+      metrics: [
+        {
+          value: "3",
+          label: "Apps, one API",
+        },
+        {
+          value: "4",
+          label: "Order states",
+        },
+        {
+          value: "OTP",
+          label: "Login without passwords",
+        },
+        {
+          value: "UAH",
+          label: "Cashback balance",
+        },
+      ],
+      sections: [
+        {
+          heading: "A catalogue for people who know the part number",
+          body: "The buyer here is an orthodontist, not a browser. Categories and subcategories carry manufacturer and country of origin, because a practice buys a specific bracket from a specific maker and a near-match is not a substitute.\n\nSo the catalogue is organised around those axes rather than around lifestyle merchandising, and search exists to confirm a choice that is already made.",
+        },
+        {
+          heading: "Login by code, not by password",
+          body: "Customers sign in with a one-time code delivered by SMS or email, with a password option for those who want one. A clinic's purchasing is done by whoever is at the desk that day; a shared password would be written on a sticky note within a week.\n\nThe SMS sender sits behind an interface with console, HTTP and Twilio implementations, so the same code path runs in development without spending money on messages.",
+        },
+        {
+          heading: "Four states, on purpose",
+          body: "An order is new, processing, done or cancelled. A store this size is worked by people who already know the customer; adding eight states would produce a dashboard full of rows nobody moves.\n\nCashback is credited when an order reaches done and is adjusted atomically on the customer record, so a balance cannot drift when two orders close at once.",
+        },
+        {
+          heading: "Discounts that survive contact with reality",
+          body: "Discounts are percent or fixed, and promo codes are their own entity with their own rules, because a seasonal campaign and a negotiated price for a regular clinic are different things that expire at different times.\n\nKeeping them apart means ending a campaign never touches the terms a long-standing customer was promised.",
+        },
+        {
+          heading: "An admin panel that answers questions",
+          body: "The back office is a separate React application with charts over sales, so the owner sees what is moving without exporting anything. The API is documented in Swagger, rate-limited, and separated into customer and admin authentication, so a compromised customer session cannot reach the store's own data.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "A working store for a professional market — catalogue, cart, orders, cashback and promo codes, with an admin panel the owner runs alone and a documented API behind all of it.",
+    },
+    similiaStudio: {
+      sectionLabel: "How it's built",
+      intro: "A photo studio in Israel that rents itself out by the hour. The site had to take bookings without ever double-selling a slot, and settle the paperwork the way Israeli businesses actually do it. These are the decisions that shaped it.",
+      metrics: [
+        {
+          value: "2",
+          label: "Calendar sources",
+        },
+        {
+          value: "3",
+          label: "Languages",
+        },
+        {
+          value: "4",
+          label: "External services",
+        },
+        {
+          value: "0",
+          label: "Manual confirmations",
+        },
+      ],
+      sections: [
+        {
+          heading: "The studio's real calendar is the source of truth",
+          body: "Availability is not a second calendar kept in our database. The site reads the studio's own Google Calendar — through a service account where one is configured, or through the calendar's private iCal feed where it is not — and treats every busy block there as unavailable.\n\nThat choice matters more than it sounds. A team that already lives in Google Calendar will keep booking things there, and any parallel calendar would be wrong within a week. Confirmed bookings are written back to the same calendar, so the studio never has two versions of its day.",
+        },
+        {
+          heading: "Paid and invoiced the local way",
+          body: "Payment runs through PayPlus and the receipt is issued through Green Invoice — the gateway and the invoicing service Israeli businesses are actually required to work with. A Stripe-shaped assumption would have left the owner issuing receipts by hand after every booking.\n\nEach integration is guarded by its own configuration check, so a missing credential degrades one step instead of breaking the booking flow.",
+        },
+        {
+          heading: "An enquiry becomes a lead, not an email",
+          body: "Form submissions create a lead in Kommo CRM alongside the confirmation email. An enquiry that only exists in an inbox is lost the first busy week; in the CRM it has an owner and a next step.",
+        },
+        {
+          heading: "Three languages and a portfolio the team owns",
+          body: "The site runs in three languages through next-intl, with an admin area where the studio manages its portfolio galleries and equipment catalogue itself. Images go to Cloudinary, so a photographer uploading full-size frames does not need to think about file size — which is exactly the kind of detail that decides whether a site stays updated after launch.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "A studio site that sells its own time: live availability from the team's real calendar, local payment and invoicing, leads landing in the CRM, and a portfolio the studio updates without calling us.",
+    },
+    iCleaning: {
+      sectionLabel: "How it's built",
+      intro: "A cleaning company in the UAE that needed to be bookable and payable online, in three languages, one of which reads right to left. These are the decisions that shaped it.",
+      metrics: [
+        {
+          value: "3",
+          label: "Languages, incl. Arabic",
+        },
+        {
+          value: "RTL",
+          label: "Layout direction",
+        },
+        {
+          value: "Stripe",
+          label: "Online payment",
+        },
+        {
+          value: "CRM",
+          label: "Every lead captured",
+        },
+      ],
+      sections: [
+        {
+          heading: "Arabic is a direction, not a translation",
+          body: "The document direction is set from the language on the server, before the first paint, so an Arabic visitor never sees a left-to-right layout flip into place. Spacing, icons and carousels are built to mirror rather than to be patched per-language.\n\nTreating right-to-left as a late CSS fix is the usual way this goes wrong: the text translates, the layout does not, and the site reads as foreign to exactly the audience it was translated for.",
+        },
+        {
+          heading: "Pay now or pay later — same booking",
+          body: "Checkout runs through Stripe Checkout, and the order is only trusted once the Stripe webhook confirms it — not when the browser comes back from the payment page. A user who closes the tab after paying still gets a completed order.\n\nBooking without paying online stays available too, because a first-time customer in this market often wants to speak to someone before handing over a card.",
+        },
+        {
+          heading: "Every enquiry lands in the CRM",
+          body: "Request forms create a lead in Bitrix24 with the service, contact details and source attached. The site is not the system of record for sales — the CRM is — so the handover happens at the moment of the enquiry rather than through someone re-typing an email.",
+        },
+        {
+          heading: "Proof, and the team's own content",
+          body: "Before-and-after galleries and a blog run from an admin area the company edits itself, with media on Cloudinary. In cleaning, the before-and-after pair is the whole sales argument, so getting new ones online must not require a developer.",
+        },
+      ],
+      outcomeTitle: "The result",
+      outcome: "A multilingual booking site for the UAE market — right-to-left Arabic done properly, online payment confirmed by webhook, every enquiry in the CRM, and galleries the team keeps current on its own.",
+    },
   },
 } as const;
 

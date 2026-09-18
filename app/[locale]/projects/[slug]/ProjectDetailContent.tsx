@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   PROJECT_KEYS,
   PROJECT_META,
+  type CaseStudy,
   type ProjectKey,
 } from "@/app/lib/constants";
 import { Icon } from "@/app/components/ui/Icon";
@@ -39,9 +40,7 @@ export default function ProjectDetailContent({
 
   // Only some projects carry a long-form technical write-up.
   const caseStudy = (
-    dict.caseStudies as Partial<
-      Record<ProjectKey, (typeof dict.caseStudies)["servicesHelper"]>
-    >
+    dict.caseStudies as unknown as Partial<Record<ProjectKey, CaseStudy>>
   )[projectKey];
 
   const nextKey =

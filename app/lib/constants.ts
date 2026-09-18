@@ -82,6 +82,7 @@ export const PROJECT_META: Record<
     images: ["/projects/enez-catalog.webp"],
     duration: "10 weeks",
     slug: "marketplace",
+    liveUrl: "https://enez.com.ua",
   },
   servicesHelper: {
     featured: true,
@@ -206,8 +207,8 @@ export const PROJECT_META: Record<
     logo: "/projects/logo-icleaning.webp",
     tag: "Web",
     stack: ["Next.js", "MongoDB", "Stripe", "Cloudinary", "Swiper"],
-    image: "/projects/logo-icleaning.webp",
-    images: ["/projects/logo-icleaning.webp"],
+    image: "/projects/icleaning.webp",
+    images: ["/projects/icleaning.webp"],
     duration: "",
     slug: "icleaning",
   },
@@ -505,3 +506,22 @@ export const SERVICE_PAGE_META: Record<
 export const SERVICE_WHAT_KEYS = ["w1", "w2", "w3", "w4", "w5", "w6"] as const;
 export const SERVICE_FAQ_KEYS = ["f1", "f2", "f3", "f4", "f5"] as const;
 export const SERVICE_DELIVERABLE_KEYS = ["d1", "d2", "d3", "d4", "d5"] as const;
+
+/**
+ * Shape of a long-form case study. The dictionaries type each one as a literal
+ * tuple, so reading them by project key needs a structural type: the sections
+ * differ in count and only some carry an image.
+ */
+export type CaseStudy = {
+  sectionLabel: string;
+  intro: string;
+  metrics: readonly { value: string; label: string }[];
+  sections: readonly {
+    heading: string;
+    body: string;
+    image?: string;
+    caption?: string;
+  }[];
+  outcomeTitle: string;
+  outcome: string;
+};

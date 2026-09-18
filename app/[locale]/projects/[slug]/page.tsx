@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 import { type Locale, locales } from "@/app/lib/i18n/config";
 import { getDictionary } from "@/app/lib/i18n/getDictionary";
 import { languageAlternates, SITE_URL } from "@/app/lib/seo";
-import { PROJECT_KEYS, PROJECT_META } from "@/app/lib/constants";
+import {
+  PROJECT_KEYS,
+  PROJECT_META,
+  type CaseStudy,
+  type ProjectKey,
+} from "@/app/lib/constants";
 import ProjectDetailContent from "./ProjectDetailContent";
 
 function getProjectKeyBySlug(slug: string) {
@@ -90,9 +95,7 @@ export default async function ProjectDetailPage({
   // Long-form technical write-ups are marked up as TechArticle so the depth
   // is machine-readable, not just prose in a div.
   const caseStudy = (
-    dict.caseStudies as Partial<
-      Record<typeof projectKey, (typeof dict.caseStudies)["servicesHelper"]>
-    >
+    dict.caseStudies as unknown as Partial<Record<ProjectKey, CaseStudy>>
   )[projectKey];
 
   const articleJsonLd = caseStudy
