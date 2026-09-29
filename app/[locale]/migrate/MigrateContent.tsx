@@ -3,7 +3,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/Button";
-import { Check, MonoLabel } from "../projects/projectUi";
+import { BrowserFrame, Check } from "../projects/projectUi";
+import {
+  DotField,
+  GradientRule,
+  SectionBand,
+  SectionLabel,
+} from "@/app/components/ui/Decor";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { locales } from "@/app/lib/i18n/config";
 import {
@@ -50,13 +56,14 @@ export default function MigrateContent() {
       <section className="relative">
         {/* The glow sits behind the headline, not on it: a masked radial
             keeps the edge from showing as a visible circle. */}
+        <DotField className="top-[-180px] h-[560px]" />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-accent-glow blur-[100px]"
         />
         <div className="relative mx-auto max-w-container px-6">
           <div className="fade-up max-w-3xl">
-            <MonoLabel className="text-accent">{d.label}</MonoLabel>
+            <SectionLabel>{d.label}</SectionLabel>
             <h1 className="mt-5 text-4xl font-bold tracking-heading leading-heading text-text md:text-5xl lg:text-6xl">
               {d.h1}
             </h1>
@@ -97,7 +104,7 @@ export default function MigrateContent() {
       <section className="py-20 md:py-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.compareLabel}</MonoLabel>
+            <SectionLabel accent="orange">{d.compareLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.compareTitle}
             </h2>
@@ -151,7 +158,7 @@ export default function MigrateContent() {
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.includesLabel}</MonoLabel>
+            <SectionLabel accent="cyan">{d.includesLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.includesTitle}
             </h2>
@@ -172,11 +179,36 @@ export default function MigrateContent() {
         </div>
       </section>
 
-      {/* ── Price ──────────────────────────────────────────────── */}
+      {/* A large visual between two text blocks: the page otherwise runs as
+          card grid after card grid. */}
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
+          <div className="fade-up relative">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-10 h-64 w-[720px] -translate-x-1/2 rounded-full bg-accent-glow blur-[90px]"
+            />
+            <BrowserFrame
+              src={PROJECT_META.artexClean.image}
+              alt={dict.projectItems.artexClean.title}
+              className="relative mx-auto max-w-4xl"
+            />
+            <p className="relative mt-4 text-center text-sm text-text-tertiary">
+              {d.includes.i5.title} — {dict.projectItems.artexClean.tagline}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-container px-6">
+        <GradientRule className="mb-20 md:mb-[120px]" />
+      </div>
+
+      {/* ── Price ──────────────────────────────────────────────── */}
+      <SectionBand className="mb-20 py-20 md:mb-[120px] md:py-[120px]">
+        <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.priceLabel}</MonoLabel>
+            <SectionLabel accent="green">{d.priceLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.priceTitle}
             </h2>
@@ -208,13 +240,13 @@ export default function MigrateContent() {
             {d.priceNote}
           </p>
         </div>
-      </section>
+      </SectionBand>
 
       {/* ── How the move runs ──────────────────────────────────── */}
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.processLabel}</MonoLabel>
+            <SectionLabel accent="accent">{d.processLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.processTitle}
             </h2>
@@ -242,14 +274,14 @@ export default function MigrateContent() {
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.proofLabel}</MonoLabel>
+            <SectionLabel accent="cyan">{d.proofLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.proofTitle}
             </h2>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            {(["artexClean", "iCleaning"] as const).map((key) => (
+            {(["iCleaning", "rentaLviv"] as const).map((key) => (
               <Link
                 key={key}
                 href={`/${locale}/projects/${PROJECT_META[key].slug}`}
@@ -282,7 +314,7 @@ export default function MigrateContent() {
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{d.faqLabel}</MonoLabel>
+            <SectionLabel accent="orange">{d.faqLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {d.faqTitle}
             </h2>

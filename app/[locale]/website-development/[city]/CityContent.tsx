@@ -3,7 +3,12 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/Button";
-import { Check, MonoLabel } from "../../projects/projectUi";
+import { Check } from "../../projects/projectUi";
+import {
+  DotField,
+  SectionBand,
+  SectionLabel,
+} from "@/app/components/ui/Decor";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { locales } from "@/app/lib/i18n/config";
 import {
@@ -32,6 +37,7 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
     <main className="pb-20 pt-32 md:pb-28 md:pt-40">
       {/* ── Hero ───────────────────────────────────────────────── */}
       <section className="relative">
+        <DotField className="top-[-180px] h-[560px]" />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-accent-glow blur-[100px]"
@@ -59,7 +65,7 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
           </nav>
 
           <div className="fade-up max-w-3xl">
-            <MonoLabel className="text-accent">{t.label}</MonoLabel>
+            <SectionLabel>{t.label}</SectionLabel>
             <h1 className="mt-5 text-4xl font-bold tracking-heading leading-heading text-text md:text-5xl lg:text-6xl">
               {t.h1}
             </h1>
@@ -106,10 +112,10 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
       </section>
 
       {/* ── What the audit found ───────────────────────────────── */}
-      <section className="py-20 md:py-[120px]">
+      <SectionBand className="my-20 py-20 md:my-[120px] md:py-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{c.observedLabel}</MonoLabel>
+            <SectionLabel accent="orange">{c.observedLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {t.observedTitle}
             </h2>
@@ -161,13 +167,13 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
             </div>
           </div>
         </div>
-      </section>
+      </SectionBand>
 
       {/* ── What we build ──────────────────────────────────────── */}
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{c.servicesLabel}</MonoLabel>
+            <SectionLabel accent="cyan">{c.servicesLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {c.servicesTitle}
             </h2>
@@ -196,7 +202,7 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{c.proofLabel}</MonoLabel>
+            <SectionLabel accent="green">{c.proofLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {t.proofTitle}
             </h2>
@@ -239,7 +245,7 @@ export default function CityContent({ cityKey }: { cityKey: CityKey }) {
       <section className="pb-20 md:pb-[120px]">
         <div className="mx-auto max-w-container px-6">
           <div className="fade-up mb-12 max-w-2xl md:mb-16">
-            <MonoLabel className="text-accent">{c.faqLabel}</MonoLabel>
+            <SectionLabel accent="orange">{c.faqLabel}</SectionLabel>
             <h2 className="mt-4 text-3xl font-bold tracking-heading leading-heading text-text md:text-4xl lg:text-[2.75rem]">
               {c.faqTitle}
             </h2>
