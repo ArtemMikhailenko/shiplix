@@ -5,6 +5,8 @@ import {
   PROJECT_META,
   SERVICE_PAGE_KEYS,
   SERVICE_PAGE_META,
+  CITY_KEYS,
+  CITY_META,
 } from "@/app/lib/constants";
 import { localeUrl, languageAlternates } from "@/app/lib/seo";
 
@@ -32,11 +34,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const cityPaths = CITY_KEYS.map((key) => ({
+    path: `/website-development/${CITY_META[key].slug}`,
+    priority: 0.8,
+  }));
+
   const entries: MetadataRoute.Sitemap = [];
 
   for (const { path, priority } of [
     ...STATIC_PATHS,
     ...servicePaths,
+    ...cityPaths,
     ...projectPaths,
   ]) {
     for (const locale of locales) {

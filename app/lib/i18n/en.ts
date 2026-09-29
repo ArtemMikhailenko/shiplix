@@ -1163,6 +1163,108 @@ const en = {
     },
   },
 
+  cities: {
+    breadcrumbHome: "Home",
+    ctaPrimary: "Get a free speed check",
+    ctaSecondary: "See our work",
+    statMeasured: "local business sites we measured",
+    statSlow: "of them load slower than 5 seconds",
+    statAvg: "average full load time",
+    seconds: "s",
+    observedLabel: "What we found",
+    platformsTitle: "What they are built on",
+    nichesTitle: "Who we measured",
+    servicesLabel: "What we build",
+    servicesTitle: "The three things a local business actually asks for",
+    proofLabel: "Proof",
+    faqLabel: "Questions",
+    faqTitle: "What local businesses ask",
+    ctaSub:
+      "Send your address and you will get the real load time, what is slowing it down, and an honest answer on whether a new site is worth it.",
+    ctaButton: "Write on Telegram",
+    ctaSecondaryBottom: "All contacts",
+    items: {
+      kyiv: {
+        metaTitle: "Website Development in Kyiv — Custom Sites | Shiplix",
+        metaDescription:
+          "Custom websites for Kyiv businesses: landing pages, online stores and CRM. We measured 35 Kyiv small-business sites — the average takes 11.4 seconds to load.",
+        label: "Website development in Kyiv",
+        city: "Kyiv",
+        h1: "Website development in Kyiv",
+        intro:
+          "We measured 35 small-business sites in Kyiv before writing this page. Most of them are slow, and two thirds cannot tell their owner where a single client came from. That is what we fix.",
+        statsNote:
+          "Our own measurement, September 2026: beauty salons, dental practices, renovation firms and auto services in Kyiv.",
+        observedTitle: "Kyiv small business runs on WordPress and Tilda — and pays for it in seconds",
+        observedBody:
+          "A third of the sites we measured sit on WordPress, usually with a bought theme and a stack of plugins nobody has updated. Another quarter are on Tilda. Both are fine until the phone becomes the main device — and in Kyiv it long since has.",
+        niches: {
+          n1: "14 beauty salons — the most competitive niche in the city, and the slowest sites in our sample",
+          n2: "10 dental practices, where one new patient is worth more than the whole site cost",
+          n3: "6 renovation companies, all of them relying on a portfolio that takes seconds to appear",
+          n4: "5 auto services, where the question is always the same: is there a slot tomorrow",
+        },
+        proofTitle: "What we build for businesses like these",
+        proofNote:
+          "Zapys24 is a booking platform used by salons, auto services and clinics. ORTHOSTORE is an online store for a professional market, with an admin panel the owner runs alone.",
+        faq: {
+          f1: {
+            q: "Do you work with Kyiv businesses in person?",
+            a: "We work remotely, and for a website that changes nothing: the spec, the demos and the handover all happen on calls and in writing. Meeting in person tends to add a week to the schedule without adding anything to the result.",
+          },
+          f2: {
+            q: "Kyiv agencies quote much more. Why are you cheaper?",
+            a: "A large agency bills its account managers, its office and its sales team. We are five developers, and the money goes into the build. The trade-off is honest: you talk to the people writing the code, not to a manager between you and them.",
+          },
+          f3: {
+            q: "Our site is on WordPress and mostly works. Is it worth moving?",
+            a: "Only if it costs you something. Measure it first — we do that for free. If it opens in two seconds and your analytics show where clients come from, leave it alone. If it takes eleven, like the Kyiv average in our sample, the site is quietly losing you the traffic you already pay for.",
+          },
+        },
+        ctaTitle: "Find out what your Kyiv site really costs you",
+      },
+      lviv: {
+        metaTitle: "Website Development in Lviv — Custom Sites | Shiplix",
+        metaDescription:
+          "Custom websites for Lviv businesses: landing pages, online stores and CRM. We built RentaLviv and TransfersLviv, and measured 22 local small-business sites.",
+        label: "Website development in Lviv",
+        city: "Lviv",
+        h1: "Website development in Lviv",
+        intro:
+          "We already work with Lviv: RentaLviv and TransfersLviv are ours. Before writing this page we also measured 22 small-business sites in the city — the average takes over fourteen seconds to load.",
+        statsNote:
+          "Our own measurement, September 2026: dental practices, clinics, salons and auto services in Lviv.",
+        observedTitle: "Lviv sites are slower than Kyiv ones, and it is mostly medicine that suffers",
+        observedBody:
+          "Nineteen of the twenty-two sites we measured take longer than five seconds to open, and the average is over fourteen. Half of the sample is dentistry and private clinics — the niche where a visitor decides in the first ten seconds whether this place looks trustworthy.",
+        niches: {
+          n1: "7 dental practices, where the site is often the only thing a patient sees before calling",
+          n2: "6 private clinics, most of them with no analytics at all",
+          n3: "4 beauty salons, all taking bookings by phone or Instagram direct",
+          n4: "4 auto services, none of them able to show a free slot online",
+        },
+        proofTitle: "Sites we built for Lviv",
+        proofNote:
+          "RentaLviv is a car rental service with its own admin panel; TransfersLviv quotes a route price before the call. Both are live, and both were built for this city.",
+        faq: {
+          f1: {
+            q: "Do you have clients in Lviv?",
+            a: "Yes — RentaLviv and TransfersLviv. Both are live, and both are linked above, so you can open them and judge the work rather than take our word for it.",
+          },
+          f2: {
+            q: "How much does a site cost?",
+            a: "A landing page starts at $1,500 and a corporate site at $2,500. The figure is fixed before the work starts, so it does not move mid-project.",
+          },
+          f3: {
+            q: "Can we move an existing site without losing our Google positions?",
+            a: "Yes, and that is a separate service of ours. We keep the same page addresses where we can and set 301 redirects everywhere else, so the weight of the old pages carries over.",
+          },
+        },
+        ctaTitle: "Find out what your Lviv site really costs you",
+      },
+    },
+  },
+
   migrate: {
     metaTitle: "Move Your Site off Wix or Tilda — Without Losing Google",
     metaDescription:

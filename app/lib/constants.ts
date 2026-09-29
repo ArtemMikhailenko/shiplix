@@ -550,3 +550,59 @@ export const MIGRATE_PLAN_META: Record<
   landing: { price: "$1 500" },
   store: { price: "$4 500" },
 };
+
+/* ── City landing pages (/website-development/[city]) ── */
+
+export const CITY_KEYS = ["kyiv", "lviv"] as const;
+export type CityKey = (typeof CITY_KEYS)[number];
+
+/**
+ * Numbers come from our own September 2026 audit of small-business sites,
+ * kept here so the three dictionaries cannot drift apart on a figure.
+ */
+export const CITY_META: Record<
+  CityKey,
+  {
+    slug: string;
+    measured: number;
+    slow: number;
+    noAnalytics: number;
+    avgLoad: string;
+    /** Platforms we found, most common first. */
+    platforms: { name: string; count: number }[];
+    /** Case studies shown as proof on the page. */
+    projects: ProjectKey[];
+  }
+> = {
+  kyiv: {
+    slug: "kyiv",
+    measured: 35,
+    slow: 26,
+    noAnalytics: 23,
+    avgLoad: "11.4",
+    platforms: [
+      { name: "WordPress", count: 12 },
+      { name: "Tilda", count: 9 },
+      { name: "Wix", count: 7 },
+      { name: "Weblium", count: 5 },
+    ],
+    projects: ["inciCore", "orthoDent"],
+  },
+  lviv: {
+    slug: "lviv",
+    measured: 22,
+    slow: 19,
+    noAnalytics: 11,
+    avgLoad: "14.2",
+    platforms: [
+      { name: "WordPress", count: 10 },
+      { name: "Wix", count: 3 },
+      { name: "Tilda", count: 3 },
+      { name: "Weblium", count: 1 },
+    ],
+    projects: ["rentaLviv", "transfersLviv"],
+  },
+};
+
+export const CITY_NICHE_KEYS = ["n1", "n2", "n3", "n4"] as const;
+export const CITY_FAQ_KEYS = ["f1", "f2", "f3"] as const;
