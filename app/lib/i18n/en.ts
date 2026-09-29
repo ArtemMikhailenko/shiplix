@@ -292,6 +292,7 @@ const en = {
     nav: {
       services: "Services",
       projects: "Projects",
+      blog: "Blog",
       about: "About",
       team: "Team",
       contact: "Contact",
@@ -1161,6 +1162,24 @@ const en = {
         ctaSub: "Tell us what you want to build. You will get a technical assessment and an estimate within 48 hours.",
       },
     },
+  },
+
+  blog: {
+    metaTitle: "Blog — notes on building websites and products | Shiplix",
+    metaDescription:
+      "What we learn while shipping: measurements, prices, migrations and the decisions behind our work. Written by the people who build it.",
+    label: "Blog",
+    title: "Notes from the build",
+    intro:
+      "What we learn while shipping — measurements, prices and the decisions behind the work. No reposted advice: everything here comes from projects we actually ran.",
+    readSuffix: "min read",
+    emptyTitle: "Nothing here in this language yet",
+    emptyBody:
+      "We write in Ukrainian first, because that is where most of our readers are. The articles are worth a translator if you need them.",
+    emptyCta: "Read the Ukrainian blog",
+    backToBlog: "All articles",
+    relatedTitle: "Read next",
+    breadcrumbHome: "Home",
   },
 
   cities: {

@@ -9,6 +9,7 @@ import {
   CITY_META,
 } from "@/app/lib/constants";
 import { localeUrl, languageAlternates } from "@/app/lib/seo";
+import { allPostParams, localesWithPosts } from "@/app/lib/blog";
 
 /** Every indexable path, without the locale prefix. */
 const STATIC_PATHS: { path: string; priority: number }[] = [
@@ -56,6 +57,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: { languages: languageAlternates(path) },
       });
     }
+  }
+
+  // The blog index is only listed for locales that actually have articles —
+  // an empty page in the sitemap is a page Google is asked to index for nothing.
+  for (const locale of localesWithPosts()) {
+    entries.push({
+      url: localeUrl(locale, "/blog"),
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    });
+  }
+
+  for (const { locale, slug } of allPostParams()) {
+    entries.push({
+      url: localeUrl(locale, `/blog/${slug}`),
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.6,
+    });
   }
 
   return entries;

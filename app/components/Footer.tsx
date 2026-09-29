@@ -7,6 +7,8 @@ import {
   SERVICE_PAGE_KEYS,
   SERVICE_PAGE_META,
 } from "@/app/lib/constants";
+import { localesWithPosts } from "@/app/lib/blog";
+import { type Locale } from "@/app/lib/i18n/config";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { locales } from "@/app/lib/i18n/config";
 
@@ -18,6 +20,10 @@ export default function Footer() {
   const footerNav = [
     { label: dict.footer.nav.services, href: `/${locale}/#services` },
     { label: dict.footer.nav.projects, href: `/${locale}/projects` },
+    // Only linked where articles exist — a link to an empty page helps nobody.
+    ...(localesWithPosts().includes(locale as Locale)
+      ? [{ label: dict.footer.nav.blog, href: `/${locale}/blog` }]
+      : []),
     { label: dict.footer.nav.about, href: `/${locale}/about` },
     { label: dict.footer.nav.team, href: `/${locale}/team` },
     { label: dict.footer.nav.contact, href: `/${locale}/contact` },
