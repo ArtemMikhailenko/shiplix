@@ -605,6 +605,76 @@ const en = {
     faqTitle: "Frequently asked questions",
     otherTitle: "Other services",
     items: {
+      websites: {
+        metaTitle: "Website Development for Business — Custom Sites | Shiplix",
+        metaDescription:
+          "Custom websites for business: landing pages, corporate sites and catalogues on Next.js and Astro. Fast, SEO-ready, with an admin panel your team runs itself.",
+        label: "Website Development",
+        h1: "Websites for business, built to be found and to convert",
+        intro:
+          "Most small-business sites are slow, invisible to Google and impossible to edit without calling a developer. We build the opposite: a fast custom site your team updates itself, with analytics wired in from the first day.",
+        p1: "2-4 weeks",
+        p2: "Fixed price",
+        p3: "Admin panel included",
+        whatTitle: "What we build",
+        what: {
+          w1: {
+            title: "Landing pages",
+            desc: "One page, one goal. Built around a single action — a call, an order or a request — with the offer above the fold and nothing competing with it.",
+          },
+          w2: {
+            title: "Corporate sites",
+            desc: "Several services, several audiences, a portfolio and a contact flow, structured so each section can rank for its own query.",
+          },
+          w3: {
+            title: "Catalogues and price calculators",
+            desc: "A price that answers before the call. ARTEX quotes a cleaning by rooms and bathrooms; the visitor sees a number without writing to anyone.",
+          },
+          w4: {
+            title: "Multilingual sites",
+            desc: "Two or three languages with correct hreflang and separate URLs — including right-to-left, which we shipped in Arabic for iCleaning.",
+          },
+          w5: {
+            title: "An admin panel your team runs",
+            desc: "Texts, photos, prices and blog posts edited without us. A site nobody can update stops being true within a month.",
+          },
+          w6: {
+            title: "Analytics and lead capture",
+            desc: "GA4 and GTM, events on every form, and requests delivered straight to Telegram or your CRM instead of an inbox nobody reads.",
+          },
+        },
+        deliverables: {
+          d1: "Structure and copy plan agreed before design",
+          d2: "Design in Figma, then the build — no surprises at handover",
+          d3: "Your repository and your domain, full access throughout",
+          d4: "Analytics, events and forms tested before launch",
+          d5: "Two weeks of fixes after launch, included",
+        },
+        faq: {
+          f1: {
+            q: "How much does a website cost?",
+            a: "A landing page starts at $1,500, a corporate site at $2,500, and a catalogue with a calculator depends on how many parameters the price has. We quote a fixed number before starting, so the figure does not move mid-project.",
+          },
+          f2: {
+            q: "How long does it take?",
+            a: "A landing page takes about two weeks, a corporate site three to four. The clock starts when the content is ready — the most common delay is waiting for texts and photos, not development.",
+          },
+          f3: {
+            q: "Can we edit the site ourselves afterwards?",
+            a: "Yes. Every site ships with an admin panel for texts, images, prices and posts. That is the whole point: a site only stays accurate if the people who know the business can change it.",
+          },
+          f4: {
+            q: "Why not a website builder?",
+            a: "A builder is fine until you need something it does not do — online booking, a price calculator, payment, a third language. Then you rebuild anyway. If you are already on one, we migrate without losing your Google positions.",
+          },
+          f5: {
+            q: "Do you do SEO too?",
+            a: "We build the technical foundation: speed, structure, meta tags, hreflang, structured data and a sitemap. Ongoing promotion is a separate job — we work alongside your agency, or hand over a site theirs can actually rank.",
+          },
+        },
+        ctaTitle: "Need a site that brings in clients?",
+        ctaSub: "Send us your current site or your idea. You will get a structure, a fixed price and a timeline within 48 hours.",
+      },
       saas: {
         metaTitle: "SaaS Development Company — Multi-Tenant Platforms | Shiplix",
         metaDescription:
@@ -1091,6 +1161,139 @@ const en = {
         ctaSub: "Tell us what you want to build. You will get a technical assessment and an estimate within 48 hours.",
       },
     },
+  },
+
+  migrate: {
+    metaTitle: "Move Your Site off Wix or Tilda — Without Losing Google",
+    metaDescription:
+      "We migrate business sites from website builders to custom code: same URLs, 301 redirects, your own admin panel, and a page that loads in under a second. From $1,500, about two weeks.",
+    label: "Move off a builder",
+    h1: "Move off the builder without losing your Google positions",
+    intro:
+      "Wix, Tilda and Weblium start well and hit a ceiling fast. We move you to custom code: the same page URLs, 301 redirects, an admin panel your team keeps using — and a site that opens in under a second.",
+    ctaPrimary: "Get a free speed check",
+    ctaSecondary: "See our work",
+    trustLine: "Fixed price agreed before we start. Your old site stays live until the new one is ready.",
+    stats: {
+      s1: { value: "79", label: "small-business sites we measured" },
+      s2: { value: "57", label: "of them load slower than 5 seconds" },
+      s3: { value: "54", label: "have no analytics installed at all" },
+    },
+    statsNote:
+      "Our own measurement, September 2026: dental practices, salons, auto services and clinics in Kyiv and Lviv, on Wix, Tilda, Weblium and WordPress.",
+    compareLabel: "The difference",
+    compareTitle: "What the builder costs you, and what changes after the move",
+    beforeTitle: "On a builder",
+    afterTitle: "On your own code",
+    before: {
+      p1: "Opens in 5-8 seconds on a phone, and half the visitors never wait",
+      p2: "You pay every month for a site that is never yours",
+      p3: "Online booking, a price calculator or payment simply cannot be added",
+      p4: "SEO stops at whatever the platform allows",
+      p5: "No analytics, so you cannot see how many clients you lost",
+    },
+    after: {
+      p1: "Opens in under a second — static build and optimised images",
+      p2: "The code and the domain are yours; hosting costs $2-5 a month",
+      p3: "Booking, calculators, payment and extra languages are all possible",
+      p4: "Your own structure, meta tags and structured data, with no ceiling",
+      p5: "GA4 and GTM from day one, with requests delivered to Telegram",
+    },
+    includesLabel: "What is included",
+    includesTitle: "Everything usually charged as extras",
+    includes: {
+      i1: {
+        title: "All your content moved",
+        desc: "Texts, photos, services and prices transferred and checked page by page. You do not retype anything.",
+      },
+      i2: {
+        title: "Same URLs and 301 redirects",
+        desc: "Every old address either stays or points to its replacement. This is the single step that decides whether rankings survive.",
+      },
+      i3: {
+        title: "An admin panel",
+        desc: "Texts, images, prices and posts editable by your team — the same freedom the builder gave you, without its limits.",
+      },
+      i4: {
+        title: "Analytics and lead capture",
+        desc: "GA4, GTM and events on every form, with requests arriving in Telegram or your CRM instead of an inbox.",
+      },
+      i5: {
+        title: "Speed as a requirement",
+        desc: "Static rendering, compressed images and almost no client-side JavaScript. ARTEX ships with practically none.",
+      },
+      i6: {
+        title: "No downtime",
+        desc: "The old site keeps serving customers until the new one is finished. We switch the domain in one evening.",
+      },
+    },
+    priceLabel: "Price",
+    priceTitle: "Fixed before the work starts",
+    plans: {
+      landing: {
+        name: "Landing page or site up to 5 pages",
+        term: "about 2 weeks",
+        desc: "Home page, services, about, contacts and a request form. The usual shape of a small-business site.",
+      },
+      store: {
+        name: "Online store or catalogue",
+        term: "timeline agreed in the estimate",
+        desc: "Catalogue, cart, checkout, payment and delivery, plus an admin panel for products and orders.",
+      },
+    },
+    priceNote:
+      "The figure is agreed before development starts and does not move mid-project. A catalogue with a price calculator depends on how many parameters the price has — that we quote after the first call.",
+    processLabel: "How it runs",
+    processTitle: "Four steps, about two weeks",
+    steps: {
+      st1: {
+        title: "Measurement and plan",
+        desc: "We measure the current site, collect every URL and agree what moves, what changes and what gets dropped.",
+      },
+      st2: {
+        title: "Structure and design",
+        desc: "Page structure first, then the design. Both approved before a line of code is written.",
+      },
+      st3: {
+        title: "Build",
+        desc: "The new site is built on a test domain. Your old one keeps working and taking orders the whole time.",
+      },
+      st4: {
+        title: "Switch",
+        desc: "Domain switched, redirects live, analytics verified. We hand over every access and stay two weeks for fixes.",
+      },
+    },
+    proofLabel: "Proof",
+    proofTitle: "Sites we built this way",
+    faqLabel: "Questions",
+    faqTitle: "What people ask before moving",
+    faq: {
+      f1: {
+        q: "Will the move hurt my Google rankings?",
+        a: "Not if the addresses are handled properly. We keep the same URLs where we can and set 301 redirects everywhere else, so the weight of the old pages transfers to the new ones. A faster site usually helps rankings rather than harming them.",
+      },
+      f2: {
+        q: "How long does it take?",
+        a: "About two weeks for a landing page or a site up to five pages. A store or a catalogue depends on how many products and parameters there are — we fix that timeline in the estimate before starting.",
+      },
+      f3: {
+        q: "What happens to the current site while you work?",
+        a: "Nothing. It keeps running and taking orders until the new one is ready. The switch happens in one evening, and if anything goes wrong we can point the domain back within minutes.",
+      },
+      f4: {
+        q: "Will we be able to edit the new site ourselves?",
+        a: "Yes. Every site ships with an admin panel for texts, images, prices and posts. Losing that is the main reason people fear leaving a builder, so it is the first thing we replace.",
+      },
+      f5: {
+        q: "We are not on a builder, we have an old WordPress. Does this apply?",
+        a: "Yes, and the reasons are usually the same: it is slow, it breaks on updates and it costs money in plugins. The process is identical — content moves, addresses are preserved, redirects go up.",
+      },
+    },
+    ctaTitle: "Send us your address — we will measure it for free",
+    ctaSub:
+      "You will get the real load time, what exactly is slowing the site down, and an honest answer on whether moving is worth it for you. No obligation.",
+    ctaButton: "Write on Telegram",
+    ctaSecondaryBottom: "All contacts",
   },
 
   caseStudies: {

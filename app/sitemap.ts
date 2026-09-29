@@ -11,6 +11,7 @@ import { localeUrl, languageAlternates } from "@/app/lib/seo";
 /** Every indexable path, without the locale prefix. */
 const STATIC_PATHS: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
+  { path: "/migrate", priority: 0.9 },
   { path: "/projects", priority: 0.9 },
   { path: "/contact", priority: 0.8 },
   { path: "/about", priority: 0.7 },

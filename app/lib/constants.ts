@@ -440,6 +440,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
 /* ── Service landing pages (SEO entry points) ── */
 
 export const SERVICE_PAGE_KEYS = [
+  "websites",
   "ecommerce",
   "marketplace",
   "saas",
@@ -460,6 +461,12 @@ export const SERVICE_PAGE_META: Record<
     color: string;
   }
 > = {
+  websites: {
+    slug: "website-development",
+    project: "artexClean",
+    stack: ["Next.js", "Astro", "TypeScript", "Tailwind CSS", "Vercel", "GA4"],
+    color: "text-orange",
+  },
   saas: {
     slug: "saas-development",
     project: "inciCore",
@@ -524,4 +531,22 @@ export type CaseStudy = {
   }[];
   outcomeTitle: string;
   outcome: string;
+};
+
+/* ── Migration landing (/migrate) ── */
+
+export const MIGRATE_STAT_KEYS = ["s1", "s2", "s3"] as const;
+export const MIGRATE_POINT_KEYS = ["p1", "p2", "p3", "p4", "p5"] as const;
+export const MIGRATE_ITEM_KEYS = ["i1", "i2", "i3", "i4", "i5", "i6"] as const;
+export const MIGRATE_STEP_KEYS = ["st1", "st2", "st3", "st4"] as const;
+export const MIGRATE_FAQ_KEYS = ["f1", "f2", "f3", "f4", "f5"] as const;
+export const MIGRATE_PLAN_KEYS = ["landing", "store"] as const;
+
+/** Prices stay out of the dictionaries: one number, not three translations. */
+export const MIGRATE_PLAN_META: Record<
+  (typeof MIGRATE_PLAN_KEYS)[number],
+  { price: string }
+> = {
+  landing: { price: "$1 500" },
+  store: { price: "$4 500" },
 };
