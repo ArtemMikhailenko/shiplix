@@ -599,6 +599,7 @@ const ru: Dictionary = {
     },
   },
   servicePages: {
+    nearbyTitle: "Смежные страницы",
     learnMore: "Узнать больше →",
     breadcrumbHome: "Главная",
     breadcrumbServices: "Услуги",

@@ -6,6 +6,8 @@ import {
   CONTACT,
   SERVICE_PAGE_KEYS,
   SERVICE_PAGE_META,
+  CITY_KEYS,
+  CITY_META,
 } from "@/app/lib/constants";
 import { localesWithPosts } from "@/app/lib/blog";
 import { type Locale } from "@/app/lib/i18n/config";
@@ -27,14 +29,23 @@ export default function Footer() {
     { label: dict.footer.nav.about, href: `/${locale}/about` },
     { label: dict.footer.nav.team, href: `/${locale}/team` },
     { label: dict.footer.nav.contact, href: `/${locale}/contact` },
+    // City pages have no other entry point on the site; without this they are
+    // crawled from the sitemap alone and carry no internal weight.
+    ...CITY_KEYS.map((key) => ({
+      label: dict.cities.items[key].label,
+      href: `/${locale}/website-development/${CITY_META[key].slug}`,
+    })),
   ];
 
   // Service landing pages are the site's SEO entry points — link them site-wide
   // so they are not orphaned from the crawl.
-  const serviceLinks = SERVICE_PAGE_KEYS.map((key) => ({
-    label: dict.servicePages.items[key].label,
-    href: `/${locale}/services/${SERVICE_PAGE_META[key].slug}`,
-  }));
+  const serviceLinks = [
+    ...SERVICE_PAGE_KEYS.map((key) => ({
+      label: dict.servicePages.items[key].label,
+      href: `/${locale}/services/${SERVICE_PAGE_META[key].slug}`,
+    })),
+    { label: dict.migrate.label, href: `/${locale}/migrate` },
+  ];
 
   return (
     <footer className="border-t border-border">

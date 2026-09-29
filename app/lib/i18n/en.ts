@@ -596,6 +596,7 @@ const en = {
     },
   },
   servicePages: {
+    nearbyTitle: "Related pages",
     learnMore: "Learn more →",
     breadcrumbHome: "Home",
     breadcrumbServices: "Services",

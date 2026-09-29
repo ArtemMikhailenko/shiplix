@@ -4,13 +4,23 @@ import type { Post } from "./types";
 import audit79 from "./posts/audit-79-sites";
 import sitePrice from "./posts/site-price";
 import migrationSeo from "./posts/migration-without-losing-seo";
+import payments from "./posts/payments-in-ukraine";
+import booking from "./posts/online-booking-system";
+import mobileCost from "./posts/mobile-app-cost";
 
 /**
  * Adding a post is one import here. Posts are not in the i18n dictionaries on
  * purpose: the Dictionary type would then demand every article in all three
  * languages, and an article is worth publishing in one.
  */
-const POSTS: Post[] = [audit79, sitePrice, migrationSeo];
+const POSTS: Post[] = [
+  audit79,
+  sitePrice,
+  migrationSeo,
+  payments,
+  booking,
+  mobileCost,
+];
 
 const byNewest = (a: Post, b: Post) => (a.date < b.date ? 1 : -1);
 

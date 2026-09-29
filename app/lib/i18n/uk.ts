@@ -599,6 +599,7 @@ const uk: Dictionary = {
     },
   },
   servicePages: {
+    nearbyTitle: "Суміжні сторінки",
     learnMore: "Дізнатися більше →",
     breadcrumbHome: "Головна",
     breadcrumbServices: "Послуги",

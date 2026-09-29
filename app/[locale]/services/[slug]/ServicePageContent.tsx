@@ -9,6 +9,8 @@ import {
   SERVICE_FAQ_KEYS,
   SERVICE_DELIVERABLE_KEYS,
   PROJECT_META,
+  CITY_KEYS,
+  CITY_META,
   type ServicePageKey,
 } from "@/app/lib/constants";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
@@ -243,6 +245,43 @@ export default function ServicePageContent({
             </Button>
           </div>
         </section>
+
+        {/* The website page is the entry point for the geo and migration
+            pages: they have no other contextual link anywhere on the site. */}
+        {serviceKey === "websites" && (
+          <section className="fade-up">
+            <h2 className="mb-6 font-mono text-xs font-medium uppercase tracking-widest text-text-tertiary">
+              {dict.servicePages.nearbyTitle}
+            </h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <Link
+                href={`/${locale}/migrate`}
+                className="group rounded-card border border-accent/25 bg-bg-elevated p-6 transition-colors duration-200 hover:border-accent/50"
+              >
+                <span className="mb-3 block font-mono text-xs uppercase tracking-widest text-accent">
+                  {dict.migrate.label}
+                </span>
+                <span className="block text-base font-semibold text-text transition-colors group-hover:text-accent">
+                  {dict.migrate.h1}
+                </span>
+              </Link>
+              {CITY_KEYS.map((key) => (
+                <Link
+                  key={key}
+                  href={`/${locale}/website-development/${CITY_META[key].slug}`}
+                  className="group rounded-card border border-border bg-bg-elevated p-6 transition-colors duration-200 hover:border-border-hover"
+                >
+                  <span className="mb-3 block font-mono text-xs uppercase tracking-widest text-cyan">
+                    {dict.cities.items[key].city}
+                  </span>
+                  <span className="block text-base font-semibold text-text transition-colors group-hover:text-accent">
+                    {dict.cities.items[key].h1}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Other services — internal linking */}
         <section className="fade-up">
