@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/app/components/ui/Button";
+import { localesWithPosts } from "@/app/lib/blog";
+import { type Locale } from "@/app/lib/i18n/config";
 import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import { locales } from "@/app/lib/i18n/config";
@@ -19,6 +21,10 @@ export default function Nav() {
   const navLinks = [
     { label: dict.nav.services, href: isHome ? "#services" : `/${locale}/#services` },
     { label: dict.nav.projects, href: `/${locale}/projects` },
+    // Same rule as the footer: only linked where there is something to read.
+    ...(localesWithPosts().includes(locale as Locale)
+      ? [{ label: dict.nav.blog, href: `/${locale}/blog` }]
+      : []),
     { label: dict.nav.about, href: `/${locale}/about` },
     { label: dict.nav.team, href: `/${locale}/team` },
     { label: dict.nav.faq, href: `/${locale}/faq` },

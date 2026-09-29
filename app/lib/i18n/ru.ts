@@ -9,6 +9,7 @@ const ru: Dictionary = {
   nav: {
     services: "Услуги",
     projects: "Проекты",
+    blog: "Блог",
     about: "О нас",
     team: "Команда",
     contact: "Контакты",

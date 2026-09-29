@@ -7,6 +7,7 @@ const en = {
   nav: {
     services: "Services",
     projects: "Projects",
+    blog: "Blog",
     about: "About",
     team: "Team",
     contact: "Contact",

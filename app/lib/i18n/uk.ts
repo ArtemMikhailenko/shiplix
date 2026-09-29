@@ -9,6 +9,7 @@ const uk: Dictionary = {
   nav: {
     services: "Послуги",
     projects: "Проєкти",
+    blog: "Блог",
     about: "Про нас",
     team: "Команда",
     contact: "Контакти",
