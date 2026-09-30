@@ -1167,6 +1167,10 @@ const en = {
   },
 
   blog: {
+    contentsTitle: "Contents",
+    ctaTitle: "Want this built properly?",
+    ctaSub: "Tell us what you are working on. You will get a technical assessment and an estimate within 48 hours.",
+    ctaButton: "Start a project",
     metaTitle: "Blog — notes on building websites and products | Shiplix",
     metaDescription:
       "What we learn while shipping: measurements, prices, migrations and the decisions behind our work. Written by the people who build it.",
