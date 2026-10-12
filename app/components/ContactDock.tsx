@@ -35,8 +35,14 @@ const MailIcon = () => (
 );
 
 const ChatIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
-    <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z" />
+  <svg viewBox="0 0 24 24" className="w-[26px] h-[26px]" aria-hidden="true">
+    <path
+      d="M12 3.5c-4.97 0-9 3.47-9 7.75 0 2.4 1.27 4.55 3.27 5.97l-.62 2.9a.6.6 0 0 0 .86.66l3.31-1.72c.7.14 1.43.21 2.18.21 4.97 0 9-3.47 9-7.75S16.97 3.5 12 3.5z"
+      fill="currentColor"
+    />
+    <circle cx="8.25" cy="11.25" r="1.15" className="fill-accent-deep" />
+    <circle cx="12" cy="11.25" r="1.15" className="fill-accent-deep" />
+    <circle cx="15.75" cy="11.25" r="1.15" className="fill-accent-deep" />
   </svg>
 );
 
@@ -65,6 +71,8 @@ export default function ContactDock() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [peek, setPeek] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const digits = CONTACT.phone.replace(/\D/g, "");
@@ -117,6 +125,30 @@ export default function ContactDock() {
       document.removeEventListener("pointerdown", onDown);
     };
   }, [open]);
+
+  // Show the label once per session a few seconds in, so first-time
+  // visitors learn what the round button is for.
+  useEffect(() => {
+    const KEY = "shiplix:dock_peeked";
+    try {
+      if (sessionStorage.getItem(KEY)) return;
+    } catch {
+      // Blocked storage — peeking on every page view is harmless.
+    }
+    const show = setTimeout(() => {
+      setPeek(true);
+      try {
+        sessionStorage.setItem(KEY, "1");
+      } catch {
+        // ignored
+      }
+    }, 4000);
+    const hide = setTimeout(() => setPeek(false), 8000);
+    return () => {
+      clearTimeout(show);
+      clearTimeout(hide);
+    };
+  }, []);
 
   if (/\/contact\/?$/.test(pathname)) return null;
 
@@ -175,23 +207,75 @@ export default function ContactDock() {
         )}
       </AnimatePresence>
 
-      <button
-        type="button"
-        onClick={toggle}
-        aria-expanded={open}
-        aria-controls="contact-dock-menu"
-        aria-label={open ? t.close : t.open}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-accent-deep text-white hover:bg-accent hover:text-bg shadow-[0_8px_28px_-6px_rgba(124,58,237,0.65)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+      <div
+        className="relative flex items-center"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        <motion.span
-          key={open ? "close" : "open"}
-          initial={reduceMotion ? false : { rotate: -45, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          transition={{ duration: 0.18 }}
+        <AnimatePresence>
+          {!open && (hovered || peek) && (
+            <motion.span
+              aria-hidden="true"
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="pointer-events-none absolute right-full mr-3 whitespace-nowrap px-4 py-2 rounded-pill bg-bg-elevated/95 backdrop-blur-md border border-white/[0.08] text-sm text-text shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]"
+            >
+              {t.open}
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Soft glow and two expanding rings that keep the button noticeable. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-2 rounded-full bg-accent-deep/40 blur-xl"
+        />
+        {!open &&
+          !reduceMotion &&
+          [0, 1].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-full border border-accent/70"
+              initial={{ scale: 1, opacity: 0 }}
+              animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+              transition={{
+                duration: 2.4,
+                ease: "easeOut",
+                repeat: Infinity,
+                repeatDelay: 1.6,
+                delay: 1.2 + i * 0.8,
+              }}
+            />
+          ))}
+
+        <motion.button
+          type="button"
+          onClick={toggle}
+          aria-expanded={open}
+          aria-controls="contact-dock-menu"
+          aria-label={open ? t.close : t.open}
+          whileHover={reduceMotion ? undefined : { scale: 1.07 }}
+          whileTap={{ scale: 0.93 }}
+          transition={{ type: "spring", stiffness: 380, damping: 22 }}
+          className="relative flex items-center justify-center w-14 h-14 rounded-full text-white bg-gradient-to-br from-[#9b7bff] via-accent-deep to-[#5b21b6] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_10px_30px_-6px_rgba(124,58,237,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          {open ? <CloseIcon /> : <ChatIcon />}
-        </motion.span>
-      </button>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={open ? "close" : "open"}
+              initial={reduceMotion ? false : { rotate: open ? -90 : 90, scale: 0.4, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              exit={reduceMotion ? undefined : { rotate: open ? 90 : -90, scale: 0.4, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="flex"
+            >
+              {open ? <CloseIcon /> : <ChatIcon />}
+            </motion.span>
+          </AnimatePresence>
+        </motion.button>
+      </div>
     </div>
   );
 }
