@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
+import {
+  isContactMethod,
+  isValidContact,
+  phoneDigits,
+  telegramUsername,
+  type ContactMethod,
+} from "@/app/lib/contactMethod";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Telegram caps sendMessage at 4096 chars, and the labels below add ~200 —
 // keep the message short enough that a long inquiry is never rejected.
-const MAX = { name: 100, email: 160, budget: 60, message: 3500 } as const;
+const MAX = { name: 100, contact: 160, budget: 60, message: 3500 } as const;
 
 /** Best-effort throttle. Serverless instances are short-lived, so this only
  *  blocks bursts from one warm instance — real abuse protection lives upstream. */
@@ -27,6 +34,28 @@ const escapeHtml = (s: string) =>
 
 const clean = (v: unknown, max: number) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
+
+const CONTACT_LABEL: Record<ContactMethod, string> = {
+  email: "Email",
+  telegram: "Telegram",
+  phone: "Phone",
+  whatsapp: "WhatsApp",
+};
+
+/** The contact as shown in the Telegram notification, linked where Telegram allows it. */
+function contactLine(method: ContactMethod, value: string): string {
+  const text = escapeHtml(value);
+  if (method === "telegram") {
+    const user = telegramUsername(value);
+    if (user) return `<a href="https://t.me/${user}">@${user}</a>`;
+  }
+  if (method === "whatsapp") {
+    const digits = phoneDigits(value);
+    if (digits) return `<a href="https://wa.me/${digits}">${text}</a>`;
+  }
+  // Email and phone numbers are auto-linked by Telegram itself.
+  return text;
+}
 
 export async function POST(request: Request) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -62,21 +91,25 @@ export async function POST(request: Request) {
   }
 
   const name = clean(body.name, MAX.name);
-  const email = clean(body.email, MAX.email);
+  // Older clients send only `email`; treat that as the email method.
+  const method: ContactMethod = isContactMethod(body.contactMethod)
+    ? body.contactMethod
+    : "email";
+  const contact = clean(body.contact ?? body.email, MAX.contact);
   const budget = clean(body.budget, MAX.budget);
   const message = clean(body.message, MAX.message);
   const locale = clean(body.locale, 5);
   const page = clean(body.page, 200);
 
-  if (!name || !email || !message) {
+  if (!name || !contact || !message) {
     return NextResponse.json(
-      { error: "Name, email and message are required." },
+      { error: "Name, contact and message are required." },
       { status: 400 }
     );
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+  if (!isValidContact(method, contact)) {
     return NextResponse.json(
-      { error: "Please enter a valid email address." },
+      { error: "Please enter a valid contact." },
       { status: 400 }
     );
   }
@@ -85,7 +118,7 @@ export async function POST(request: Request) {
     "🚀 <b>New project inquiry — shiplix.it.com</b>",
     "",
     `<b>Name:</b> ${escapeHtml(name)}`,
-    `<b>Email:</b> ${escapeHtml(email)}`,
+    `<b>${CONTACT_LABEL[method]}:</b> ${contactLine(method, contact)}`,
     budget ? `<b>Budget:</b> ${escapeHtml(budget)}` : null,
     "",
     "<b>Project:</b>",

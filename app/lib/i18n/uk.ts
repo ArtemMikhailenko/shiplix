@@ -468,7 +468,25 @@ const uk: Dictionary = {
     sub: "Розкажіть про ваш проєкт — ми відповімо з технічною оцінкою протягом 48 годин.",
     label: "Контакт",
     formName: "Ваше ім'я",
-    formEmail: "Email адреса",
+    formContact: "Як з вами зв'язатися",
+    formContactMethods: {
+      email: "Email",
+      telegram: "Telegram",
+      phone: "Телефон",
+      whatsapp: "WhatsApp",
+    },
+    formContactPlaceholders: {
+      email: "you@company.com",
+      telegram: "@username",
+      phone: "+380 XX XXX XX XX",
+      whatsapp: "+380 XX XXX XX XX",
+    },
+    formContactInvalid: {
+      email: "Вкажіть коректну email-адресу.",
+      telegram: "Вкажіть @username у Telegram або номер телефону.",
+      phone: "Вкажіть номер телефону з кодом країни.",
+      whatsapp: "Вкажіть номер WhatsApp з кодом країни.",
+    },
     formBudget: "Діапазон бюджету",
     formBudgetOptions: {
       small: "Ще вивчаю",

@@ -466,7 +466,25 @@ const en = {
     sub: "Tell us about your project and we'll get back with a technical assessment within 48 hours.",
     label: "Contact",
     formName: "Your name",
-    formEmail: "Email address",
+    formContact: "How to reach you",
+    formContactMethods: {
+      email: "Email",
+      telegram: "Telegram",
+      phone: "Phone",
+      whatsapp: "WhatsApp",
+    },
+    formContactPlaceholders: {
+      email: "you@company.com",
+      telegram: "@username",
+      phone: "+1 555 123 4567",
+      whatsapp: "+1 555 123 4567",
+    },
+    formContactInvalid: {
+      email: "Please enter a valid email address.",
+      telegram: "Enter your Telegram @username or phone number.",
+      phone: "Enter a phone number with the country code.",
+      whatsapp: "Enter a WhatsApp number with the country code.",
+    },
     formBudget: "Budget range",
     formBudgetOptions: {
       small: "Just exploring",

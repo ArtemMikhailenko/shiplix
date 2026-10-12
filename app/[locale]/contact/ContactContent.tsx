@@ -11,8 +11,23 @@ import { useDictionary } from "@/app/lib/i18n/DictionaryProvider";
 import { useFadeUp } from "@/app/lib/useFadeUp";
 import { trackEvent } from "@/app/lib/analytics";
 import { locales } from "@/app/lib/i18n/config";
+import {
+  CONTACT_METHODS,
+  isValidContact,
+  type ContactMethod,
+} from "@/app/lib/contactMethod";
 
 const BUDGET_KEYS = ["small", "medium", "large", "enterprise"] as const;
+
+const CONTACT_INPUT: Record<
+  ContactMethod,
+  { type: string; inputMode: "email" | "tel" | "text"; autoComplete: string }
+> = {
+  email: { type: "email", inputMode: "email", autoComplete: "email" },
+  telegram: { type: "text", inputMode: "text", autoComplete: "off" },
+  phone: { type: "tel", inputMode: "tel", autoComplete: "tel" },
+  whatsapp: { type: "tel", inputMode: "tel", autoComplete: "tel" },
+};
 
 export default function ContactContent() {
   const dict = useDictionary();
@@ -22,10 +37,11 @@ export default function ContactContent() {
 
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    contact: "",
     budget: "",
     message: "",
   });
+  const [contactMethod, setContactMethod] = useState<ContactMethod>("email");
   // Hidden honeypot field — bots fill it, humans never see it.
   const [company, setCompany] = useState("");
   const [status, setStatus] = useState<
@@ -47,6 +63,12 @@ export default function ContactContent() {
     e.preventDefault();
     if (status === "sending") return;
 
+    if (!isValidContact(contactMethod, formData.contact)) {
+      setErrorMsg(dict.contactPage.formContactInvalid[contactMethod]);
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
     setErrorMsg("");
 
@@ -56,6 +78,7 @@ export default function ContactContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          contactMethod,
           company,
           locale,
           page: pathname,
@@ -79,9 +102,10 @@ export default function ContactContent() {
         form_id: "contact",
         locale,
         budget: formData.budget || "not_specified",
+        contact_method: contactMethod,
       });
 
-      setFormData({ name: "", email: "", budget: "", message: "" });
+      setFormData({ name: "", contact: "", budget: "", message: "" });
       setStatus("success");
     } catch {
       setErrorMsg(dict.contactPage.formError);
@@ -161,21 +185,50 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="contact"
                     className="block text-xs font-mono font-medium uppercase tracking-widest text-text-tertiary mb-2"
                   >
-                    {dict.contactPage.formEmail}
+                    {dict.contactPage.formContact}
                   </label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full px-4 py-3 rounded-card bg-bg-elevated border border-border text-text text-sm placeholder:text-text-tertiary focus:border-accent/50 focus:outline-none transition-colors duration-200"
-                  />
+                  <div className="flex rounded-card bg-bg-elevated border border-border focus-within:border-accent/50 transition-colors duration-200">
+                    <div className="relative shrink-0 border-r border-border">
+                      <select
+                        aria-label={dict.contactPage.formContact}
+                        value={contactMethod}
+                        onChange={(e) => {
+                          setContactMethod(e.target.value as ContactMethod);
+                          if (status === "error") setStatus("idle");
+                        }}
+                        className="h-full pl-4 pr-8 py-3 bg-transparent text-text text-sm focus:outline-none cursor-pointer appearance-none"
+                      >
+                        {CONTACT_METHODS.map((m) => (
+                          <option key={m} value={m} className="bg-bg-elevated">
+                            {dict.contactPage.formContactMethods[m]}
+                          </option>
+                        ))}
+                      </select>
+                      <svg
+                        viewBox="0 0 10 6"
+                        aria-hidden="true"
+                        className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-2.5 h-1.5 text-text-tertiary"
+                      >
+                        <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                      </svg>
+                    </div>
+                    <input
+                      id="contact"
+                      required
+                      {...CONTACT_INPUT[contactMethod]}
+                      placeholder={
+                        dict.contactPage.formContactPlaceholders[contactMethod]
+                      }
+                      value={formData.contact}
+                      onChange={(e) =>
+                        setFormData({ ...formData, contact: e.target.value })
+                      }
+                      className="min-w-0 flex-1 px-4 py-3 bg-transparent text-text text-sm placeholder:text-text-tertiary focus:outline-none"
+                    />
+                  </div>
                 </div>
               </div>
 
