@@ -290,6 +290,14 @@ const ru: Dictionary = {
     sub: "Расскажите о вашем проекте. Мы ответим с технической оценкой и эстимейтом в течение 48 часов.",
     button: "Начать проект →",
   },
+  contactDock: {
+    open: "Связаться с нами",
+    close: "Закрыть",
+    call: "Позвонить",
+    telegram: "Telegram",
+    whatsapp: "WhatsApp",
+    email: "Почта",
+  },
   footer: {
     copy: "© 2026 Shiplix. Базируемся в Украине, работаем по всему миру.",
     nav: {

@@ -312,6 +312,9 @@ export const HERO_CARDS = [
 export const CONTACT = {
   email: "artemlend@gmail.com",
   telegram: "@artem_mykhailenko99",
+  /** E.164, used for tel: and wa.me links. */
+  phone: "+380932318202",
+  phoneDisplay: "+380 93 231 82 02",
   linkedin: "https://linkedin.com/company/shiplix",
   github: "https://github.com/shiplix",
   calendly: "https://calendly.com/shiplix/30min",

@@ -288,6 +288,14 @@ const en = {
     sub: "Tell us about your project. We'll respond with a technical assessment and estimate within 48 hours.",
     button: "Start a project →",
   },
+  contactDock: {
+    open: "Contact us",
+    close: "Close",
+    call: "Call",
+    telegram: "Telegram",
+    whatsapp: "WhatsApp",
+    email: "Email",
+  },
   footer: {
     copy: "© 2026 Shiplix. Based in Ukraine, shipping worldwide.",
     nav: {
