@@ -2,6 +2,7 @@ import type { Locale } from "@/app/lib/i18n/config";
 import type { Post } from "./types";
 
 import audit79 from "./posts/audit-79-sites";
+import audit241 from "./posts/ads-and-constructor-sites";
 import sitePrice from "./posts/site-price";
 import migrationSeo from "./posts/migration-without-losing-seo";
 import payments from "./posts/payments-in-ukraine";
@@ -14,6 +15,7 @@ import mobileCost from "./posts/mobile-app-cost";
  * languages, and an article is worth publishing in one.
  */
 const POSTS: Post[] = [
+  audit241,
   audit79,
   sitePrice,
   migrationSeo,
